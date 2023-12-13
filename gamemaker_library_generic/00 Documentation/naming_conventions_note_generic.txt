@@ -1,0 +1,3 @@
+something_controller_generic   : file defines constructor for controller struct for <something>
+something_constructors_generic : file defines regular constructor functions for <something>
+something_functions_generic    : file contains script functions for <something>

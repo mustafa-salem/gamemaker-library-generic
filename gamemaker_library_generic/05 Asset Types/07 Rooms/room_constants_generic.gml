@@ -1,0 +1,1 @@
+#macro room_controller_generic CONTROLLERS_GENERIC.room_controller
