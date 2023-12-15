@@ -1,0 +1,17 @@
+object_index
+object_exists
+object_get_name
+object_get_mask
+object_get_parent
+object_get_persistent
+object_get_solid
+object_get_sprite
+object_get_visible
+object_get_physics
+object_is_ancestor
+
+object_set_mask
+object_set_persistent
+object_set_solid
+object_set_sprite
+object_set_visible

@@ -1,0 +1,11 @@
+sequence_exists
+sequence_create
+sequence_destroy
+sequence_get
+sequence_track_new
+sequence_keyframe_new
+sequence_keyframedata_new
+sequence_get_objects
+sequence_instance_override_object
+
+in_sequence

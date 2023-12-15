@@ -1,0 +1,10 @@
+// NATIVE FUNCTIONS
+animcurve_get
+animcurve_get_channel_index
+animcurve_get_channel
+animcurve_channel_evaluate
+animcurve_create
+animcurve_exists
+animcurve_channel_new
+animcurve_point_new
+animcurve_destroy

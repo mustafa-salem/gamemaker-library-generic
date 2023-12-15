@@ -1,0 +1,41 @@
+// NATIVE FUNCTIONS
+
+// Asset Info
+font_exists
+font_get_name
+font_get_fontname
+font_get_first
+font_get_last
+font_get_italic
+font_get_bold
+font_get_size
+font_get_info
+
+// Texture
+font_get_texture
+font_get_uvs
+font_cache_glyph
+
+// Adding/Removing Fonts
+font_add
+font_add_sprite
+font_add_sprite_ext
+font_replace_sprite
+font_replace_sprite_ext
+font_delete
+
+// Configuration
+font_texture_page_size
+font_set_cache_size
+font_add_enable_aa
+font_add_get_enable_aa
+
+// SDF
+font_enable_sdf
+font_get_sdf_enabled
+font_sdf_spread
+font_get_sdf_spread
+font_enable_effects
+
+// Drawing
+draw_set_font

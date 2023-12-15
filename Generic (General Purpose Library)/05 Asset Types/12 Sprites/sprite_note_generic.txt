@@ -1,0 +1,80 @@
+Sprite Information
+
+sprite_exists
+sprite_get_name
+sprite_get_number
+sprite_get_speed
+sprite_get_speed_type
+sprite_get_width
+sprite_get_height
+sprite_get_xoffset
+sprite_get_yoffset
+sprite_get_bbox_bottom
+sprite_get_bbox_left
+sprite_get_bbox_right
+sprite_get_bbox_top
+sprite_get_bbox_mode
+sprite_get_nineslice
+sprite_get_tpe
+sprite_get_texture
+sprite_get_uvs
+sprite_get_info
+
+
+Sprite Manipulation
+
+Asset Properties
+sprite_collision_mask
+sprite_set_offset
+sprite_set_bbox_mode
+sprite_set_bbox
+sprite_set_speed
+sprite_set_nineslice
+Creating & Modifying Sprites
+sprite_add
+sprite_add_ext
+sprite_delete
+sprite_replace
+sprite_duplicate
+sprite_assign
+sprite_merge
+sprite_set_alpha_from_sprite
+sprite_nineslice_create
+sprite_create_from_surface
+sprite_add_from_surface
+Saving Sprites
+sprite_save
+sprite_save_strip
+Blending (HTML5)
+sprite_set_cache_size
+sprite_set_cache_size_ext
+Prefetching
+sprite_prefetch
+sprite_prefetch_multi
+sprite_flush
+sprite_flush_multi
+
+Sprite Instance Variables
+sprite_index
+sprite_width
+sprite_height
+sprite_xoffset
+sprite_yoffset
+image_alpha
+image_angle
+image_blend
+image_index
+image_number
+image_speed
+image_xscale
+image_yscale
+mask_index
+bbox_bottom
+bbox_left
+bbox_right
+bbox_top
+
+Nine Slice Functions
+sprite_nineslice_create
+sprite_get_nineslice
+sprite_set_nineslice

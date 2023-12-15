@@ -1,0 +1,7 @@
+// NATIVE FUNCTIONS
+extension_exists
+extension_get_version
+extension_get_options
+extension_get_option_value
+extension_get_option_names
+extension_get_option_count

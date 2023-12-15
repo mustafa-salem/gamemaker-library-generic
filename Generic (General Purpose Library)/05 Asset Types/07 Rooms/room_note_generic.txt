@@ -1,0 +1,44 @@
+Global
+room_first
+room_last
+room_next
+room_previous
+room
+room_speed DEPRECATED
+room_height
+room_width
+room_persistent
+
+Information
+room_exists
+room_get_name
+room_get_info
+
+Switching Rooms
+room_goto
+room_goto_next
+room_goto_previous
+room_restart
+
+Modifying Rooms
+room_add
+room_duplicate
+room_assign
+room_instance_add
+room_instance_clear
+room_set_height
+room_set_width
+room_set_persistent
+room_set_view_enabled
+room_set_viewport
+room_get_viewport
+room_set_camera
+room_get_camera
+
+Room Layers & Elements
+General Layer Functions
+Tile Map Layers
+Background Layers
+Sprite Layers
+Sequence Layers
+Filter and Effect Functions
