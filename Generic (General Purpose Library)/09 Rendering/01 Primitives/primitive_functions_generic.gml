@@ -107,6 +107,28 @@ function draw_triangle_generic(arguments = {}) {
 #region    –––––––––––––––––––– DRAW RECTANGLE ––––––––––––––––––––
 /*******************************************************************************/
 
+/// ----------------------------------------------------------------------------
+/// @function draw_rectangle_generic(arguments)
+/// ----------------------------------------------------------------------------
+/// @description
+/// ----------------------------------------------------------------------------
+/// @parameter {Struct} arguments
+///
+/// {Real} x1 : The x coordinate of the top left corner of the rectangle.
+///
+/// {Real} x2 : The x coordinate of the bottom right corner of the rectangle.
+///
+/// {Real} y1 : The y coordinate of the top left corner of the rectangle.
+///
+/// {Real} y2 : The y coordinate of the bottom right corner of the rectangle.
+///
+/// {Real} colour : Draw Colour
+///
+/// {Real} alpha : Draw Alpha
+///
+/// {Real} outline_width : Draw the rectangle as an outline with the given width.
+///
+/// ----------------------------------------------------------------------------
 function draw_rectangle_generic(arguments = {}) {
 
     /*******************************************************************************

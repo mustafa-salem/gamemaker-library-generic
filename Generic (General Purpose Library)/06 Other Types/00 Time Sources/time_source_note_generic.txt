@@ -1,0 +1,81 @@
+time_source_create
+time_source_destroy
+time_source_start
+time_source_stop
+time_source_pause
+time_source_resume
+time_source_reconfigure
+time_source_reset
+time_source_get_children
+time_source_get_parent
+time_source_get_period
+time_source_get_reps_completed
+time_source_get_reps_remaining
+time_source_get_state
+time_source_get_time_remaining
+time_source_get_units
+time_source_exists
+
+time_seconds_to_bpm
+time_bpm_to_seconds
+
+time_source_global
+time_source_game
+
+time_source_units_seconds
+time_source_units_frames
+
+time_source_expire_nearest
+time_source_expire_after
+
+time_source_state_initial
+time_source_state_active
+time_source_state_paused
+time_source_state_stopped
+
+// TODO : REFACTOR
+// timed_call
+// timed_call_generic
+// do_later
+// do_later_generic
+// call_later_generic
+
+
+/*
+function call_later_generic(_function, _frames) {
+    return call_later(_frames, time_source_units_frames, _function)
+}
+
+#macro do_later do_later_generic
+#macro timed_call timed_call_generic
+
+/// @description call function via time_source
+function do_later_generic(frames, callback, arguments = []) {
+	return timed_call_generic({ frames, callback, arguments })
+}
+
+/// @description call function via time_source
+function timed_call_generic(arguments = {}) {
+	var _callback  = arguments[$ "callback"]
+	var _frames	   = arguments[$ "frames"]
+	var _arguments = arguments[$ "arguments"]
+	var _time_source_identifier = DoLater(_frames, _callback, _arguments)
+	return new TimeSourceGeneric(_time_source_identifier)
+}
+
+#macro create_time_source create_time_source_generic
+function create_time_source_generic(arguments = {}) {
+	var _time_source_identifier = time_source_create(
+		parent,
+		period,
+		units,
+		callback,
+		args,
+		repetitions,
+		expiry_type
+	)
+	return new TimeSourceGeneric(_time_source_identifier)
+}
+*/
+
+TimeSourceGeneric doesn't take numbers

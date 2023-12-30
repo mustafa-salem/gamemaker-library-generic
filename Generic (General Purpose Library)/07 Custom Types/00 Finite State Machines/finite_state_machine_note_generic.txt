@@ -1,0 +1,25 @@
+/*******************************************************************************/
+#region    –––––––––––––––––––– OBJECT_EVENTS ––––––––––––––––––––
+/*******************************************************************************/
+
+object_events = [
+    "begin_step_event",
+    "step_event",
+    "end_step_event",
+    "pre_draw_event",
+    "draw_begin_event",
+    "draw_event",
+    "draw_end_event",
+    "post_draw_event",
+    "draw_gui_begin_event",
+    "draw_gui_event",
+    "draw_gui_end_event",
+    "game_start_event",
+    "game_end_event",
+    "room_start_event",
+    "room_end_event",
+]
+
+/*******************************************************************************/
+#endregion –––––––––––––––––––– OBJECT_EVENTS ––––––––––––––––––––
+/*******************************************************************************/

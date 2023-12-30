@@ -1,0 +1,58 @@
+variable_instance_exists
+variable_instance_get_names
+variable_instance_names_count
+variable_instance_get
+variable_instance_set
+variable_global_exists
+variable_global_get
+variable_global_set
+
+Info Functions
+nameof
+typeof
+
+Method Functions
+These next functions are all related to using Method Variables:
+method
+method_get_self
+method_get_index
+method_call
+Struct Functions
+The following functions are for use with structs:
+struct_exists
+struct_get
+struct_set
+struct_remove
+struct_get_names
+struct_names_count
+is_instanceof
+static_get
+static_set
+instanceof
+struct_foreach
+struct_get_from_hash
+struct_set_from_hash
+variable_get_hash
+variable_clone
+
+Data Type Functions
+Finally, you also have the following functions for determining variable type (for more information on data types, please see Data Types, and see here for Type Tables):
+is_string
+is_real
+is_numeric
+is_bool
+is_array
+is_struct
+is_method
+is_callable
+is_ptr
+is_int32
+is_int64
+is_undefined
+is_nan
+is_infinity
+is_handle
+bool
+ptr
+ref_create
+int64

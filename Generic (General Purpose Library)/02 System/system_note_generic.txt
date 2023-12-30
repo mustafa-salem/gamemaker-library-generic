@@ -1,0 +1,39 @@
+[
+    "create_event",
+    "destroy_event",
+    "clean_up_event",
+
+    "begin_step_event",
+    "step_event",
+    "end_step_event",
+
+    "pre_draw_event",
+    "draw_begin_event"
+    "draw_event",
+    "draw_end_event",
+    "post_draw_event",
+    "draw_gui_begin_event",
+    "draw_gui_event",
+    "draw_gui_end_event",
+
+    "game_start_event",
+    "game_end_event",
+
+    "room_start_event",
+    "room_end_event",
+
+    "alarm_0",
+    "alarm_1",
+    "alarm_2",
+    "alarm_3",
+    "alarm_4",
+    "alarm_5",
+    "alarm_6",
+    "alarm_7",
+    "alarm_8",
+    "alarm_9",
+    "alarm_10",
+    "alarm_11",
+
+    "collision",
+]
