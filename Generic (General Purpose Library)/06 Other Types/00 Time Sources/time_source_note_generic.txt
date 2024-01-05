@@ -33,14 +33,6 @@ time_source_state_active
 time_source_state_paused
 time_source_state_stopped
 
-// TODO : REFACTOR
-// timed_call
-// timed_call_generic
-// do_later
-// do_later_generic
-// call_later_generic
-
-
 /*
 function call_later_generic(_function, _frames) {
     return call_later(_frames, time_source_units_frames, _function)
