@@ -24,3 +24,8 @@ function show_trace_debug_generic(arguments) {
     show_debug_message(_string)
     if (_show_popup) { show_error(_string, false) }
 }
+
+
+function DebugGeneric() constructor {
+    static show_trace = show_trace_debug_generic
+}

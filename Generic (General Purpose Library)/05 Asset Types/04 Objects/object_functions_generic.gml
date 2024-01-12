@@ -6,7 +6,7 @@ function create_object_instance_generic(arguments = { }) {
 
     parameters = {
         // REQUIRED
-        object_index : arguments.object_index,
+        object_index : arguments.object_index, // object_index or object
         // OPTIONAL
         x : arguments[$ "x"] ?? 0,
         y : arguments[$ "y"] ?? 0,

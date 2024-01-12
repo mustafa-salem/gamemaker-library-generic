@@ -1,14 +1,35 @@
 #macro create_sprite_renderer create_sprite_renderer_generic
 
+
+/// ----------------------------------------------------------------------------
+/// @function create_sprite_renderer_generic(arguments)
+/// ----------------------------------------------------------------------------
+/// @parameter {Struct} arguments PASS_THROUGH
+/// ----------------------------------------------------------------------------
+/// @return {SpriteRendererGeneric}
+/// ----------------------------------------------------------------------------
 function create_sprite_renderer_generic(arguments) {
     return new SpriteRendererGeneric(arguments)
 }
 
+/// ----------------------------------------------------------------------------
+/// @function SpriteRendererGeneric({ sprite : Sprite })
+/// @function SpriteRendererGeneric({ sprite_pattern_name : String })
+/// ----------------------------------------------------------------------------
+/// @description <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {Struct} arguments <parameter_description>
+/// ----------------------------------------------------------------------------
 function SpriteRendererGeneric(arguments) constructor {
 
     /*******************************************************************************/
     #region    –––––––––––––––––––– PRIVATE_PROPERTIES ––––––––––––––––––––
     /*******************************************************************************/
+
+    private : {
+        xscale : 1,
+        yscale : 1,
+    }
 
     /*******************************************************************************/
     #endregion –––––––––––––––––––– PRIVATE_PROPERTIES ––––––––––––––––––––
@@ -26,16 +47,104 @@ function SpriteRendererGeneric(arguments) constructor {
     #region    –––––––––––––––––––– PUBLIC_METHODS ––––––––––––––––––––
     /*******************************************************************************/
 
+    #region    –––––––––––––––––––– SCALE ––––––––––––––––––––
+
     /// ----------------------------------------------------------------------------
-    /// @function draw(arguments)
+    /// @function get_xscale()
     /// ----------------------------------------------------------------------------
-    /// @description <function_description>
+    /// @return {Real}
     /// ----------------------------------------------------------------------------
-    /// @parameter {Struct} arguments { x : Real, y : Real }
+    get_xscale = function() {
+        return private.xscale
+    }
+
+    /// ----------------------------------------------------------------------------
+    /// @function get_yscale()
+    /// ----------------------------------------------------------------------------
+    /// @return {Real}
+    /// ----------------------------------------------------------------------------
+    get_yscale = function() {
+        return private.yscale
+    }
+
+    /// ----------------------------------------------------------------------------
+    /// @function get_scale()
+    /// ----------------------------------------------------------------------------
+    /// @return { x : Real, y : Real }
+    /// ----------------------------------------------------------------------------
+    get_scale = function(arguments = {}) {
+        return { x : private.xscale, y : private.yscale }
+    }
+
+    /// ----------------------------------------------------------------------------
+    /// @function function_name({ x : [Real], y : [Real] })
+    /// ----------------------------------------------------------------------------
+    /// @return {Struct.SpriteRendererGeneric} self
+    /// ----------------------------------------------------------------------------
+    set_scale = function(arguments = {}) {
+        if (arguments[$ "xscale"] != undefined) {
+            private.xscale = arguments.xscale
+        }
+        if (arguments[$ "yscale"] != undefined) {
+            private.yscale = arguments.yscale
+        }
+        return self
+    }
+
+    #endregion –––––––––––––––––––– SCALE ––––––––––––––––––––
+
+    #region    –––––––––––––––––––– ROTATION ––––––––––––––––––––
+
+    /// ----------------------------------------------------------------------------
+    /// @function get_rotation({ unit : String })
+    /// ----------------------------------------------------------------------------
+    /// @return {Real}
+    /// ----------------------------------------------------------------------------
+    get_rotation = function(arguments) {
+        if (arguments.unit == "degrees") {
+            return private.rotation_degrees
+        }
+        if (arguments.unit == "radians") {
+            return private.rotation_degrees / 180 * pi
+        }
+    }
+
+    /// ----------------------------------------------------------------------------
+    /// @function set_rotation({ degrees : Real })
+    /// @function set_rotation({ radians : Real })
+    /// ----------------------------------------------------------------------------
+    /// @return {Struct.SpriteRendererGeneric} self
+    /// ----------------------------------------------------------------------------
+    set_rotation = function(arguments = {}) {
+        if (arguments[$ "degrees"] != undefined) {
+            private.rotation_degrees = arguments.degrees
+        }
+        if (arguments[$ "radians"] != undefined) {
+            private.rotation_degrees = arguments.radians * 180 / pi
+        }
+        return self
+    }
+
+    #endregion –––––––––––––––––––– ROTATION ––––––––––––––––––––
+
+    /// ----------------------------------------------------------------------------
+    /// @function function_name({})
+    /// ----------------------------------------------------------------------------
+    /// @return {Struct.SpriteRendererGeneric} self
+    /// ----------------------------------------------------------------------------
+    function_name = function(arguments = {}) {
+        return self
+    }
+
+    /// ----------------------------------------------------------------------------
+    /// @function draw({ x : Real, y : Real })
     /// ----------------------------------------------------------------------------
     /// @return {Struct.SpriteRendererGeneric} self
     /// ----------------------------------------------------------------------------
     draw = function(arguments = {}) {
+        draw_sprite_generic({
+
+        })
         return self
     }
 
