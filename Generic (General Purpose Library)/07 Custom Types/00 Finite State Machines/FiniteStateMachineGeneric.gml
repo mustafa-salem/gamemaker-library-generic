@@ -115,9 +115,23 @@ function FiniteStateMachineGeneric(arguments) constructor {
     #region    –––––––––––––––––––– PRIVATE_METHODS ––––––––––––––––––––
     /*******************************************************************************/
 
-    /// @parameter {Struct} arguments { state_name : String, events : [Struct] }
+    /// ----------------------------------------------------------------------------
+    /// @function define_state(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.state_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Struct} [arguments.events]
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
-    private.define_state = function(arguments = {}) {
+    /// ----------------------------------------------------------------------------
+    private.define_state = function(arguments) {
         var _state_name = arguments[$ "name"]
         var _events     = arguments[$ "events"] ?? {}
         // var _state_has_parent = arguments[$ ""]
@@ -155,8 +169,36 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
-    /// @parameter {Struct} arguments { transition_name : String, source_state_name : [String], destination_state_name : [String], predicate_method : [Function], leave_event : [Function], enter_event : [Function] }
+
+    /// ----------------------------------------------------------------------------
+    /// @function define_transition(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.transition_name
+    /// <parameter_description>
+    ///
+    /// @parameter {String} [arguments.source_state_name]
+    /// <parameter_description>
+    ///
+    /// @parameter {String} [arguments.destination_state_name]
+    /// <parameter_description>
+    ///
+    /// @parameter {Function} [arguments.predicate_method]
+    /// <parameter_description>
+    ///
+    /// @parameter {Function} [arguments.leave_event]
+    /// <parameter_description>
+    ///
+    /// @parameter {Function} [arguments.enter_event]
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
+    /// ----------------------------------------------------------------------------
     private.define_transition = function(arguments = {}) {
         var _transition_name        = arguments[$ "transition_name"]
         var _source_state_name      = arguments[$ "source_state_name"]
@@ -190,6 +232,31 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
+
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { event_name : String }
     /// @return {Struct.FiniteStateMachineGeneric} self
     private.define_event_method = function(arguments = {}) {
@@ -210,36 +277,67 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
-    /// @parameter {Struct} arguments { event_name : String }
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.event_name
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
-    private.is_event_available = function(arguments = {}) {
-        _event_name = arguments[$ "event_name"]
+    /// ----------------------------------------------------------------------------
+    private.is_event_available = function(arguments) {
+        var _event_name = arguments[$ "event_name"]
         if (private.default_events[$ _event_name] != undefined) {
             private.define_default_event({ event_name : _event_name, callable : function() {}, defined : "undefined_event" })
         }
-
         return self
     }
 
-    /// @parameter {Struct} arguments { event_name : String }
-    /// @return {Struct.FiniteStateMachineGeneric} self
-    private.is_event_name_valid = function(arguments = {}) {
+    /// ----------------------------------------------------------------------------
+    /// @function is_valid_event_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// This function checks if the specified string is valid as an event name.
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.event_name
+    /// The string to check the validity of.
+    /// ----------------------------------------------------------------------------
+    /// @return {Bool}
+    /// Whether the name is valid.
+    /// ----------------------------------------------------------------------------
+    private.is_valid_event_name = function(arguments) {
         _event_name = arguments[$ "event_name"]
         if (struct_exists(private.default_events, _event_name)) { return true }
         if (struct_exists(self, _event_name)) {
-            show_trace_debug_generic({ show_popup : true, debug_message : "Can not use '{_event_name}' as an event." })
+            show_trace_debug_generic({ show_popup : true, debug_message : $"Can not use '{_event_name}' as an event." })
             return false
         }
-
         return true
     }
 
-    /// @parameter {String} state_name
-    /// @parameter {Bool} [show_error]
-    /// @return {Bool} Whether the name is valid (true), or not (false)
-    private.is_state_name_valid = function(arguments = {}) {
+    /// ----------------------------------------------------------------------------
+    /// @function is_valid_state_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// This function checks if the specified string is valid as a state name.
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.state_name
+    /// The string to check the validity of.
+    /// ----------------------------------------------------------------------------
+    /// @return {Bool}
+    /// Whether the name is valid.
+    /// ----------------------------------------------------------------------------
+    private.is_valid_state_name = function(arguments) {
         _state_name = arguments[$ "state_name"]
-        _error = arguments[$ "show_error"] ?? true
 
         if (!is_string(_state_name) || (_state_name == "")) {
             show_trace_debug_generic({ debug_message : "State name should be a non-empty string." })
@@ -258,9 +356,21 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return true
     }
 
-    /// @parameter {Struct} arguments { transition_name : String, show_error : [Bool=true] }
-    /// @return {Bool} Whether the name is valid (true), or not (false)
-    private.is_transition_name_valid = function(arguments = {}) {
+    /// ----------------------------------------------------------------------------
+    /// @function is_valid_transition_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// This function checks if the specified string is valid as a transition name.
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.transition_name
+    /// The string to check the validity of.
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// Whether the name is valid.
+    /// ----------------------------------------------------------------------------
+    private.is_valid_transition_name = function(arguments) {
         _transition_name = arguments[$ "transition_name"]
 
         if (!is_string(_transition_name) || (_transition_name == "")) {
@@ -271,8 +381,23 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return true
     }
 
-    /// @parameter {Struct} arguments { event_name : String, arguments : [Array<Any>] }
+    /// ----------------------------------------------------------------------------
+    /// @function broadcast_event(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.event_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Array<Any>} arguments.arguments
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
     /// @return {Struct.FiniteStateMachineGeneric} self
+    /// ----------------------------------------------------------------------------
     private.broadcast_event = function(arguments = {}) {
         _event_name = arguments[$ "event_name"]
         _arguments = arguments[$ "arguments"] ?? []
@@ -282,8 +407,28 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
-    /// @parameter {Struct} arguments { state_name : String, leave_event : [Function], enter_event : [Function], arguments : [Array<Any>] }
+    /// ----------------------------------------------------------------------------
+    /// @function change_state(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.state_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Function} arguments.leave_event
+    /// <parameter_description>
+    ///
+    /// @parameter {Function} arguments.enter_event
+    /// <parameter_description>
+    ///
+    /// @parameter {Array<Any>} arguments.arguments
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
+    /// ----------------------------------------------------------------------------
     private.change_state = function(arguments = {}) {
         _state_name = arguments[$ "state_name"]
         _leave = arguments[$ "leave_event"]
@@ -324,6 +469,30 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function private.create_state(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { events : Struct }
     /// @return {Struct} State struct filled with all possible events
     private.create_state = function(arguments = {}) {
@@ -336,7 +505,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
         // state event
         for (var i = 0; i < _event_count; i++) {
             _event_name = _event_names[i]
-            private.is_event_name_valid({ event_name : _event_name })
+            private.is_valid_event_name({ event_name : _event_name })
             private.is_event_available({ event_name : _event_name })
             _events[$ _event_name] = {
                 exists: "defined_event",
@@ -359,8 +528,25 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return _events
     }
 
-    /// @parameter {Struct} arguments { event_name : String, state_name : [String], arguments : [Array<Any>] }
+    /// ----------------------------------------------------------------------------
+    /// @function private.execute_event(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.event_name
+    /// <parameter_description>
+    ///
+    /// @parameter {String} arguments.state_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Array<Any>} arguments.arguments
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
+    /// ----------------------------------------------------------------------------
     private.execute_event = function(arguments = {}) {
         _event_name = arguments[$ "event_name"]
         _state_name = arguments[$ "state_name"] ?? private.history[0]
@@ -378,15 +564,34 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
-    /// @return {String} The current state
+    /// ----------------------------------------------------------------------------
+    /// @function get_current_state_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @return {String}
+    /// The current state
+    /// ----------------------------------------------------------------------------
     private.get_current_state_name = function() {
         var _state_name = ((array_length(private.history) > 0) ? private.history[0] : undefined)
         if (array_length(private.child_queue) > 0) _state_name = private.child_queue[0]
         return _state_name
     }
 
-    /// @parameter {Struct} arguments { state_name : String }
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.state_name
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
+    /// ----------------------------------------------------------------------------
     private.add_to_history = function(arguments = {}) {
         var _state_name = arguments[$ "state_name"]
         if (private.history_enabled) {
@@ -405,22 +610,62 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function fit_history_contents()
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
+    /// ----------------------------------------------------------------------------
     private.fit_history_contents = function() {
         array_resize(private.history, max(2, min(private.history_max_size, array_length(private.history))))
         return self
     }
 
-    /// @parameter {Struct} arguments { state_name : String }
-    /// @return {Bool} Whether the state is defined.
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.state_name
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
+    /// @return {Bool}
+    /// Whether the state is defined.
+    /// ----------------------------------------------------------------------------
     private.is_state_defined = function(arguments = {}) {
         var _state_name = arguments[$ "state_name"]
         if (!is_string(_state_name)) { return false }
         return (private.states[$ _state_name] != undefined)
     }
 
-    /// @parameter {Struct} arguments { event_name : String, callable : Function, defined : Real }
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.event_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Function} arguments.callable
+    /// <parameter_description>
+    ///
+    /// @parameter {Real} arguments.defined
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
+    /// ----------------------------------------------------------------------------
     private.define_default_event = function(arguments = {}) {
         _event_name = arguments[$ "event_name"]
         _method = arguments[$ "callable"]
@@ -434,8 +679,22 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
-    /// @parameter {Struct} arguments { transition_name : String, source_state_name : [String] }
+    /// ----------------------------------------------------------------------------
+    /// @function transition_exists(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.transition_name
+    /// <parameter_description>
+    ///
+    /// @parameter {String} arguments.source_state_name
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
     /// @return {Real} FSM_TRIGGER_GENERIC
+    /// ----------------------------------------------------------------------------
     private.transition_exists = function(arguments = {}) {
         var _transition_name   = arguments[$ "transition_name"]
         var _source_state_name = arguments[$ "source_state_name"]
@@ -460,12 +719,36 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return "undefined_trigger"
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { transition_name : String, arguments : [Array<Any>] }
     /// @return {Bool} Whether the transition has been triggered (true), or not (false)
     private.trigger_transition = function(arguments = {}) {
         _transition_name = arguments[$ "transition_name"]
         _arguments       = arguments[$ "arguments"]
-        if (!private.is_transition_name_valid({ transition_name : _transition_name })) { return false }
+        if (!private.is_valid_transition_name({ transition_name : _transition_name })) { return false }
 
         var _currState, _source
         _currState = private.get_current_state_name()
@@ -507,6 +790,30 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return false
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { transitions : Array<Struct>, source_state_name : String, trigger_name : String, arguments : [Array<Any>] }
     /// @return {Bool} Whether the trigger_transition is successful (true), or not (false)
     private.try_triggering_transition = function(arguments = {}) {
@@ -534,6 +841,30 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return false
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { state_name : String }
     /// @return {Struct.FiniteStateMachineGeneric} self
     private.update_events_from_parent = function(arguments = {}) {
@@ -571,6 +902,30 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { has_parent : Bool }
     /// @return {Struct.FiniteStateMachineGeneric} self
     private.update_states = function(arguments = {}) {
@@ -604,14 +959,37 @@ function FiniteStateMachineGeneric(arguments) constructor {
 	#region    –––––––––––––––––––– PUBLIC_METHODS ––––––––––––––––––––
 	/*******************************************************************************/
 
-    /// @parameter {Struct} arguments { state_name : String, parent_name : String, events : {Struct} }
+    /// ----------------------------------------------------------------------------
+    /// @function define_state(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.state_name
+    /// The name of the state to define.
+    ///
+    /// @parameter {String} [arguments.parent_name]
+    /// The name of the parent state of the state to define.
+    ///
+    /// @parameter {Struct} [arguments.events]
+    /// A struct containing event methods to be associated with the state.
+    ///
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
-    define_state = function(arguments = {}) {
+    /// ----------------------------------------------------------------------------
+    define_state = function(arguments) {
+        //
+        if (!is_struct(arguments)) { return self }
+        //
         var _state_name  = arguments[$ "state_name"]
+        if (!is_string(_state_name)) { return self }
+
         var _parent_name = arguments[$ "parent_name"]
         var _events      = arguments[$ "events"]
 
-        if (!private.is_state_name_valid(_state_name)) { return undefined }
+        if (!private.is_valid_state_name(_state_name)) { return undefined }
 
         if (!is_struct(_struct)) {
             show_trace_debug_generic({ show_popup : true, debug_message : "State struct should be a struct." })
@@ -623,9 +1001,9 @@ function FiniteStateMachineGeneric(arguments) constructor {
             return self
         }
 
-        if (parent_state_name) {
+        if (is_string(parent_state_name)) {
 
-            if (!private.is_state_name_valid({ state_name : _parent })) {
+            if (!private.is_valid_state_name({ state_name : _parent })) {
                 return undefined
             }
 
@@ -654,9 +1032,30 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
-    /// @parameter {Struct} arguments { state_name : String, leave_event : [Function], enter_event : [Function], arguments : [Array<Any>] }
+    /// ----------------------------------------------------------------------------
+    /// @function change_state(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.state_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Function} arguments.leave_event
+    /// <parameter_description>
+    ///
+    /// @parameter {Function} arguments.enter_event
+    /// <parameter_description>
+    ///
+    /// @parameter {Array<Any>} arguments.arguments
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
-    change_state = function(arguments = {}) {
+    /// ----------------------------------------------------------------------------
+    change_state = function(arguments) {
         _state_name  = arguments[$ "state_name"]
         _leave_event = arguments[$ "leave_event"]
         _enter_event = arguments[$ "enter_event"]
@@ -681,6 +1080,30 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { state_name : String, state_to_check : [String] }
     /// @return {Bool} Whether state_name is state_to_check or a parent of state_to_check (true), or not (false)
     is_state = function(arguments = {}) {
@@ -688,8 +1111,8 @@ function FiniteStateMachineGeneric(arguments) constructor {
         _source = get_current_state_name()
         var _state = _source
 
-        if (!private.is_state_name_valid({ state_name : _target })) { return false }
-        if (!private.is_state_name_valid({ state_name : _source })) { return false }
+        if (!private.is_valid_state_name({ state_name : _target })) { return false }
+        if (!private.is_valid_state_name({ state_name : _source })) { return false }
 
         while (_state != undefined) {
             if (_state == _target) return true
@@ -699,6 +1122,30 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return false
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { state_name : String }
     /// ----------------------------------------------------------------------------
     /// @return {Bool} Whether state_name exists (true), or not (false)
@@ -707,29 +1154,99 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return (private.states[$ arguments.state_name] != undefined)
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @return {Array} Array containing the states defined
     get_state_names = function() {
         return struct_get_names(private.states)
     }
 
-    /// @return {String} The current state
+    /// ----------------------------------------------------------------------------
+    /// @function get_current_state_name()
+    /// ----------------------------------------------------------------------------
+    /// @return {String}
+    /// The name of the current state.
+    /// ----------------------------------------------------------------------------
     get_current_state_name = function() {
         return private.get_current_state_name()
     }
 
-    /// @return {String} The previous state
+    /// ----------------------------------------------------------------------------
+    /// @function get_previous_state_name()
+    /// ----------------------------------------------------------------------------
+    /// @return {String}
+    /// The name of the previous state.
+    /// ----------------------------------------------------------------------------
     get_previous_state_name = function() {
         return (array_length(private.history) > 1) ? private.history[1] : undefined
     }
 
-    /// @parameter {Struct} arguments { in_microseconds : Bool }
-    /// @return {number} Number of microseconds (or steps) the current state has been running for
+    /// ----------------------------------------------------------------------------
+    /// @function get_time(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Bool} [arguments.in_microseconds]
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// Number of microseconds (or steps) the current state has been running for
+    /// ----------------------------------------------------------------------------
     get_time = function(arguments = {}) {
         _us = arguments[$ ""] = true
         var _time = (get_timer()-private.state_start_time)
         return (_us ? _time : (_time * game_get_speed(gamespeed_fps) * 1/1000000))
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { time : number, in_microseconds : Bool }
     /// @return {Struct.FiniteStateMachineGeneric} self
     set_time = function(arguments = {}) {
@@ -745,6 +1262,30 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { event_name : String, callback : Function, event_execution_context : [Struct=noone] }
     /// @return {Struct.FiniteStateMachineGeneric} self
     define_on_event = function() {
@@ -773,6 +1314,30 @@ function FiniteStateMachineGeneric(arguments) constructor {
 
     #region    –––––––––––––––––––– INHERITANCE ––––––––––––––––––––
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
     inherit_event = function() {
         var _state_name = private.history[0]
@@ -819,17 +1384,24 @@ function FiniteStateMachineGeneric(arguments) constructor {
 
     #region    –––––––––––––––––––– EVENTS ––––––––––––––––––––
 
-    /// @function  define_default_event(arguments)
-    /// @parameter {Struct} arguments
-    /// @return    {Struct.FiniteStateMachineGeneric} self
+    /// ----------------------------------------------------------------------------
+    /// @function define_default_event(arguments)
     /// ----------------------------------------------------------------------------
     /// @description
-    /// assign a function to a single event:
-    /// define_default_event({ name: <string>, callable: <function> })
-    /// assign a function to a multiple events:
-    /// define_default_event({ name: <string[]>, callable: <function> })
-    /// assign multiple functions to multiple events
-    /// define_default_event({ events: { <event_name>: <function> } })
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String|Array<String>} arguments.event_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.event_method
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.events
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
+    /// @return {Struct.FiniteStateMachineGeneric} self
     /// ----------------------------------------------------------------------------
     define_default_event = function(arguments = {}) {
 
@@ -852,7 +1424,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
                 return undefined
             }
 
-            private.is_event_name_valid({ event_name : _event_name })
+            private.is_valid_event_name({ event_name : _event_name })
             private.define_default_event({ event_name : _event_name, callable : method(private.event_execution_context, _function), defined : "default_event" })
             private.update_states()
         }
@@ -860,14 +1432,34 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function get_current_event_function(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
     /// NOTE: This function is only meant to be used in change()
+    /// ----------------------------------------------------------------------------
     /// @return {Function}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     get_current_event_function = function() {
         return private.temp_event
     }
 
-    /// @parameter {Struct} arguments { event_name : String }
-    /// @return {Real} EVENT_TYPE_FINAL_STATE_MACHINE_GENERIC
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String} arguments.event_name
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
+    /// @return {Real}
+    /// EVENT_TYPE_FINAL_STATE_MACHINE_GENERIC
+    /// ----------------------------------------------------------------------------
     event_exists = function(arguments = {}) {
         var _event_name = arguments[$ "event_name"]
         if (!is_string(_event_name) || (_event_name == "")) {
@@ -878,6 +1470,30 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return (_current_event != undefined) ? _current_event.exists : "undefined_event"
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { arguments : [Array<Any>] }
     /// @return {Struct.FiniteStateMachineGeneric} self
     enter = function(arguments = {}) {
@@ -886,6 +1502,30 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Type} arguments.parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { arguments : [Array<Any>] }
     /// @return {Struct.FiniteStateMachineGeneric} self
     leave = function(arguments = {}) {
@@ -924,7 +1564,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
         // undefined destination_state -> REFLEXIVE_TRANSITION
         _destination_state_name ??= REFLEXIVE_TRANSITION_NAME_FINITE_STATE_MACHINE_GENERIC
 
-        if (!private.is_transition_name_valid({ transition_name : _transition_name })) { return undefined }
+        if (!private.is_valid_transition_name({ transition_name : _transition_name })) { return undefined }
 
         if (!is_string(_destination_state_name) || (_destination_state_name == "")) {
             show_trace_debug_generic({ show_popup : true, debug_message : "State name should be a non-empty string." })
@@ -971,8 +1611,23 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
-    /// @parameter {Struct} arguments { transition_name : String, source_state : [String] }
-    /// @return {Real} FSM_TRIGGER_GENERIC
+    /// ----------------------------------------------------------------------------
+    /// @function transition_exists(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Type} arguments.transition_name
+    /// <parameter_description>
+    ///
+    /// @parameter {String} [arguments.source_state]
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
+    /// @return {Real}
+    /// FSM_TRIGGER_GENERIC
+    /// ----------------------------------------------------------------------------
     transition_exists = function(arguments = {}) {
         _transition_name   = arguments[$ "transition_name"]
         _source_state_name = arguments[$ "source_state_name"]
@@ -980,13 +1635,28 @@ function FiniteStateMachineGeneric(arguments) constructor {
         if (!is_string(_source_state_name)) return false
         if (_source_state_name == FSM_WILDCARD_TRANSITION_NAME_GENERIC) return true
 
-        if (!private.is_transition_name_valid({ transition_name : _transition_name, show_error : false })) { return false }
+        if (!private.is_valid_transition_name({ transition_name : _transition_name, show_error : false })) { return false }
 
         return private.transition_exists({ transition_name : _transition_name, source_state_name : _source_state_name })
     }
 
-    /// @parameter {Struct} arguments { transition_name : (String|Array<String>), arguments : [Array<Any>] }
-    /// @return {Bool} Whether a transition has been triggered (true), or not (false)
+    /// ----------------------------------------------------------------------------
+    /// @function trigger_transition(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {String|Array<String>} arguments.transition_name
+    /// <parameter_description>
+    ///
+    /// @parameter {Array<Any>} [arguments.arguments]
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
+    /// @return {Bool}
+    /// Whether a transition has been triggered (true), or not (false)
+    /// ----------------------------------------------------------------------------
     trigger_transition = function(arguments = {}) {
         _transition_name = arguments[$ "transition_name"]
         _arguments  = arguments[$ "arguments"]
@@ -1002,35 +1672,62 @@ function FiniteStateMachineGeneric(arguments) constructor {
 
     #region    –––––––––––––––––––– HISTORY ––––––––––––––––––––
 
+    /// ----------------------------------------------------------------------------
+    /// @function enable_state_history()
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// Enables keeping of state history.
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
-    enable_history = function() {
+    /// ----------------------------------------------------------------------------
+    enable_state_history = function() {
         if (!private.history_enabled) {
             private.history_enabled = true
             private.fit_history_contents()
         }
-
         return self
     }
 
+    /// ----------------------------------------------------------------------------
+    /// @function disable_state_history()
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// Disables keeping of state history.
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
-    disable_history = function() {
-        // resize history array
+    /// ----------------------------------------------------------------------------
+    disable_state_history = function() {
         if (private.history_enabled) {
             private.history_enabled = false
             array_resize(private.history, 2)
         }
-
         return self
     }
 
-    /// @return {Bool} Whether state history is enabled (true), or not (false)
-    is_history_enabled = function() {
+    /// ----------------------------------------------------------------------------
+    /// @function is_enabled_state_history()
+    /// ----------------------------------------------------------------------------
+    /// @return {Bool}
+    /// Whether state history is enabled (true), or not (false)
+    /// ----------------------------------------------------------------------------
+    is_enabled_state_history = function() {
         return private.history_enabled
     }
 
-    /// @parameter {Struct} arguments { maximum_history_size : Real }
+    /// ----------------------------------------------------------------------------
+    /// @function set_maximum_size_state_history(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {Struct} arguments
+    ///
+    /// @parameter {Real} arguments.maximum_history_size
+    /// <parameter_description>
+    /// ----------------------------------------------------------------------------
     /// @return {Struct.FiniteStateMachineGeneric} self
-    set_maximum_history_size = function(arguments = {}) {
+    /// ----------------------------------------------------------------------------
+    set_maximum_size_state_history = function(arguments = {}) {
         _maximum_history_size = arguments[$ "maximum_history_size"]
         if (!is_real(_maximum_history_size)) {
             show_trace_debug_generic({ show_popup : true, debug_message : "Size should be a number." })
@@ -1046,16 +1743,26 @@ function FiniteStateMachineGeneric(arguments) constructor {
         return self
     }
 
-    /// @return {Real} The maximum storage capacity of state history
-    get_maximum_history_size = function() {
+    /// ----------------------------------------------------------------------------
+    /// @function get_maximum_size_state_history()
+    /// ----------------------------------------------------------------------------
+    /// @return {Real}
+    /// The maximum storage capacity of state history
+    /// ----------------------------------------------------------------------------
+    get_maximum_size_state_history = function() {
         return private.history_max_size
     }
 
-    /// @return {Array} Array containing the state history
-    get_history = function() {
+    /// ----------------------------------------------------------------------------
+    /// @function get_state_history()
+    /// ----------------------------------------------------------------------------
+    /// @return {Array<String>}
+    /// Array containing the state history
+    /// ----------------------------------------------------------------------------
+    get_state_history = function() {
         // history not enabled
         if (!private.history_enabled) {
-            show_trace_debug_generic({ debug_message : "History is disabled, can not get_history()." })
+            show_trace_debug_generic({ debug_message : "History is disabled, can not get_state_history()." })
             return []
         }
         //
@@ -1077,7 +1784,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     #region    –––––––––––––––––––– INITIALIZATION ––––––––––––––––––––
     /*******************************************************************************/
 
-    private.is_state_name_valid({ state_name : _initial_state_name })
+    private.is_valid_state_name({ state_name : _initial_state_name })
 	private.add_to_history({ state_name : _initial_state_name })
 
     /*******************************************************************************/

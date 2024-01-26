@@ -25,6 +25,12 @@ function show_trace_debug_generic(arguments) {
     if (_show_popup) { show_error(_string, false) }
 }
 
+// variable
+// allowed_type -> "real", "struct", "string"
+function  is_invalid_type_debug_generic(arguments) {
+
+}
+
 
 function DebugGeneric() constructor {
     static show_trace = show_trace_debug_generic

@@ -13,6 +13,8 @@ if (!is_string(FSM_REFLEXIVE_TRANSITION_NAME_GENERIC) || (string_length(FSM_REFL
 	show_error(_str, true)
 }
 
+#macro FiniteStateMachine FiniteStateMachineGeneric
+
 #macro SHOW_WARNINGS_FINITE_STATE_MACHINE_GENERIC				     true		// Whether to show warning messages in Output (true) or not (false)
 #macro HISTORY_ENABLED_DEFAULT_FINITE_STATE_MACHINE_GENERIC		     false		// Whether history should be tracked by default (true) or not (false)
 #macro MAXIMUM_HISTORY_SIZE_DEFAULT_FINITE_STATE_MACHINE_GENERIC     5			// Default maxmimum history count
