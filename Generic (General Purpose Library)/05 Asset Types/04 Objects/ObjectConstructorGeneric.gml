@@ -1,5 +1,16 @@
 #macro ObjectConstructor ObjectConstructorGeneric
 
+#macro REINITIALIZATION_GUARD {                                   \
+    static __REINITIALIZATION_GUARD__ = true                      \
+    if (self[$ "__REINITIALIZATION_GUARD__"] != true) { return }  \
+    struct_remove(static_get(self), "__REINITIALIZATION_GUARD__") \
+}
+
+#macro OBJECT_CONSTRUCTOR_GUARD {			 \
+    REINITIALIZATION_GUARD					 \
+    static private = variable_clone(private) \
+}
+
 function ObjectConstructorGeneric() constructor {
 
     static private = {
