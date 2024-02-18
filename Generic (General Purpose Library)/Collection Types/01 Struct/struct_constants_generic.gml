@@ -2,12 +2,20 @@
 #region    –––––––––––––––––––– INITIALIZED_CONSTRUCTOR ––––––––––––––––––––
 /*******************************************************************************/
 
-#macro INPUT_INITIALIZED_CONSTRUCTOR_GENERIC -42
+// #macro INPUT_INITIALIZED_CONSTRUCTOR_GENERIC -42
+/*
 #macro GUARD_INITIALIZED_CONSTRUCTOR_GENERIC \
 if (argument0 == INPUT_INITIALIZED_CONSTRUCTOR_GENERIC) { return }
 #macro GUARD_INITIALIZED_CONSTRUCTOR GUARD_INITIALIZED_CONSTRUCTOR_GENERIC
+*/
 
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
 #macro INITIALIZED_CONSTRUCTOR_GENERIC __INITIALIZED_CONSTRUCTOR_GENERIC
+
+INITIALIZED_STATIC_STRUCT
 
 /// ----------------------------------------------------------------------------
 /// @function __INITIALIZED_CONSTRUCTOR_GENERIC(_constructor)
@@ -16,14 +24,23 @@ if (argument0 == INPUT_INITIALIZED_CONSTRUCTOR_GENERIC) { return }
 /// Makes sure the provided constructor is initialized before returning
 /// its static struct.
 /// ----------------------------------------------------------------------------
+/// @parameter {Function} constructor
+///
+/// ----------------------------------------------------------------------------
+/// @return {Struct|Undefined}
+/// <return_description>
+/// ----------------------------------------------------------------------------
 function __INITIALIZED_CONSTRUCTOR_GENERIC(_constructor) {
     static is_initialized = {}
     if (is_initialized[$ script_get_name(_constructor)] != true) {
         is_initialized[$ script_get_name(_constructor)]  = true
-        new _constructor(INPUT_INITIALIZED_CONSTRUCTOR_GENERIC)
+        new _constructor(ARGUMENT_0_INITIALIZED_CONSTRUCTOR_GENERIC)
+        // new _constructor(INPUT_INITIALIZED_CONSTRUCTOR_GENERIC)
+        /*
         if (static_get(_constructor)[$ "__initialize_static"] != undefined) {
             static_get(_constructor).__initialize_static()
         }
+        */
     }
     return static_get(_constructor)
 }
@@ -32,6 +49,7 @@ function __INITIALIZED_CONSTRUCTOR_GENERIC(_constructor) {
 #endregion –––––––––––––––––––– INITIALIZED_CONSTRUCTOR ––––––––––––––––––––
 /*******************************************************************************/
 
+/*
 #macro DEFINE_INITIALIZE_STATIC_GENERIC \
     static __initialize_static = method(static_get(self), function() { \
 	struct_remove(self, "__initialize_static")                \
@@ -50,12 +68,43 @@ function __INITIALIZED_CONSTRUCTOR_GENERIC(_constructor) {
 #macro   END_INITIALIZE_PRIVATE_STATIC_GENERIC }
 #macro BEGIN_INITIALIZE_PUBLIC_STATIC_GENERIC  static __initialize_public_static  = function() {
 #macro   END_INITIALIZE_PUBLIC_STATIC_GENERIC  }
+*/
+
+#macro ARGUMENT_0_INITIALIZED_CONSTRUCTOR_GENERIC __ARGUMENT_0_INITIALIZED_CONSTRUCTOR_GENERIC()
+
+function __ARGUMENT_0_INITIALIZED_CONSTRUCTOR_GENERIC() {
+    static _argument0 = {}
+    return _argument0
+}
+
+#macro INITIALIZATION_GUARD_CONSTRUCTOR_GENERIC                                 \
+if (argument0 == ARGUMENT_0_INITIALIZED_CONSTRUCTOR_GENERIC) { return }
+
+
+
+/*******************************************************************************/
+#region    –––––––––––––––––––– CONSTRUCTOR_INITIALIZATION_CODE ––––––––––––––––––––
+/*******************************************************************************/
+
+#macro CONSTRUCTOR_INITIALIZATION_CODE CONSTRUCTOR_INITIALIZATION_CODE_GENERIC
+
+#macro CONSTRUCTOR_INITIALIZATION_CODE_GENERIC                                     \
+static ____CONSTRUCTOR_INITIALIZATION_CODE_GENERIC = __CONSTRUCTOR_INITIALIZATION_CODE_GENERIC
+
+function __CONSTRUCTOR_INITIALIZATION_CODE_GENERIC(_initialization_code) {
+    _initialization_code()
+}
+
+/*******************************************************************************/
+#endregion –––––––––––––––––––– CONSTRUCTOR_INITIALIZATION_CODE ––––––––––––––––––––
+/*******************************************************************************/
 
 /*******************************************************************************/
 #region    –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––
 /*******************************************************************************/
 
-#macro INITIALIZED_CONSTRUCTOR INITIALIZED_CONSTRUCTOR_GENERIC
+#macro INITIALIZED_CONSTRUCTOR          INITIALIZED_CONSTRUCTOR_GENERIC
+#macro INITIALIZATION_GUARD_CONSTRUCTOR INITIALIZATION_GUARD_CONSTRUCTOR_GENERIC
 
 /*******************************************************************************/
 #endregion –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––

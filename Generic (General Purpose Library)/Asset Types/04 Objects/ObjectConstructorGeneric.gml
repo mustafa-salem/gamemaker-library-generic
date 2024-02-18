@@ -1,3 +1,27 @@
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro EVENT_SCRIPT_CONTENTS_CONSTRUCTED_OBJECT_INSTANCE_GENERIC __EVENT_SCRIPT_CONTENTS_CONSTRUCTED_OBJECT_INSTANCE_GENERIC()
+
+#macro EVENT_SCRIPT_CONTENTS_CONSTRUCTED_OBJECT_INSTANCE EVENT_SCRIPT_CONTENTS_CONSTRUCTED_OBJECT_INSTANCE_GENERIC
+
+function __EVENT_SCRIPT_CONTENTS_CONSTRUCTED_OBJECT_INSTANCE_GENERIC() {
+    static event_scrit_content = {}
+    event_scrit_content[event_type][event_number]()
+    // private.finite_state_machine
+}
+
+function CREATE_EVENT_SCRIPT_CONTENTS_CONSTRUCTED_OBJECT_INSTANCE_GENERIC() {
+    var _object_constructor = ObjectConstructor.get({ object : object_index })
+    _object_constructor.initialize_instance()
+    private.finite_state_machine.create_event()
+}
+
+function STEP_EVENT_SCRIPT_CONTENTS_CONSTRUCTED_OBJECT_INSTANCE_GENERIC() {
+    private.finite_state_machine.step_event()
+}
+
 #macro ObjectConstructor ObjectConstructorGeneric
 
 #macro REINITIALIZATION_GUARD {                                   \
