@@ -34,7 +34,7 @@ function call_later_generic(arguments = {}) {
 /// @function get_id_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_id
 /// ----------------------------------------------------------------------------
 function get_id_time_source_generic(arguments = {}) {
@@ -45,7 +45,7 @@ function get_id_time_source_generic(arguments = {}) {
 /// @function create_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.create
 /// ----------------------------------------------------------------------------
 function create_time_source_generic(arguments = {}) {
@@ -56,7 +56,7 @@ function create_time_source_generic(arguments = {}) {
 /// @function exists_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.exists
 /// ----------------------------------------------------------------------------
 function exists_time_source_generic(arguments = {}) {
@@ -67,7 +67,7 @@ function exists_time_source_generic(arguments = {}) {
 /// @function destroy_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.destroy
 /// ----------------------------------------------------------------------------
 function destroy_time_source_generic(arguments = {}) {
@@ -78,7 +78,7 @@ function destroy_time_source_generic(arguments = {}) {
 /// @function start_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.start
 /// ----------------------------------------------------------------------------
 function start_time_source_generic(arguments = {}) {
@@ -89,7 +89,7 @@ function start_time_source_generic(arguments = {}) {
 /// @function pause_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.pause
 /// ----------------------------------------------------------------------------
 function pause_time_source_generic(arguments = {}) {
@@ -100,7 +100,7 @@ function pause_time_source_generic(arguments = {}) {
 /// @function stop_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.stop
 /// ----------------------------------------------------------------------------
 function stop_time_source_generic(arguments = {}) {
@@ -111,7 +111,7 @@ function stop_time_source_generic(arguments = {}) {
 /// @function resume_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.resume
 /// ----------------------------------------------------------------------------
 function resume_time_source_generic(arguments = {}) {
@@ -122,7 +122,7 @@ function resume_time_source_generic(arguments = {}) {
 /// @function reconfigure_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.reconfigure
 /// ----------------------------------------------------------------------------
 function reconfigure_time_source_generic(arguments = {}) {
@@ -133,7 +133,7 @@ function reconfigure_time_source_generic(arguments = {}) {
 /// @function reset_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.reset
 /// ----------------------------------------------------------------------------
 function reset_time_source_generic(arguments = {}) {
@@ -144,7 +144,7 @@ function reset_time_source_generic(arguments = {}) {
 /// @function get_children_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_children
 /// ----------------------------------------------------------------------------
 function get_children_time_source_generic(arguments = {}) {
@@ -155,7 +155,7 @@ function get_children_time_source_generic(arguments = {}) {
 /// @function get_parent_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_parent
 /// ----------------------------------------------------------------------------
 function get_parent_time_source_generic(arguments = {}) {
@@ -166,7 +166,7 @@ function get_parent_time_source_generic(arguments = {}) {
 /// @function get_period_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_period
 /// ----------------------------------------------------------------------------
 function get_period_time_source_generic(arguments = {}) {
@@ -177,7 +177,7 @@ function get_period_time_source_generic(arguments = {}) {
 /// @function get_state_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_state
 /// ----------------------------------------------------------------------------
 function get_state_time_source_generic(arguments = {}) {
@@ -188,7 +188,7 @@ function get_state_time_source_generic(arguments = {}) {
 /// @function get_remaining_time_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_remaining_time
 /// ----------------------------------------------------------------------------
 function get_remaining_time_time_source_generic(arguments = {}) {
@@ -199,7 +199,7 @@ function get_remaining_time_time_source_generic(arguments = {}) {
 /// @function get_units_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_units
 /// ----------------------------------------------------------------------------
 function get_units_time_source_generic(arguments = {}) {
@@ -210,7 +210,7 @@ function get_units_time_source_generic(arguments = {}) {
 /// @function get_completed_repetitions_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_completed_repetitions
 /// ----------------------------------------------------------------------------
 function get_completed_repetitions_time_source_generic(arguments = {}) {
@@ -221,7 +221,7 @@ function get_completed_repetitions_time_source_generic(arguments = {}) {
 /// @function get_remaining_repetitions_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_remaining_repetitions
 /// ----------------------------------------------------------------------------
 function get_remaining_repetitions_time_source_generic(arguments = {}) {
@@ -232,7 +232,7 @@ function get_remaining_repetitions_time_source_generic(arguments = {}) {
 /// @function (arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.
 /// ----------------------------------------------------------------------------
 function get_repetitions_time_time_source_generic(arguments = {}) {
@@ -243,7 +243,7 @@ function get_repetitions_time_time_source_generic(arguments = {}) {
 /// @function get_expiry_type_time_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_expiry_type
 /// ----------------------------------------------------------------------------
 function get_expiry_type_time_time_source_generic(arguments = {}) {
@@ -254,7 +254,7 @@ function get_expiry_type_time_time_source_generic(arguments = {}) {
 /// @function get_callback_time_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_callback
 /// ----------------------------------------------------------------------------
 function get_callback_time_time_source_generic(arguments = {}) {
@@ -265,7 +265,7 @@ function get_callback_time_time_source_generic(arguments = {}) {
 /// @function get_arguments_time_time_source_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// TimeSourceGeneric.get_arguments
 /// ----------------------------------------------------------------------------
 function get_arguments_time_time_source_generic(arguments = {}) {

@@ -83,20 +83,20 @@ if (argument0 == ARGUMENT_0_INITIALIZED_CONSTRUCTOR_GENERIC) { return }
 
 
 /*******************************************************************************/
-#region    –––––––––––––––––––– CONSTRUCTOR_INITIALIZATION_CODE ––––––––––––––––––––
+#region    –––––––––––––––––––– INITIALIZATION_CODE_STATIC_STRUCT ––––––––––––––––––––
 /*******************************************************************************/
 
-#macro CONSTRUCTOR_INITIALIZATION_CODE CONSTRUCTOR_INITIALIZATION_CODE_GENERIC
+#macro INITIALIZATION_CODE_STATIC_STRUCT INITIALIZATION_CODE_STATIC_STRUCT_GENERIC
 
-#macro CONSTRUCTOR_INITIALIZATION_CODE_GENERIC                                     \
-static ____CONSTRUCTOR_INITIALIZATION_CODE_GENERIC = __CONSTRUCTOR_INITIALIZATION_CODE_GENERIC
+#macro INITIALIZATION_CODE_STATIC_STRUCT_GENERIC                                     \
+static ____INITIALIZATION_CODE_STATIC_STRUCT_GENERIC = __INITIALIZATION_CODE_STATIC_STRUCT_GENERIC
 
-function __CONSTRUCTOR_INITIALIZATION_CODE_GENERIC(_initialization_code) {
+function __INITIALIZATION_CODE_STATIC_STRUCT_GENERIC(_initialization_code) {
     _initialization_code()
 }
 
 /*******************************************************************************/
-#endregion –––––––––––––––––––– CONSTRUCTOR_INITIALIZATION_CODE ––––––––––––––––––––
+#endregion –––––––––––––––––––– INITIALIZATION_CODE_STATIC_STRUCT ––––––––––––––––––––
 /*******************************************************************************/
 
 /*******************************************************************************/

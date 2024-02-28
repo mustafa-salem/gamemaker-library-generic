@@ -316,11 +316,8 @@ function CameraGeneric(arguments) constructor {
 /// ----------------------------------------------------------------------------
 /// @function get_id_camera_generic(arguments)
 /// ----------------------------------------------------------------------------
-/// @return {type}
-/// <return_description>
-/// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.
 /// ----------------------------------------------------------------------------
 function get_id_camera_generic(arguments = {}) {
@@ -331,7 +328,7 @@ function get_id_camera_generic(arguments = {}) {
 /// @function create_camera_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.
 /// ----------------------------------------------------------------------------
 function create_camera_generic(arguments = {}) {
@@ -342,7 +339,7 @@ function create_camera_generic(arguments = {}) {
 /// @function destroy_camera_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.
 /// ----------------------------------------------------------------------------
 function destroy_camera_generic(arguments = {}) {
@@ -353,7 +350,7 @@ function destroy_camera_generic(arguments = {}) {
 /// @function apply_camera_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.
 /// ----------------------------------------------------------------------------
 function apply_camera_generic(arguments = {}) {
@@ -364,7 +361,7 @@ function apply_camera_generic(arguments = {}) {
 /// @function copy_transforms_camera_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.
 /// ----------------------------------------------------------------------------
 function copy_transforms_camera_generic(arguments = {}) {
@@ -386,7 +383,7 @@ function copy_transforms_camera_generic(arguments = {}) {
 /// <return_description>
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.
 /// ----------------------------------------------------------------------------
 function get_view_camera_generic(arguments = {}) {
@@ -405,7 +402,7 @@ function get_view_camera_generic(arguments = {}) {
 /// @function get_update_function_camera_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.get_update_function
 /// ----------------------------------------------------------------------------
 function get_update_function_camera_generic(arguments = {}) {
@@ -416,7 +413,7 @@ function get_update_function_camera_generic(arguments = {}) {
 /// @function set_update_function_camera_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.set_update_function
 /// ----------------------------------------------------------------------------
 function set_update_function_camera_generic(arguments = {}) {
@@ -427,7 +424,7 @@ function set_update_function_camera_generic(arguments = {}) {
 /// @function get_begin_function_camera_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.get_begin_function
 /// ----------------------------------------------------------------------------
 function get_begin_function_camera_generic(arguments = {}) {
@@ -438,7 +435,7 @@ function get_begin_function_camera_generic(arguments = {}) {
 /// @function set_begin_function_camera_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.set_begin_function
 /// ----------------------------------------------------------------------------
 function set_begin_function_camera_generic(arguments = {}) {
@@ -449,7 +446,7 @@ function set_begin_function_camera_generic(arguments = {}) {
 /// @function get_end_function_camera_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.get_end_function
 /// ----------------------------------------------------------------------------
 function get_end_function_camera_generic(arguments = {}) {
@@ -460,7 +457,7 @@ function get_end_function_camera_generic(arguments = {}) {
 /// @function set_end_function_camera_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// CameraGeneric.set_end_function
 /// ----------------------------------------------------------------------------
 function set_end_function_camera_generic(arguments = {}) {

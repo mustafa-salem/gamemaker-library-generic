@@ -2,7 +2,7 @@
 /// @function get_element_array_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// ArrayGeneric.get_element
 /// ----------------------------------------------------------------------------
 function get_element_array_generic(arguments = {}) {
@@ -13,7 +13,7 @@ function get_element_array_generic(arguments = {}) {
 /// @function exists_element_array_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// ArrayGeneric.exists_element
 /// ----------------------------------------------------------------------------
 function exists_element_array_generic(arguments = {}) {

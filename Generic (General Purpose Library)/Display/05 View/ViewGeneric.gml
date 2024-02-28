@@ -192,7 +192,7 @@ function ViewGeneric(arguments) constructor {
 /// @function get_x_position_view_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// ViewGeneric.get_x_position
 /// ----------------------------------------------------------------------------
 function get_x_position_view_generic(arguments = {}) {
@@ -203,7 +203,7 @@ function get_x_position_view_generic(arguments = {}) {
 /// @function get_y_position_view_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// ViewGeneric.get_y_position
 /// ----------------------------------------------------------------------------
 function get_y_position_view_generic(arguments = {}) {
@@ -214,7 +214,7 @@ function get_y_position_view_generic(arguments = {}) {
 /// @function get_position_view_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// ViewGeneric.get_position
 /// ----------------------------------------------------------------------------
 function get_position_view_generic(arguments = {}) {
@@ -225,7 +225,7 @@ function get_position_view_generic(arguments = {}) {
 /// @function set_position_view_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// ViewGeneric.set_position
 /// ----------------------------------------------------------------------------
 function set_position_view_generic(arguments = {}) {
@@ -244,7 +244,7 @@ function set_position_view_generic(arguments = {}) {
 /// @function get_x_dimensions_view_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// ViewGeneric.get_x_dimensions
 /// ----------------------------------------------------------------------------
 function get_x_dimensions_view_generic(arguments = {}) {
@@ -255,7 +255,7 @@ function get_x_dimensions_view_generic(arguments = {}) {
 /// @function get_y_dimensions_view_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// ViewGeneric.get_y_dimensions
 /// ----------------------------------------------------------------------------
 function get_y_dimensions_view_generic(arguments = {}) {
@@ -266,7 +266,7 @@ function get_y_dimensions_view_generic(arguments = {}) {
 /// @function get_dimensions_view_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// ViewGeneric.get_dimensions
 /// ----------------------------------------------------------------------------
 function get_dimensions_view_generic(arguments = {}) {
@@ -277,7 +277,7 @@ function get_dimensions_view_generic(arguments = {}) {
 /// @function set_dimensions_view_generic(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This script function serves as a proxy for the static method:
+/// This script function serves as a proxy for the static method function:
 /// ViewGeneric.set_dimensions
 /// ----------------------------------------------------------------------------
 function set_dimensions_view_generic(arguments = {}) {
