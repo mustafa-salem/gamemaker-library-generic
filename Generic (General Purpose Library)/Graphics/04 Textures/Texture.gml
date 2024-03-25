@@ -4,9 +4,11 @@
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-#macro StaticStruct      StaticStructGeneric
-#macro get_static_struct get_static_struct_generic
-#macro set_static_struct set_static_struct_generic
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro TEXTURE INITIALIZED_CONSTRUCTOR(Texture)
 
 /******************************************************************************/
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -20,12 +22,36 @@
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-function get_static_struct_generic(parameters) {
-    return static_get(parameters.owner)
+/// ----------------------------------------------------------------------------
+/// @function function_name(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {struct} parameters
+///
+/// @parameter {type} texture_pointer
+/// <parameter_description>
+///
+/// @parameter {type} parameters.parameter_name
+/// <parameter_description>
+///
+/// @parameter {type} parameters.parameter_name
+/// <parameter_description>
+///
+/// @parameter {type} parameters.parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function generic_texture_get(parameters = {}) {
+
 }
 
-function set_static_struct_generic(parameters) {
-    static_set(parameters.owner, parameters.static_struct)
+function generic_texture_get_pointer(parameters = {}) {
+
 }
 
 /******************************************************************************/
@@ -40,13 +66,15 @@ function set_static_struct_generic(parameters) {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-StaticStructGeneric()
+TEXTURE
 
-function StaticStructGeneric() {
+function Texture() constructor {
 
-    static get = get_static_struct_generic
+    /// @function get(parameters)
+    static get = generic_texture_get
 
-    static set = set_static_struct_generic
+    /// @function get_pointer(parameters)
+    static get_pointer = generic_texture_get_pointer
 
 }
 

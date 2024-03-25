@@ -4,9 +4,67 @@
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-#macro StaticStruct      StaticStructGeneric
-#macro get_static_struct get_static_struct_generic
-#macro set_static_struct set_static_struct_generic
+#macro PRIMITIVE_TYPE INITIALIZED_CONSTRUCTOR(PrimitiveType)
+
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro POINT_LIST_PRIMITIVE_TYPE_CONSTANT                                      \
+pr_pointlist
+
+#macro POINT_LIST_PRIMITIVE_TYPE                                               \
+generic_primitive_type_get({ primitive_type : POINT_LIST_PRIMITIVE_TYPE_CONSTANT })
+
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro LINE_LIST_PRIMITIVE_TYPE_CONSTANT                                       \
+pr_linelist
+
+#macro LINE_LIST_PRIMITIVE_TYPE                                                \
+generic_primitive_type_get({ primitive_type : LINE_LIST_PRIMITIVE_TYPE_CONSTANT })
+
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro LINE_STRIP_PRIMITIVE_TYPE_CONSTANT                                      \
+pr_linestrip
+
+#macro LINE_STRIP_PRIMITIVE_TYPE                                               \
+generic_primitive_type_get({ primitive_type : LINE_STRIP_PRIMITIVE_TYPE_CONSTANT })
+
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro TRIANGLE_LIST_PRIMITIVE_TYPE_CONSTANT                                   \
+pr_trianglelist
+
+#macro TRIANGLE_LIST_PRIMITIVE_TYPE                                            \
+generic_primitive_type_get({ primitive_type : TRIANGLE_LIST_PRIMITIVE_TYPE_CONSTANT })
+
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro TRIANGLE_STRIP_PRIMITIVE_TYPE_CONSTANT                                  \
+pr_trianglestrip
+
+#macro TRIANGLE_STRIP_PRIMITIVE_TYPE                                           \
+generic_primitive_type_get({ primitive_type : TRIANGLE_STRIP_PRIMITIVE_TYPE_CONSTANT })
+
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro TRIANGLE_FAN_PRIMITIVE_TYPE_CONSTANT                                    \
+pr_trianglefan
+
+#macro TRIANGLE_FAN_PRIMITIVE_TYPE                                             \
+generic_primitive_type_get({ primitive_type : TRIANGLE_FAN_PRIMITIVE_TYPE_CONSTANT })
 
 /******************************************************************************/
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -20,12 +78,8 @@
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-function get_static_struct_generic(parameters) {
-    return static_get(parameters.owner)
-}
+function generic_primitive_type_get() {
 
-function set_static_struct_generic(parameters) {
-    static_set(parameters.owner, parameters.static_struct)
 }
 
 /******************************************************************************/
@@ -40,13 +94,9 @@ function set_static_struct_generic(parameters) {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-StaticStructGeneric()
+PRIMITIVE_TYPE
 
-function StaticStructGeneric() {
-
-    static get = get_static_struct_generic
-
-    static set = set_static_struct_generic
+function PrimitiveType() constructor {
 
 }
 

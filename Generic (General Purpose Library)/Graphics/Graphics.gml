@@ -1,31 +1,39 @@
 /******************************************************************************/
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#region    –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/******************************************************************************/
-
-#macro StaticStruct      StaticStructGeneric
-#macro get_static_struct get_static_struct_generic
-#macro set_static_struct set_static_struct_generic
-
-/******************************************************************************/
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#endregion –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/******************************************************************************/
-
-/******************************************************************************/
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #region    –––––––––––––––––––– SCRIPT_FUNCTIONS ––––––––––––––––––––
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-function get_static_struct_generic(parameters) {
-    return static_get(parameters.owner)
+function generic_graphics_get_blend_mode(arguments = {}) {
+
 }
 
-function set_static_struct_generic(parameters) {
-    static_set(parameters.owner, parameters.static_struct)
+function generic_graphics_set_blend_mode(arguments = {}) {
+    var a = arguments
+
+    parameters = {
+        source_colour_blend_mode      : bm_src_alpha,
+        source_alpha_blend_mode       : bm_src_alpha,
+        destination_colour_blend_mode : bm_inv_src_alpha,
+        destination_alpha_blend_mode  : bm_inv_src_alpha,
+    }
+
+    var p = parameters
+
+    if (struct_exists(a, "set")) {
+        if (a.set == DEFAULT_BLEND_MODE) {
+            p.source_alpha_blend_mode = bm_one
+        } else if (a.set == ADDITIVE_BLEND_MODE) {
+            gpu_set_blendmode(bm_add)
+        } else {
+            gpu_set_blendmode_ext_sepalpha(
+                p.source_colour_blend_mode,
+                p.destination_colour_blend_mode,
+                p.source_alpha_blend_mode,
+                p.destination_alpha_blend_mode,
+            )
+        }
+    }
 }
 
 /******************************************************************************/
@@ -40,13 +48,7 @@ function set_static_struct_generic(parameters) {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-StaticStructGeneric()
-
-function StaticStructGeneric() {
-
-    static get = get_static_struct_generic
-
-    static set = set_static_struct_generic
+function Graphics() constructor {
 
 }
 

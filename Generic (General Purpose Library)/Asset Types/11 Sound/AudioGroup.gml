@@ -88,7 +88,7 @@ function get_load_progress_audio_group_generic(arguments) {
     return audio_group_load_progress(_audio_group_id)
 }
 
-function stop_audio_group_generic(arguments) {
+function stop_sound_generic_group_generic(arguments) {
     var _audio_group_id = get_id({ audio_group : arguments[$ "audio_group"] })
     audio_group_stop_all(_audio_group_id)
 }
@@ -149,7 +149,7 @@ function AudioGroup() constructor {
     })
 
     static stop = method(static_get(AudioGroup), function(arguments) {
-        stop_audio_group_generic(arguments)
+        stop_sound_generic_group_generic(arguments)
         return self
     })
 
@@ -202,7 +202,7 @@ function AudioGroup() constructor {
 
             stop = function(arguments = {}) {
                 arguments.audio_group = self
-                stop_audio_group_generic(arguments)
+                stop_sound_generic_group_generic(arguments)
                 return self
             }
 

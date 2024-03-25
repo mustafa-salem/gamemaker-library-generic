@@ -101,12 +101,12 @@ function SoundGeneric(_voice) constructor {
     }
 
     /// @function pitch(arguments)
-    /// @description self-targeting pitch_sound_generic
+    /// @description self-targeting get_pitch_sound_generic
     /// @parameter {Struct} arguments
     /// @return {Real}
     pitch = function(arguments = {}) {
         arguments.target = self
-        return pitch_sound_generic(arguments)
+        return get_pitch_sound_generic(arguments)
     }
 
     /// @function length(arguments)

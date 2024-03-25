@@ -4,9 +4,11 @@
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-#macro StaticStruct      StaticStructGeneric
-#macro get_static_struct get_static_struct_generic
-#macro set_static_struct set_static_struct_generic
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro SPRITE INITIALIZED_CONSTRUCTOR(Sprite)
 
 /******************************************************************************/
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -20,12 +22,53 @@
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-function get_static_struct_generic(parameters) {
-    return static_get(parameters.owner)
+/// ----------------------------------------------------------------------------
+/// @function function_name(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {Struct} parameters
+///
+/// @parameter {Type} parameters.parameter_name
+/// <parameter_description>
+///
+/// @parameter {Type} parameters.parameter_name
+/// <parameter_description>
+///
+/// @parameter {Type} parameters.parameter_name
+/// <parameter_description>
+///
+/// @parameter {Type} parameters.parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {struct.Texture}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function generic_sprite_get_texture(parameters) {
+
 }
 
-function set_static_struct_generic(parameters) {
-    static_set(parameters.owner, parameters.static_struct)
+/// ----------------------------------------------------------------------------
+/// @function function_name(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {struct.Sprite|handle.Sprite|id.Sprite} sprite
+/// <parameter_description>
+/// ----------------------------------------------------------------------------
+/// @return {pointer.Texture}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function generic_sprite_get_texture_pointer(parameters) {
+
+    var _sprite_handle =
+    var _frame_index   =
+
+    var _texture_pointer = sprite_get_texture(_sprite_handle, _frame_index)
+    return _texture_pointer
 }
 
 /******************************************************************************/
@@ -40,13 +83,15 @@ function set_static_struct_generic(parameters) {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-StaticStructGeneric()
+SPRITE
 
-function StaticStructGeneric() {
+function Sprite() constructor {
 
-    static get = get_static_struct_generic
+    /// @function get_texture(parameters)
+    static get_texture = generic_sprite_get_texture
 
-    static set = set_static_struct_generic
+    /// @function get_texture_pointer(parameters)
+    static get_texture_pointer = generic_sprite_get_texture_pointer
 
 }
 

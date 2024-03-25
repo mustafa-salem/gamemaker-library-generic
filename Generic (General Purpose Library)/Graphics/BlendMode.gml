@@ -4,9 +4,47 @@
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-#macro StaticStruct      StaticStructGeneric
-#macro get_static_struct get_static_struct_generic
-#macro set_static_struct set_static_struct_generic
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro BLEND_MODE <expression>
+
+/// ----------------------------------------------------------------------------
+/// @description
+///  The libraries default blend mode. Like bm_normal but adjusted to work the
+/// same on any surface as on the application_surface.
+/// ----------------------------------------------------------------------------
+#macro DEFAULT_BLEND_MODE                                                      \
+generic_blend_mode_get({ blend_mode : "default_blend_mode" })
+
+/// ----------------------------------------------------------------------------
+/// @description
+/// Game Maker's default blend mode.
+/// ----------------------------------------------------------------------------
+#macro NORMAL_BLEND_MODE                                                       \
+generic_blend_mode_get({ blend_mode : "normal_blend_mode" })
+
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro ADDITIVE_BLEND_MODE                                                     \
+generic_blend_mode_get({ blend_mode : "additive_blend_mode" })
+
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro SUBTRACTIVE_BLEND_MODE                                                  \
+generic_blend_mode_get({ blend_mode : "subtractive_blend_mode" })
+
+/// ----------------------------------------------------------------------------
+/// @description
+/// <description>
+/// ----------------------------------------------------------------------------
+#macro MAXIMUM_BLEND_MODE                                                      \
+generic_blend_mode_get({ blend_mode : "maximum_blend_mode" })
 
 /******************************************************************************/
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -20,12 +58,43 @@
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-function get_static_struct_generic(parameters) {
-    return static_get(parameters.owner)
+/// ----------------------------------------------------------------------------
+/// @function generic_blend_mode_get(arguments)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {Struct} arguments
+///
+/// @parameter {Type} arguments.blend_mode
+/// <parameter_description>
+/// ----------------------------------------------------------------------------
+/// @return {Struct.BlendMode}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function generic_blend_mode_get(arguments = {}) {
+    var _blend_mode
+    return _blend_mode
 }
 
-function set_static_struct_generic(parameters) {
-    static_set(parameters.owner, parameters.static_struct)
+function generic_blend_mode_get_source_colour_blend_factor(arguments = {}) {
+    var _blend_factor
+    return _blend_factor
+}
+
+function generic_blend_mode_get_source_alpha_blend_factor(arguments = {}) {
+    var _blend_factor
+    return _blend_factor
+}
+
+function generic_blend_mode_get_destination_colour_blend_factor(arguments = {}) {
+    var _blend_factor
+    return _blend_factor
+}
+
+function generic_blend_mode_get_destination_alpha_blend_factor(arguments = {}) {
+    var _blend_factor
+    return _blend_factor
 }
 
 /******************************************************************************/
@@ -40,13 +109,25 @@ function set_static_struct_generic(parameters) {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-StaticStructGeneric()
+BLEND_MODE
 
-function StaticStructGeneric() {
+function BlendMode() constructor {
 
-    static get = get_static_struct_generic
+    static private = {
+        blend_modes : {
+            normal_blend_mode      : new BlendMode({  }),
+            default_blend_mode     : new BlendMode({  }),
+            additive_blend_mode    : new BlendMode({  }),
+            subtractive_blend_mode : new BlendMode({  }),
+        },
+    }
 
-    static set = set_static_struct_generic
+    private = {
+        source_colour_blend_factor      : ,
+        source_alpha_blend_factor       : ,
+        destination_colour_blend_factor : ,
+        destination_alpha_blend_factor  : ,
+    }
 
 }
 

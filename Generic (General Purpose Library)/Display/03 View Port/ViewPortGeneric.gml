@@ -138,7 +138,7 @@ function ViewPortGeneric(arguments) constructor {
     /// @description
     /// proxy for get_surface_view_port_generic
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.SurfaceGeneric|Undefined}
+    /// @return {Struct.Surface|Undefined}
     /// <return_description>
     /// ----------------------------------------------------------------------------
     static get_surface = function(arguments = {}) {
