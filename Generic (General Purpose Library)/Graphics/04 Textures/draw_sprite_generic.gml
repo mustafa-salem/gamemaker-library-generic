@@ -22,7 +22,7 @@ function sprite_get_fps(_sprite) {
     }
 }
 
-function draw_sprite_generic(arguments) {
+function generic_draw_sprite(arguments) {
 
     /*******************************************************************************
     –––––––––––––––––––– INTERNAL: DRAW METHODS ––––––––––––––––––––
@@ -115,9 +115,9 @@ function draw_sprite_generic(arguments) {
         draw_clear_alpha(c_white, 0)
 
         /* –––––––––––––––––––– DRAW TO SURFACE –––––––––––––––––––– */
-        if (arguments.nine_slice) { draw_sprite_generic.draw_method_nine_slice(arguments) }
-        else if (arguments.tiled) { draw_sprite_generic.draw_method_tiled(arguments) }
-        else { draw_sprite_generic.draw_method_default(arguments) }
+        if (arguments.nine_slice) { generic_draw_sprite.draw_method_nine_slice(arguments) }
+        else if (arguments.tiled) { generic_draw_sprite.draw_method_tiled(arguments) }
+        else { generic_draw_sprite.draw_method_default(arguments) }
         surface_reset_target()
 
         /* –––––––––––––––––––– APPLY SHADER –––––––––––––––––––– */

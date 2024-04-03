@@ -318,118 +318,159 @@ generic_surface_draw({
 /// The static struct of the "Surface" constructor function is returned for the
 /// purpose of implementing a fluent interface.
 /// ----------------------------------------------------------------------------
-/// @parameter {Struct} parameters
+/// @parameter {mixed} surface
+/// The surface to draw.
 ///
-/// @parameter {Real|Struct} parameters.surface
+/// @parameter {type} vertices
+/// Can be used instead of [position, alignment, dimension, scale] to directly set
+/// where the surface is drawn.
+/// { x_position : , y_position : , x_texture_coordinate : , y_texture_coordinate : , blend_colour : , blend_alpha : }
+///
+/// @parameter {number} x_position
+/// The x position where to draw the surface onto the render target.
+///
+/// @parameter {number} y_position
+/// The y position where to draw the surface onto the render target.
+///
+/// @parameter {number} x_alignment
+/// valid range : [0, 1]
+///
+/// @parameter {number} y_alignment
+/// valid range : [0, 1]
+///
+/// @parameter {number} x_dimension
+/// The x dimensions the surface should be drawn with.
+///
+/// @parameter {number} y_dimension
+/// The y dimensions the surface should be drawn with.
+///
+/// @parameter {number} x_scale
+/// -> calculates x_dimension
+///
+/// @parameter {number} y_scale
+/// -> calculates y_dimension
+///
+/// @parameter {type} x_rotation
+/// valid range : [0, 1]
+///
+/// @parameter {type} y_rotation
+/// valid range : [0, 1]
+///
+/// @parameter {type} z_rotation
+/// valid range : [0, 1]
+///
+/// @parameter {type} fragment_vertices
+/// Can be used instead of [position, alignment, dimension, scale] to directly set
+/// what part of the surface is drawn.
+///
+/// @parameter {type} parameter_name
 /// <parameter_description>
 ///
-/// @parameter {Real|Struct} parameters.position
+/// @parameter {type} parameter_name
 /// <parameter_description>
 ///
-/// @parameter {Real} parameters.x_position
-/// The x position where to draw the surface on the render target.
-///
-/// @parameter {Real} parameters.position.x
-/// The x position where to draw the surface on the render target.
-///
-/// @parameter {Real} parameters.y_position
-/// The y position where to draw the surface on the render target.
-///
-/// @parameter {Real} parameters.position.y
-/// Identical to "y_position".
-///
-/// @parameter {Real|Struct} parameters.dimensions
+/// @parameter {type} parameter_name
 /// <parameter_description>
 ///
-/// @parameter {Real} parameters.dimensions.x
-/// The x dimensions the surface should be drawn with. This value is used to
-/// calculate the x scale.
-///
-/// @parameter {Real} parameters.dimensions.y
-/// /// The y dimensions the surface should be drawn with. This value is used to
-/// calculate the y scale.
-///
-/// @parameter {Real|Struct} parameters.alignment
+/// @parameter {type} parameter_name
 /// <parameter_description>
 ///
-/// @parameter {scale} parameters.alignment.x
+/// @parameter {type} blend_colour
 /// <parameter_description>
 ///
-/// @parameter {scale} parameters.alignment.y
+/// @parameter {type} blend_alpha
 /// <parameter_description>
 ///
-/// @parameter {Real|Struct} parameters.scale
+/// @parameter {type} blend_gradient
 /// <parameter_description>
 ///
-/// @parameter {scale} parameters.scale.x
+/// @parameter {boolean} tiled
 /// <parameter_description>
 ///
-/// @parameter {scale} parameters.scale.y
+/// @parameter {type} parameter_name
 /// <parameter_description>
-///
-/// @parameter {Type} parameters.rotation
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.blend
-/// <parameter_description>
-///
-/// @parameter {Real} parameters.blend.colour
-/// The colour with which to blend the surface.
-///
-/// @parameter {Real} parameters.blend.alpha
-/// The alpha with which to blend the surface.
-///
-/// @parameter {Type} parameters.blend.mode
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.fragment
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.fragment.x0
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.fragment.x1
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.fragment.y0
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.fragment.y1
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.parameter_name
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.parameter_name
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.parameter_name
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.parameter_name
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.parameter_name
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.parameter_name
-/// <parameter_description>
-///
-/// @parameter {Type} parameters.parameter_name
-/// <parameter_description>
-///
 /// ----------------------------------------------------------------------------
-function generic_surface_draw(parameters = {}) {
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function generic_surface_draw(parameters) {
+
+    // x : [100, 200] or [0.1, 0.2]
+    // y : [0, 50] or [0, 0.1]
+    // x_
+
     static _SURFACE = SURFACE
 
+    // surface
     var _surface
-    var _x_position
-    var _y_position
-    var _x_scale
-    var _y_scale
 
     // early return: surface doesn't exist
-    if (!exists_surface_generic({ surface : _surface })) { return _SURFACE }
+    if (!surface_exists(_surface)) {
+        // if (!exists_surface_generic({ surface : _surface })) { return _SURFACE }
+    }
+
+    // position
+    var _x_position = parameters[$ "x_position"] ?? 0
+    var _y_position = parameters[$ "y_position"] ?? 0
+    // alignment
+    var _x_alignment = parameters[$ "x_alignment"] ?? 0
+    var _y_alignment = parameters[$ "y_alignment"] ?? 0
+    // scale
+    var _x_scale = parameters[$ "x_scale"] ?? 1
+    var _y_scale = parameters[$ "y_scale"] ?? 1
+    // dimension
+    var _x_dimension = parameters[$ "x_dimension"] ?? _x_scale * surface_get_width(_surface)
+    var _y_dimension = parameters[$ "y_dimension"] ?? _y_scale * surface_get_height(_surface)
+    // rotation
+    var _x_rotation = parameters[$ "x_rotation"] ?? 0
+    var _y_rotation = parameters[$ "y_rotation"] ?? 0
+    var _z_rotation = parameters[$ "z_rotation"] ?? 0
+    // blend
+    var _blend_colour = parameters[$ "blend_colour"] ?? c_white
+    var _blend_alpha  = parameters[$ "blend_alpha"]  ?? 1
+
+    var _vertices = []
+
+    _vertices[0] = {
+        x_position           : _x_position,
+        y_position           : _y_position,
+        x_texture_coordinate : 0,
+        y_texture_coordinate : 0,
+        blend_colour         : _blend_colour,
+        blend_alpha          : _blend_alpha,
+    }
+
+    _vertices[1] = {
+        x_position           : _x_position + _x_dimension,
+        y_position           : _y_position,
+        x_texture_coordinate : 1,
+        y_texture_coordinate : 0,
+        blend_colour         : _blend_colour,
+        blend_alpha          : _blend_alpha,
+    }
+
+    _vertices[2] = {
+        x_position           : _x_position,
+        y_position           : _y_position + _y_dimension,
+        x_texture_coordinate : 0,
+        y_texture_coordinate : 1,
+        blend_colour         : _blend_colour,
+        blend_alpha          : _blend_alpha,
+    }
+
+    _vertices[3] = {
+        x_position           : _x_position + _x_dimension,
+        y_position           : _y_position + _y_dimension,
+        x_texture_coordinate : 1,
+        y_texture_coordinate : 1,
+        blend_colour         : _blend_colour,
+        blend_alpha          : _blend_alpha,
+    }
+
+    // draw primitive
+    draw_primitive_begin_texture(pr_trianglestrip, surface_get_texture(_surface))
+    for (var i = 0; i < 4; i++) { with (_vertices[i]) { draw_vertex_texture_colour(x_position, y_position, x_texture_coordinate, y_texture_coordinate, blend_colour, blend_alpha) } }
+    draw_primitive_end()
 
     _blend_mode.set()
     _shader.set()
@@ -499,50 +540,9 @@ function generic_surface_draw(parameters = {}) {
     _shader.unset()
 
     return _SURFACE
+
+    return _return
 }
-
-var a = arguments
-
-var parameters = {
-    surface : arguments.surface,
-    x : arguments[$ "x"] ?? 0,
-    y : arguments[$ "y"] ?? 0,
-    xscale : arguments[$ "xscale"] ?? 1,
-    yscale : arguments[$ "yscale"] ?? 1,
-    rotation : arguments[$ "rotation"] ?? 0,
-    alpha : arguments[$ "alpha"] ?? 1,
-
-    fragment : arguments[$ "fragment"] ?? {
-        x : 0,
-        y : 0,
-        width : surface_get_width(arguments.surface),
-        height : surface_get_height(arguments.surface),
-    },
-
-    colour : arguments[$ "colour"] ?? c_white,
-    gradient : arguments[$ "gradient"] ?? {
-        top_left     : c_white,
-        top_right    : c_white,
-        bottom_right : c_white,
-        bottom_left  : c_white,
-    },
-}
-
-var p = parameters
-
-if (struct_exists(arguments, "scale")) {
-    parameters.xscale = arguments.scale
-    parameters.yscale = arguments.scale
-}
-
-var _surface     = parameters[$ "surface"]
-var _x_position  = parameters[$ "position"][$ "x"]
-var _y_position  = parameters[$ "position"][$ "y"]
-var _x_scale     = parameters[$ "scale"][$ "x"]
-var _y_scale     = parameters[$ "scale"][$ "y"]
-var _alpha_blend = parameters[$ "blend"][$ "alpha"]
-
-if (_x_dimensions != undefined) { _x_scale = }
 
 /******************************************************************************/
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */

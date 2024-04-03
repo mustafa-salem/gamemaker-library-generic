@@ -96,8 +96,43 @@ function message_sequence_to_default_battletext(_messages) {
     scr_battletext_default()
 }
 
+/// ----------------------------------------------------------------------------
+/// @function generic_draw_text(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {string} string
+/// @parameter {type} font
+/// @parameter {type} colour
+/// @parameter {type} x_alignment
+/// @parameter {type} y_alignment
+/// @parameter {type} blend_colour
+/// @parameter {type} blend_alpha
+/// @parameter {number} x_position
+/// @parameter {number} y_position
+/// @parameter {number} x_scale
+/// @parameter {number} y_scale
+/// @parameter {number} rotation
+/// @parameter {number} rotation_degrees
+/// @parameter {type} maximum_line_width
+/// @parameter {type} distance_between_lines
+/// ----------------------------------------------------------------------------
+function generic_draw_text(arguments) {
 
-function draw_text_generic(arguments) {
+    scribble(parameters.string)
+
+    scribble.starting_format(parameters.font, parameters.colour)
+
+    scribble.align(parameters.x_alignment, parameters.y_alignment)
+
+    scribble.blend(parameters.blend_colour, parameters.blend_alpha)
+
+    scribble.gradient(colour, blendFactor)
+
+    scribble.transform(parameters.x_scale, parameters.y_scale, parameters.rotation * 360)
+
+    scribble.draw(parameters.x_position, parameters.y_position)
 
     var parameters = {
         x : 0,
