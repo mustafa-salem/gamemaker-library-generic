@@ -165,24 +165,87 @@ function generic_surface_get(arguments = {}) {
     SURFACE.get
 }
 
-surface_get_target_ext
-surface_reset_target
+#macro SURFACE_DEFAULT_FORMAT surface_rgba8unorm
 
-function create_surface_generic(arguments = {}) {
-    surface_create_ext
+#macro SURFACE_DEFAULT_GARBAGE_COLLECTION true
+
+#macro SURFACE_DEFAULT_EXISTANCE_ENSURANCE true
+
+/// ----------------------------------------------------------------------------
+/// @function generic_surface_create(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {integer} x_dimension
+/// <parameter_description>
+///
+/// @parameter {integer} y_dimension
+/// <parameter_description>
+///
+/// @parameter {constant} [format]
+/// <parameter_description>
+///
+/// @parameter {boolean} [garbage_collection]
+/// Whether to garbage collect the native surface when the struct is garbage
+/// collected.
+///
+/// @parameter {boolean} [existance_ensureance]
+/// Whether to ensure that the native surface exists when trying to perform a
+/// operation on it.
+///
+/// ----------------------------------------------------------------------------
+/// @return {struct.Surface}
+/// ----------------------------------------------------------------------------
+function generic_surface_create(parameters) {
+    var _x_dimension          = parameters[$ "x_dimension"]
+    var _y_dimension          = parameters[$ "y_dimension"]
+    var _format               = parameters[$ "format"]               ?? SURFACE_DEFAULT_FORMAT
+    var _garbage_collection   = parameters[$ "garbage_collection"]   ?? SURFACE_DEFAULT_GARBAGE_COLLECTION
+    var _existance_ensureance = parameters[$ "existance_ensureance"] ?? SURFACE_DEFAULT_EXISTANCE_ENSURANCE
+    surface_create(_x_dimension, _y_dimension, _format)
+
+    return new Surface()
 }
 
-/// @function exists_surface_generic(arguments)
-/// @parameter {Struct} arguments
-/// @return {Bool}
-function exists_surface_generic(arguments = {}) {
-    return surface_exists(arguments.surface.surface_id)
+/// ----------------------------------------------------------------------------
+/// @function generic_surface_exists(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// This function is a generification of the built-in function <surface_exists>.
+///
+/// This function checks if a surface exists.
+/// ----------------------------------------------------------------------------
+/// @parameter {mixed} surface
+/// The value that identifies the surface to target. (id|handle|struct)
+/// ----------------------------------------------------------------------------
+/// @return {boolean}
+/// ----------------------------------------------------------------------------
+function generic_surface_exists(parameters) {
+    var _surface = parameters[$ "surface"]
+    if (is_struct(_surface)) { return _surface.exists() }
+    if (is_numeric(_surface)) { return surface_exists(_surface) }
 }
 
-/// @function free_surface_generic(arguments)
-/// @parameter {Struct} arguments
-function free_surface_generic(arguments = {}) {
-    surface_free(arguments.surface.surface_id)
+/// ----------------------------------------------------------------------------
+/// @function generic_surface_destroy(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// * surface_free
+/// ----------------------------------------------------------------------------
+/// @parameter {mixed} surface
+/// The value or the array of values that identify the surface to destroy.
+/// ----------------------------------------------------------------------------
+function generic_surface_destroy(parameters) {
+    var _surface = parameters[$ "surface"]
+    if (!is_array(_surface)) { _surface = [_surface] }
+    for (var i = 0; i < array_length(_surface); i++) {
+        if (is_struct(_surface[i])) {
+            _surface[i].destroy(parameters)
+        } else if (surface_exists(_surface)) {
+            surface_free(arguments.surface.surface_id)
+        }
+    }
 }
 
 /// @function (arguments)
@@ -195,14 +258,58 @@ function resize_surface_generic(arguments = {}) {
 /// @function (arguments)
 /// @parameter {Struct} arguments
 /// @return {}
-function get_target_surface_generic(arguments = {}) {}
+function render_target_get_surface(arguments = {}) {}
 
-/// @function (arguments)
-/// @parameter {Struct} arguments
-/// @return {}
-function set_target_surface_generic(arguments = {}) {
-    // surface_set_target
-    // surface_set_target_ext
+/// ----------------------------------------------------------------------------
+/// @function render_target_set_surface(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// * surface_set_target
+/// * surface_set_target_ext
+///
+/// surface_reset_target must be used when render_target 0 is changed.
+/// ----------------------------------------------------------------------------
+/// @parameter {type} surface
+/// <parameter_description>
+///
+/// @parameter {type} render_target
+/// render target index [0, 3]
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function render_target_set_surface(parameters) {
+    var _surface       = parameters.surface
+    var _render_target = parameters[$ "render_target"] ?? 0
+
+    if (is_struct(_surface)) {
+        _surface.set_render_target(parameters)
+        return
+    }
+
+    if (!surface_exists(_surface)) { return undefined }
+
+    surface_set_target_ext(_render_target, _surface)
+
+    return
+}
+
+/// ----------------------------------------------------------------------------
+/// @function render_target_reset_surface(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// * surface_reset_target
+/// ----------------------------------------------------------------------------
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function render_target_reset_surface(parameters = {}) {
+    return _return
 }
 
 /// @function (arguments)
@@ -344,12 +451,6 @@ generic_surface_draw({
 /// @parameter {number} y_dimension
 /// The y dimensions the surface should be drawn with.
 ///
-/// @parameter {number} x_scale
-/// -> calculates x_dimension
-///
-/// @parameter {number} y_scale
-/// -> calculates y_dimension
-///
 /// @parameter {type} x_rotation
 /// valid range : [0, 1]
 ///
@@ -397,7 +498,9 @@ function generic_surface_draw(parameters) {
 
     // x : [100, 200] or [0.1, 0.2]
     // y : [0, 50] or [0, 0.1]
-    // x_
+    // x_pixel_range
+    // x_fragment_texture_range
+    // x_pixel_range
 
     static _SURFACE = SURFACE
 
@@ -406,7 +509,7 @@ function generic_surface_draw(parameters) {
 
     // early return: surface doesn't exist
     if (!surface_exists(_surface)) {
-        // if (!exists_surface_generic({ surface : _surface })) { return _SURFACE }
+        // if (!generic_surface_exists({ surface : _surface })) { return _SURFACE }
     }
 
     // position
@@ -415,12 +518,9 @@ function generic_surface_draw(parameters) {
     // alignment
     var _x_alignment = parameters[$ "x_alignment"] ?? 0
     var _y_alignment = parameters[$ "y_alignment"] ?? 0
-    // scale
-    var _x_scale = parameters[$ "x_scale"] ?? 1
-    var _y_scale = parameters[$ "y_scale"] ?? 1
     // dimension
-    var _x_dimension = parameters[$ "x_dimension"] ?? _x_scale * surface_get_width(_surface)
-    var _y_dimension = parameters[$ "y_dimension"] ?? _y_scale * surface_get_height(_surface)
+    var _x_dimension = parameters[$ "x_dimension"] ?? surface_get_width(_surface)
+    var _y_dimension = parameters[$ "y_dimension"] ?? surface_get_height(_surface)
     // rotation
     var _x_rotation = parameters[$ "x_rotation"] ?? 0
     var _y_rotation = parameters[$ "y_rotation"] ?? 0
@@ -482,34 +582,6 @@ function generic_surface_draw(parameters) {
         texture : generic_surface_get_texture({ surface : _surface }),
     })
 
-    var _position = {
-        left   : ,
-        right  : ,
-        top    : ,
-        bottom : ,
-    }
-
-    var _texture_coordinates = {
-        left   : ,
-        right  : ,
-        top    : ,
-        bottom : ,
-    }
-
-    var _colour = {
-        left   : ,
-        right  : ,
-        top    : ,
-        bottom : ,
-    }
-
-    var _alpha = {
-        left   : ,
-        right  : ,
-        top    : ,
-        bottom : ,
-    }
-
     vb = vertex_create_buffer();
 
     _primitive
@@ -565,7 +637,13 @@ GameMaker surfaces.
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 *******************************************************************************/
 
-function Surface(arguments = {}) constructor {
+function Surface(parameters) constructor {
+
+    CONSTRUCTOR_INITIALIZATION_GUARD
+
+    ensure_existance = function() {}
+
+    destroy = function() {}
 
     /*******************************************************************************/
     #region    –––––––––––––––––––– PRIVATE_STRUCT_MEMBERS ––––––––––––––––––––
@@ -574,7 +652,7 @@ function Surface(arguments = {}) constructor {
     private = {}
 
     // index of native GameMaker surface
-    private.surface_id = is_numeric(arguments) ? arguments : create_surface_generic(arguments)
+    private.surface_id = is_numeric(arguments) ? arguments : generic_surface_create(arguments)
 
     private.cached = {
         width  : get_width(),
@@ -588,7 +666,7 @@ function Surface(arguments = {}) constructor {
     private.ensure_surface_exists = function() {
         if (exists() or !surface_existance_ensurance_enabled) { return }
 
-        private.surface_id = create_surface_generic({
+        private.surface_id = generic_surface_create({
             width  : private.cached.width,
             height : private.cached.height,
             format : private.cached.format,
@@ -604,37 +682,35 @@ function Surface(arguments = {}) constructor {
     #region    –––––––––––––––––––– PUBLIC_STRUCT_MEMBERS ––––––––––––––––––––
     /*******************************************************************************/
 
-    /// @function (arguments)
-    /// @parameter {Struct} arguments
-    /// @return {}
-    function(arguments = {}) {}
-
-    /// @function exists(arguments)
-    /// @description Calls exists_surface_generic on self using provided arguments.
-    /// @parameter {Struct} [arguments]
-    /// @return {Bool}
-    exists = function(arguments = {}) {
-        arguments.surface = self
-        return exists_surface_generic(arguments)
+    /// ----------------------------------------------------------------------------
+    /// @function exists(parameters)
+    /// ----------------------------------------------------------------------------
+    static exists = function(parameters = {}) {
+        parameters.surface = self
+        return generic_surface_exists(parameters)
     }
 
-    /// @function resize(arguments)
-    /// @description Calls resize_surface_generic on self using provided arguments.
-    /// @parameter {Struct} arguments
-    resize = function(arguments = {}) {
+    self.exists = method(self, exists)
+
+    /// ----------------------------------------------------------------------------
+    /// @function resize(parameters)
+    /// ----------------------------------------------------------------------------
+    static resize = function(arguments = {}) {
         arguments.surface = self
         arguments[$ "width"]  ??= get_width()
         arguments[$ "height"] ??= get_height()
         resize_surface_generic(arguments)
     }
 
+    self.resize = method(self, resize)
+
     /// @function set_target(arguments)
-    /// @description Calls set_target_surface_generic on self using provided arguments.
+    /// @description Calls render_target_set_surface on self using provided arguments.
     /// @parameter {Struct} [arguments]
     set_target = function(arguments = {}) {
         private.ensure_surface_exists()
         arguments.surface = self
-        set_target_surface_generic(arguments)
+        render_target_set_surface(arguments)
     }
 
     is_target = function(arguments = {}) {
@@ -715,50 +791,24 @@ function Surface(arguments = {}) constructor {
         surface_format_is_supported
     }
 
-    /// @function free(arguments)
-    /// @parameter {Struct} arguments
-    free = function(arguments = {}) {
-        arguments.surface = self
-        free_surface_generic(arguments)
-    }
-
     save = function(arguments = {}) {
         arguments.surface = self
         surface_save_part
     }
 
     /// ----------------------------------------------------------------------------
-    /// @function draw(arguments)
+    /// @function draw(parameters)
     /// ----------------------------------------------------------------------------
-    /// @description
-    /// <function_description>
-    /// ----------------------------------------------------------------------------
-    /// @parameter {Struct} arguments
-    ///
-    /// @parameter {Type} arguments.parameter_name
-    /// <parameter_description>
-    ///
-    /// @parameter {Type} arguments.parameter_name
-    /// <parameter_description>
-    ///
-    /// @parameter {Type} arguments.parameter_name
-    /// <parameter_description>
-    ///
-    /// @parameter {Type} arguments.parameter_name
-    /// <parameter_description>
-    ///
-    /// ----------------------------------------------------------------------------
-    /// @return {type}
-    /// <return_description>
-    /// ----------------------------------------------------------------------------
-    static draw = function(arguments = {}) {
-        arguments.surface = self
-        draw_surface_part_ext
-        draw_surface_stretched_ext
-        draw_surface_tiled_ext
-        draw_surface_general
+    static draw = function(parameters) {
+        parameters.surface = self
+        generic_surface_draw(parameters)
     }
 
+    self.draw = method(self, draw)
+
+    /// ----------------------------------------------------------------------------
+    /// @function load_contents_from_buffer(arguments)
+    /// ----------------------------------------------------------------------------
     load_contents_from_buffer = function(arguments = {}) {
         arguments.surface = self
 

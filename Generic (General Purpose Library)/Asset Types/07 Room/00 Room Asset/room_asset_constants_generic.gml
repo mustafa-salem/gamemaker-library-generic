@@ -2,7 +2,7 @@
 #region    –––––––––––––––––––– INITIALIZED_CONSTRUCTOR ––––––––––––––––––––
 /*******************************************************************************/
 
-#macro ROOM_ASSET_GENERIC INITIALIZED_CONSTRUCTOR_GENERIC(RoomAssetGeneric)
+#macro ROOM_ASSET_GENERIC INITIALIZED_CONSTRUCTOR(RoomAssetGeneric)
 
 ROOM_ASSET_GENERIC
 

@@ -2,7 +2,7 @@
 #region    –––––––––––––––––––– INITIALIZED_CONSTRUCTOR ––––––––––––––––––––
 /*******************************************************************************/
 
-#macro TIME_SOURCE_CONTROLLER_GENERIC INITIALIZED_CONSTRUCTOR_GENERIC(TimeSourceControllerGeneric)
+#macro TIME_SOURCE_CONTROLLER_GENERIC INITIALIZED_CONSTRUCTOR(TimeSourceControllerGeneric)
 
 TIME_SOURCE_CONTROLLER_GENERIC
 

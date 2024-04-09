@@ -109,16 +109,15 @@ function generic_draw_sprite(arguments) {
             arguments.screen_y -= arguments.outline.width
         }
 
-        // if (!surface_exists(surface)) { var surface = surface_create(surface_width, surface_height) }
-        var surface = surface_create(_surface_width, _surface_height)
-        surface_set_target(surface)
+        var surface = generic_surface_create({ x_dimension : _surface_width, y_dimension : _surface_height })
+        render_target_set_surface({ surface })
         draw_clear_alpha(c_white, 0)
 
         /* –––––––––––––––––––– DRAW TO SURFACE –––––––––––––––––––– */
         if (arguments.nine_slice) { generic_draw_sprite.draw_method_nine_slice(arguments) }
         else if (arguments.tiled) { generic_draw_sprite.draw_method_tiled(arguments) }
         else { generic_draw_sprite.draw_method_default(arguments) }
-        surface_reset_target()
+        render_target_reset_surface()
 
         /* –––––––––––––––––––– APPLY SHADER –––––––––––––––––––– */
         shader_set(arguments.shader)
@@ -161,7 +160,7 @@ function generic_draw_sprite(arguments) {
         draw_surface(surface, arguments.screen_x, arguments.screen_y)
 
         /* –––––––––––––––––––– SURFACE & SHADER CLEANUP –––––––––––––––––––– */
-        surface_free(surface)
+        generic_surface_destroy({ surface : surface })
         shader_reset()
 
         /* –––––––––––––––––––– PRESERVE PREVIOUS SHADER –––––––––––––––––––– */

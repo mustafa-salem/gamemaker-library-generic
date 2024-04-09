@@ -36,9 +36,7 @@
 /// ----------------------------------------------------------------------------
 function TimeSourceGeneric(arguments = {}) constructor {
 
-	if (arguments == INPUT_INITIALIZED_CONSTRUCTOR_GENERIC) { return }
-
-	DEFINE_INITIALIZE_STATIC_GENERIC
+	CONSTRUCTOR_INITIALIZATION_GUARD
 
 	/*******************************************************************************/
 	#region    –––––––––––––––––––– PUBLIC_STATIC ––––––––––––––––––––
@@ -573,74 +571,73 @@ function TimeSourceGeneric(arguments = {}) constructor {
 	#region    –––––––––––––––––––– PRIVATE_STATIC ––––––––––––––––––––
 	/*******************************************************************************/
 
-	BEGIN_INITIALIZE_PRIVATE_STATIC_GENERIC
+	CONSTRUCTOR_INITIALIZATION_CODE(function() {
+		private = {}
 
-	private = {}
+		/// ----------------------------------------------------------------------------
+		/// @function creation_arguments(arguments)
+		/// ----------------------------------------------------------------------------
+		private.creation_arguments = function(arguments) {
+			var _parent      = arguments[$ "parent"]      ?? TIME_SOURCE_CONTROLLER_GENERIC.get_default_parent()
+			var _period      = arguments[$ "period"]      ?? TIME_SOURCE_CONTROLLER_GENERIC.get_default_period()
+			var _units       = arguments[$ "units"]       ?? TIME_SOURCE_CONTROLLER_GENERIC.get_default_units()
+			var _callback    = arguments[$ "callback"]
+			var _arguments   = arguments[$ "arguments"]   ?? []
+			var _repetitions = arguments[$ "repetitions"] ?? TIME_SOURCE_CONTROLLER_GENERIC.get_default_repetitions()
+			var _expiry_type = arguments[$ "expiry_type"] ?? TIME_SOURCE_CONTROLLER_GENERIC.get_default_expiry_type()
 
-	/// ----------------------------------------------------------------------------
-	/// @function creation_arguments(arguments)
-	/// ----------------------------------------------------------------------------
-	private.creation_arguments = function(arguments) {
-		var _parent      = arguments[$ "parent"]      ?? TIME_SOURCE_CONTROLLER_GENERIC.get_default_parent()
-		var _period      = arguments[$ "period"]      ?? TIME_SOURCE_CONTROLLER_GENERIC.get_default_period()
-		var _units       = arguments[$ "units"]       ?? TIME_SOURCE_CONTROLLER_GENERIC.get_default_units()
-		var _callback    = arguments[$ "callback"]
-		var _arguments   = arguments[$ "arguments"]   ?? []
-		var _repetitions = arguments[$ "repetitions"] ?? TIME_SOURCE_CONTROLLER_GENERIC.get_default_repetitions()
-		var _expiry_type = arguments[$ "expiry_type"] ?? TIME_SOURCE_CONTROLLER_GENERIC.get_default_expiry_type()
+			// shortform
+			var _period_seconds = arguments[$ "period_seconds"]
+			// shortform
+			var _period_frames  = arguments[$ "period_frames"]
+			// ensures correct scoping of callback function
+			var _creation_scope = arguments[$ "creation_scope"] ?? other
 
-		// shortform
-		var _period_seconds = arguments[$ "period_seconds"]
-		// shortform
-		var _period_frames  = arguments[$ "period_frames"]
-		// ensures correct scoping of callback function
-		var _creation_scope = arguments[$ "creation_scope"] ?? other
+			// PARENT
+			if (is_struct(_parent)) { _parent = _parent.get_id() }
+			// PERIOD and UNITS
+			if (_period_seconds != undefined) {
+				var _period = _period_seconds
+				var _units  = time_source_units_seconds
+			} else if (_period_frames != undefined) {
+				var _period = _period_frames
+				var _units  = time_source_units_frames
+			}
+			// REPETITIONS
+			if (_repetitions == infinity) { _repetitions = -1 }
+			// CALLBACK
+			if (!is_method(_callback) or method_get_self(_callback) == arguments) {
+				_callback = method(_creation_scope, _callback)
+			}
 
-		// PARENT
-		if (is_struct(_parent)) { _parent = _parent.get_id() }
-		// PERIOD and UNITS
-		if (_period_seconds != undefined) {
-			var _period = _period_seconds
-			var _units  = time_source_units_seconds
-		} else if (_period_frames != undefined) {
-			var _period = _period_frames
-			var _units  = time_source_units_frames
+			return {
+				parent      : _parent,
+				period      : _period,
+				units       : _units,
+				callback    : _callback,
+				arguments   : _arguments,
+				repetitions : _repetitions,
+				expiry_type : _expiry_type,
+			}
 		}
-		// REPETITIONS
-		if (_repetitions == infinity) { _repetitions = -1 }
-		// CALLBACK
-		if (!is_method(_callback) or method_get_self(_callback) == arguments) {
-			_callback = method(_creation_scope, _callback)
+
+		/// ----------------------------------------------------------------------------
+		/// @function creation_arguments(arguments)
+		/// ----------------------------------------------------------------------------
+		private.reconfigure_arguments = function(arguments) {
+			arguments[$ "time_source_id"] ??= get_id(arguments)
+			arguments[$ "parent"]         ??= get_parent(arguments)
+			arguments[$ "period"]         ??= get_period(arguments)
+			arguments[$ "units"]          ??= get_units(arguments)
+			arguments[$ "callback"]	      ??= get_callback(arguments)
+			arguments[$ "arguments"]      ??= get_arguments(arguments)
+			arguments[$ "repetitions"]    ??= get_repetitions(arguments)
+			arguments[$ "expiry_type"]    ??= get_expiry_type(arguments)
+
+			return creation_arguments(arguments)
 		}
 
-		return {
-			parent      : _parent,
-			period      : _period,
-			units       : _units,
-			callback    : _callback,
-			arguments   : _arguments,
-			repetitions : _repetitions,
-			expiry_type : _expiry_type,
-		}
-	}
-
-	/// ----------------------------------------------------------------------------
-	/// @function creation_arguments(arguments)
-	/// ----------------------------------------------------------------------------
-	private.reconfigure_arguments = function(arguments) {
-		arguments[$ "time_source_id"] ??= get_id(arguments)
-		arguments[$ "parent"]         ??= get_parent(arguments)
-		arguments[$ "period"]         ??= get_period(arguments)
-		arguments[$ "units"]          ??= get_units(arguments)
-		arguments[$ "callback"]	      ??= get_callback(arguments)
-		arguments[$ "arguments"]      ??= get_arguments(arguments)
-		arguments[$ "repetitions"]    ??= get_repetitions(arguments)
-		arguments[$ "expiry_type"]    ??= get_expiry_type(arguments)
-
-		return creation_arguments(arguments)
-	}
-
-	END_INITIALIZE_PRIVATE_STATIC_GENERIC
+	})
 
 	/*******************************************************************************/
 	#endregion –––––––––––––––––––– PRIVATE_STATIC ––––––––––––––––––––

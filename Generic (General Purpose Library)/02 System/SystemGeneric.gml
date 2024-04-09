@@ -10,7 +10,7 @@ BEGIN_SCRIPT_HINT_DEBUG_GENERIC
 #region    –––––––––––––––––––– INITIALIZED_CONSTRUCTOR ––––––––––––––––––––
 /*******************************************************************************/
 
-#macro SYSTEM_CONTROLLER_GENERIC INITIALIZED_CONSTRUCTOR_GENERIC(SystemControllerGeneric)
+#macro SYSTEM_CONTROLLER_GENERIC INITIALIZED_CONSTRUCTOR(SystemControllerGeneric)
 
 SYSTEM_CONTROLLER_GENERIC
 

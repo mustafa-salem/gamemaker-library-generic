@@ -13,7 +13,7 @@
 /// <description>
 /// ----------------------------------------------------------------------------
 #macro OBJECT_GENERIC                                                          \
-INITIALIZED_CONSTRUCTOR_GENERIC(ObjectGeneric)
+INITIALIZED_CONSTRUCTOR(ObjectGeneric)
 
 /******************************************************************************/
 #endregion –––––––––––––––––––– CONSTRUCTOR ––––––––––––––––––––
@@ -36,7 +36,7 @@ INITIALIZED_CONSTRUCTOR_GENERIC(ObjectGeneric)
 /// code executed for their objects events from their instance of ObjectGeneric.
 ///
 /// ----------------------------------------------------------------------------
-#macro OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC                                    \
+#macro OBJECT_EVENT_SCRIPT_CONTENTS                                    \
 __OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC()
 
 function __OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC() {
@@ -92,8 +92,6 @@ function __OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC() {
 
 #macro Object ObjectGeneric
 #macro OBJECT OBJECT_GENERIC
-
-#macro OBJECT_EVENT_SCRIPT_CONTENTS OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC
 
 #macro get_depth_object get_depth_object_generic
 #macro set_depth_object set_depth_object_generic

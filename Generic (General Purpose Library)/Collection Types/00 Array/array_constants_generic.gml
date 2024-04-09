@@ -2,7 +2,7 @@
 #region    –––––––––––––––––––– INITIALIZED_CONSTRUCTOR ––––––––––––––––––––
 /*******************************************************************************/
 
-#macro ARRAY_GENERIC INITIALIZED_CONSTRUCTOR_GENERIC(ArrayGeneric)
+#macro ARRAY_GENERIC INITIALIZED_CONSTRUCTOR(ArrayGeneric)
 
 ARRAY_GENERIC
 

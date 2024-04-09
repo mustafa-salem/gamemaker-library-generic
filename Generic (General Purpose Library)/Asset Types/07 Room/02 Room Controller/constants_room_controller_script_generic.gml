@@ -2,7 +2,7 @@
 #region    –––––––––––––––––––– INITIALIZED_CONSTRUCTOR ––––––––––––––––––––
 /*******************************************************************************/
 
-#macro ROOM_CONTROLLER_GENERIC INITIALIZED_CONSTRUCTOR_GENERIC(RoomControllerGeneric)
+#macro ROOM_CONTROLLER_GENERIC INITIALIZED_CONSTRUCTOR(RoomControllerGeneric)
 
 ROOM_CONTROLLER_GENERIC
 

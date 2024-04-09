@@ -161,17 +161,17 @@ function RoomAssetGeneric() constructor {
     }
 
     /*******************************************************************************/
-    #region    –––––––––––––––––––– INITIALIZATION_CODE_STATIC_STRUCT ––––––––––––––––––––
+    #region    –––––––––––––––––––– CONSTRUCTOR_INITIALIZATION_CODE ––––––––––––––––––––
     /*******************************************************************************/
 
-    INITIALIZATION_CODE_STATIC_STRUCT(function() {
+    CONSTRUCTOR_INITIALIZATION_CODE(function() {
         for (var _room_index = room_first; _room_index <= room_last; _room_index++) {
             RoomAssetGeneric.create({ room_asset : _room_index })
         }
     })
 
     /*******************************************************************************/
-    #endregion –––––––––––––––––––– INITIALIZATION_CODE_STATIC_STRUCT ––––––––––––––––––––
+    #endregion –––––––––––––––––––– CONSTRUCTOR_INITIALIZATION_CODE ––––––––––––––––––––
     /*******************************************************************************/
 
 }

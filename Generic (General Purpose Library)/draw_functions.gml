@@ -16,41 +16,6 @@ function generic_draw_(parameters) {
     return _return
 }
 
-/// ----------------------------------------------------------------------------
-/// @function generic_draw_rectangle(parameters)
-/// ----------------------------------------------------------------------------
-/// @description
-/// <function_description>
-/// ----------------------------------------------------------------------------
-/// @parameter {number} x_position
-/// @parameter {number} y_position
-/// @parameter {number} x_alignment
-/// @parameter {number} y_alignment
-/// @parameter {number} x_dimension
-/// @parameter {number} y_dimension
-/// @parameter {number} x_scale
-/// @parameter {number} y_scale
-/// @parameter {number} rotation
-/// @parameter {Type} blend_colour
-/// @parameter {Type} blend_alpha
-/// @parameter {Type} gradient_blend_colour_0
-/// @parameter {Type} gradient_blend_colour_1
-/// @parameter {Type} gradient_blend_colour_2
-/// @parameter {Type} gradient_blend_colour_3
-/// @parameter {Type} gradient_blend_alpha
-/// @parameter {Type} target
-/// @parameter {Type} blend_mode
-/// @parameter {Type} shader
-/// @parameter {Type} parameter_name
-/// @parameter {Type} parameter_name
-/// ----------------------------------------------------------------------------
-/// @return {type}
-/// <return_description>
-/// ----------------------------------------------------------------------------
-function generic_draw_rectangle(parameters) {
-    return _return
-}
-
 function draw_settings_save() {}
 
 function draw_settings_restore() {}
