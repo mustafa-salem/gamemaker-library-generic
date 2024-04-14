@@ -5,7 +5,7 @@
 /******************************************************************************/
 
 /// ----------------------------------------------------------------------------
-/// @function play_sound_generic(arguments)
+/// @function generic_sound_play(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -18,7 +18,7 @@
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function play_sound_generic(arguments) {
+function generic_sound_play(arguments) {
     // FadeIn
     var _voice = VinylPlay(argument0)
     VinylPlay(sound, [loop], [gain=1], [pitch=1], [pan])

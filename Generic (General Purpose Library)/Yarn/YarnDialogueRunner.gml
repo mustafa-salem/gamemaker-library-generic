@@ -5,13 +5,13 @@
 /*******************************************************************************/
 
 #macro yarn_dialogue_runner yarn_dialogue_runner_generic
-#macro yarn_dialogue_runner_generic YarnDialogueRunnerGeneric
+#macro yarn_dialogue_runner_generic YarnDialogueRunner
 
 
 // ChatterboxCreate([filename], [singletonText]), [localScope])
 // IsChatterbox(value)
 
-function YarnDialogueRunnerGeneric() constructor {
+function YarnDialogueRunner() constructor {
 
     /// ----------------------------------------------------------------------------
     /// @function load_source({ source_name : String, filepath : String })
@@ -52,23 +52,6 @@ function YarnDialogueRunnerGeneric() constructor {
     /// ----------------------------------------------------------------------------
     static is_source_loaded = function(arguments) {
         return ChatterboxIsLoaded(filename)
-    }
-
-    /// ----------------------------------------------------------------------------
-    /// @function define_function(arguments)
-    /// ----------------------------------------------------------------------------
-    /// @description
-    /// Defines association between function name used in yarn script and a GML
-    /// callable.
-    ///
-    /// ChatterboxAddFunction(name, function)
-    /// ----------------------------------------------------------------------------
-    /// @parameter {Struct} arguments { name : String, callable : Function }
-    /// ----------------------------------------------------------------------------
-    static define_function = function(arguments) {
-        var _name     = arguments[$ "name"]
-        var _callable = arguments[$ "callable"]
-        ChatterboxAddFunction(_name, _callable)
     }
 
     /// ----------------------------------------------------------------------------
