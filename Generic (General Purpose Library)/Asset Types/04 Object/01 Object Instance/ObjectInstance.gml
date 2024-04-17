@@ -1,31 +1,6 @@
 /*******************************************************************************/
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#region    –––––––––––––––––––– MACROS ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/*******************************************************************************/
-
-#macro OBJECT_INSTANCE_GENERIC INITIALIZED_CONSTRUCTOR(ObjectInstance)
-
-/*******************************************************************************/
-#region    –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––
-/*******************************************************************************/
-
-#macro ObjectInstance  ObjectInstanceGeneric
-#macro OBJECT_INSTANCE OBJECT_INSTANCE_GENERIC
-
-/*******************************************************************************/
-#endregion –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––
-/*******************************************************************************/
-
-/*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#endregion –––––––––––––––––––– MACROS ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/*******************************************************************************/
-
-/*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#region    –––––––––––––––––––– SCRIPT_FUNCTIONS ––––––––––––––––––––
+#region    –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*******************************************************************************/
 
@@ -34,7 +9,7 @@
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a proxy for the static method function:
-/// ObjectInstanceGeneric.exists
+/// ObjectInstance.exists
 /// ----------------------------------------------------------------------------
 function exists_object_instance_generic(arguments) {
     return instance_exists(_object_instance_id or _object_id)
@@ -45,11 +20,25 @@ function exists_object_instance_generic(arguments) {
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a proxy for the static method function:
-/// ObjectInstanceGeneric.create
+/// ObjectInstance.create
 /// ----------------------------------------------------------------------------
 function create_object_instance_generic(arguments) {
     // TODO: ADJUST PROJECT FOR RETURN TYPE CHANGE
-    return OBJECT_INSTANCE_GENERIC.create(arguments)
+    return OBJECT_INSTANCE.create(arguments)
+}
+
+/// ----------------------------------------------------------------------------
+/// @function object_instance_sort_depth(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} object_instance
+/// <parameter_description>
+/// ----------------------------------------------------------------------------
+function object_instance_sort_depth(parameters) {
+    var _object_instance = parameters.object_instance
+	_object_instance.depth = 8000 - room_height / 2 + _object_instance.y + _object_instance.sprite_height - _object_instance.sprite_yoffset
 }
 
 /// ----------------------------------------------------------------------------
@@ -62,10 +51,10 @@ function create_object_instance_generic(arguments) {
 /// @parameter {Struct} arguments
 ///
 /// @parameter {...} arguments.object_instance
-/// * Struct.ObjectGeneric
+/// * Struct.Object
 /// * Name.Object
 /// * Id.Object
-/// * Struct.ObjectInstanceGeneric
+/// * Struct.ObjectInstance
 /// * Id.ObjectInstance
 ///
 /// @parameter {Bool} arguments.execute_destroy_event
@@ -162,9 +151,144 @@ function vertical_movement_object_instance(_object_instance = self) {
 	return _object_instance.y - _object_instance.yprevious
 }
 
+// flash -> draw sprite again with overlay shader
+
+/// ----------------------------------------------------------------------------
+/// @function generic_object_instance_draw(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} object_instance
+/// <parameter_description>
+///
+/// @parameter {type} flash_colour
+/// <parameter_description>
+///
+/// @parameter {type} flash_alpha
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function generic_object_instance_draw(parameters = {}) {
+    var _object_instance_handle = generic_object_instance_get_handle(parameters)
+    parameters[$ "sprite"]     ??= _object_instance_handle.sprite_index
+    parameters[$ "frame"]      ??= _object_instance_handle.image_index
+    parameters[$ "x_position"] ??= _object_instance_handle.x
+    parameters[$ "y_position"] ??= _object_instance_handle.y
+    parameters[$ "x_scale"]    ??= _object_instance_handle.image_xscale
+    parameters[$ "y_scale"]    ??= _object_instance_handle.image_yscale
+    parameters[$ "rotation"]   ??= _object_instance_handle.image_angle
+    parameters[$ "alpha"]      ??= _object_instance_handle.image_alpha
+    parameters[$ "colour"]     ??= _object_instance_handle.image_blend
+    generic_sprite_draw(parameters)
+}
+
+/******************************************************************************/
+#region    –––––––––––––––––––– POSITION ––––––––––––––––––––
+/******************************************************************************/
+
+function generic_object_instance_x_position(parameters = {}) {
+    return self.x
+}
+
+function generic_object_instance_y_position(parameters = {}) {
+    return self.y
+}
+
+/******************************************************************************/
+#endregion –––––––––––––––––––– POSITION ––––––––––––––––––––
+/******************************************************************************/
+
+/******************************************************************************/
+#region    –––––––––––––––––––– DIMENSION ––––––––––––––––––––
+/******************************************************************************/
+
+function generic_object_instance_get_x_dimension(parameters = {}) {
+    return self.sprite_width
+}
+
+function generic_object_instance_get_y_dimension(parameters = {}) {
+    return self.sprite_height
+}
+
+/******************************************************************************/
+#endregion –––––––––––––––––––– DIMENSION ––––––––––––––––––––
+/******************************************************************************/
+
+/******************************************************************************/
+#region    –––––––––––––––––––– BOUNDING_BOX ––––––––––––––––––––
+/******************************************************************************/
+
+/// ----------------------------------------------------------------------------
+/// @function function_name(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function object_instance_bounding_box(parameters = {}) {
+    bbox_bottom - bbox_top
+    bbox_right - bbox_left
+}
+
+function object_instance_get_bounding_box_x_position(parameters = {}) {
+    return self.bbox_left
+}
+
+function object_instance_get_bounding_box_y_position(parameters = {}) {
+    return self.bbox_top
+}
+
+function object_instance_get_bounding_box_x_dimension(parameters = {}) {
+    return self.bbox_right - self.bbox_left
+}
+
+function object_instance_get_bounding_box_y_dimension(parameters = {}) {
+    return self.bbox_bottom - self.bbox_top
+}
+
+/******************************************************************************/
+#endregion –––––––––––––––––––– BOUNDING_BOX ––––––––––––––––––––
+/******************************************************************************/
+
+/******************************************************************************/
+#region    –––––––––––––––––––– EVENT ––––––––––––––––––––
+/******************************************************************************/
+
+/// ----------------------------------------------------------------------------
+/// @function object_instance_execute_parent_event(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// This function is a generification of the built-in function 'event_inherited'.
+///
+/// ----------------------------------------------------------------------------
+/// @parameter {type} object_instance
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function object_instance_execute_parent_event(parameters = {}) {
+    return _return
+}
+
+/******************************************************************************/
+#endregion –––––––––––––––––––– EVENT ––––––––––––––––––––
+/******************************************************************************/
+
 /*******************************************************************************/
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#endregion –––––––––––––––––––– SCRIPT_FUNCTIONS ––––––––––––––––––––
+#endregion –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*******************************************************************************/
 
@@ -174,9 +298,11 @@ function vertical_movement_object_instance(_object_instance = self) {
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*******************************************************************************/
 
-OBJECT_INSTANCE_GENERIC
+#macro OBJECT_INSTANCE INITIALIZED_CONSTRUCTOR(ObjectInstance)
 
-function ObjectInstanceGeneric() : AssetInstanceGeneric() constructor {
+OBJECT_INSTANCE
+
+function ObjectInstance() : AssetInstanceGeneric() constructor {
 
     /*******************************************************************************/
     #region    –––––––––––––––––––– STATIC_METHODS ––––––––––––––––––––
@@ -203,22 +329,22 @@ function ObjectInstanceGeneric() : AssetInstanceGeneric() constructor {
         }
 
             /// ----------------------------------------------------------------------------
-            /// @type {Struct.ObjectInstanceGeneric}
+            /// @type {Struct.ObjectInstance}
             /// ----------------------------------------------------------------------------
             /// @description
             /// <description>
             /// ----------------------------------------------------------------------------
-            self[$ "object_instance"] ??= ObjectInstanceGeneric.create({
+            self[$ "object_instance"] ??= ObjectInstance.create({
                 object_instance : id
             })
 
             /// ----------------------------------------------------------------------------
-            /// @type {Struct.ObjectInstanceAbstractionGeneric}
+            /// @type {Struct.ObjectInstanceAbstraction}
             /// ----------------------------------------------------------------------------
             /// @description
             /// <description>
             /// ----------------------------------------------------------------------------
-            self[$ "public"] ??= ObjectInstanceAbstractionGeneric.create({
+            self[$ "public"] ??= ObjectInstanceAbstraction.create({
                 object_instance : id
             })
 
@@ -236,12 +362,12 @@ function ObjectInstanceGeneric() : AssetInstanceGeneric() constructor {
 
             with (private) {
                 /// ----------------------------------------------------------------------------
-                /// @type {Struct.FiniteStateMachineGeneric}
+                /// @type {Struct.FiniteStateMachine}
                 /// ----------------------------------------------------------------------------
                 /// @description
                 /// <description>
                 /// ----------------------------------------------------------------------------
-                finite_state_machine = FiniteStateMachineGeneric.create()
+                finite_state_machine = FiniteStateMachine.create()
             }
 
     }
@@ -271,7 +397,7 @@ function ObjectInstanceGeneric() : AssetInstanceGeneric() constructor {
         if (_object_instance.object_index == _object) { return true }
 
         // Check if the given object_instance is an instance of a child of the given object.
-        return ObjectGeneric.is_child_of({ object : _object_instance.object_index, parent_object : _object })
+        return Object.is_child_of({ object : _object_instance.object_index, parent_object : _object })
     }
 
     /*******************************************************************************/
@@ -397,7 +523,7 @@ function ObjectInstanceGeneric() : AssetInstanceGeneric() constructor {
     /// <return_description>
     /// ----------------------------------------------------------------------------
     create_wrapper = function(arguments = {}) {
-        var _object_instance = new ObjectInstanceGeneric()
+        var _object_instance = new ObjectInstance()
         with (_object_instance) {
 
         }
@@ -598,6 +724,31 @@ function ObjectInstanceGeneric() : AssetInstanceGeneric() constructor {
     /*******************************************************************************/
 
 
+    /******************************************************************************/
+    #region    –––––––––––––––––––– EVENT ––––––––––––––––––––
+    /******************************************************************************/
+
+    /// ----------------------------------------------------------------------------
+    /// @function execute_parent_event(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// 'event_inherited'
+    /// ----------------------------------------------------------------------------
+    /// @parameter {type} parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {struct} self
+    /// ----------------------------------------------------------------------------
+    execute_parent_event = function(parameters) {
+        object_instance_execute_parent_event(parameters)
+        return self
+    }
+
+    /******************************************************************************/
+    #endregion –––––––––––––––––––– EVENT ––––––––––––––––––––
+    /******************************************************************************/
+
 }
 
 /*******************************************************************************/
@@ -642,7 +793,7 @@ function() {
 /// _object_instance_generic
 /// ----------------------------------------------------------------------------
 /// @return {Struct}
-/// The static struct of the constructor function ObjectInstanceGeneric or the
+/// The static struct of the constructor function ObjectInstance or the
 ///
 /// ----------------------------------------------------------------------------
 static destroy = function(arguments) {

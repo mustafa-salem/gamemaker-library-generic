@@ -2,8 +2,8 @@
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 finite_state_machine_constructor_generic.gml
 
-This file defines FiniteStateMachineGeneric. This struct represents a finite
-state machine. It is recommended to name instances of FiniteStateMachineGeneric
+This file defines FiniteStateMachine. This struct represents a finite
+state machine. It is recommended to name instances of FiniteStateMachine
 finite_state_machine. States and events can be added to a finite_state_machine.
 Events in this case are stateful functions.
 
@@ -12,12 +12,83 @@ https://github.com/sohomsahaun/SnowState
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 *******************************************************************************/
 
+// TODO: remove direct references to FiniteStateMachine
+
+/******************************************************************************/
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+#region    –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/******************************************************************************/
+
+// Startup errors
+if (!is_string(FSM_WILDCARD_TRANSITION_NAME_GENERIC) || (string_length(FSM_WILDCARD_TRANSITION_NAME_GENERIC) != 1)) {
+	var _str = "[FiniteStateMachine]\n"
+	_str += "FSM_WILDCARD_TRANSITION_NAME_GENERIC should be a string of length 1."
+	_str += "\n\n\n"
+	show_error(_str, true)
+}
+
+if (!is_string(FSM_REFLEXIVE_TRANSITION_NAME_GENERIC) || (string_length(FSM_REFLEXIVE_TRANSITION_NAME_GENERIC) != 1)) {
+	var _str = "[FiniteStateMachine]\n"
+	_str += "FSM_REFLEXIVE_TRANSITION_NAME_GENERIC should be a string of length 1."
+	_str += "\n\n\n"
+	show_error(_str, true)
+}
+
+#macro SHOW_WARNINGS_FINITE_STATE_MACHINE_GENERIC				     true		// Whether to show warning messages in Output (true) or not (false)
+#macro HISTORY_ENABLED_DEFAULT_FINITE_STATE_MACHINE_GENERIC		     false		// Whether history should be tracked by default (true) or not (false)
+#macro MAXIMUM_HISTORY_SIZE_DEFAULT_FINITE_STATE_MACHINE_GENERIC     5			// Default maxmimum history count
+#macro CIRCULAR_INHERITANCE_THROW_ERROR_FINITE_STATE_MACHINE_GENERIC true		// Whether to throw an error when circular inheritance is found (true) or not (false)
+#macro WILDCARD_TRANSITION_NAME_FINITE_STATE_MACHINE_GENERIC		 "*"			// Default wildcard transition name
+#macro REFLEXIVE_TRANSITION_NAME_FINITE_STATE_MACHINE_GENERIC	     "="
+
+/******************************************************************************/
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+#endregion –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/******************************************************************************/
+
+/******************************************************************************/
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+#region    –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/******************************************************************************/
+
 /// ----------------------------------------------------------------------------
-/// @function FiniteStateMachineGeneric(arguments)
+/// @function finite_state_machine_create(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function finite_state_machine_create(parameters) {
+    return new FiniteStateMachine(parameters)
+}
+
+/******************************************************************************/
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+#endregion –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/******************************************************************************/
+
+/******************************************************************************/
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+#region    –––––––––––––––––––– CONSTRUCTORS ––––––––––––––––––––
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/******************************************************************************/
+
+/// ----------------------------------------------------------------------------
+/// @function FiniteStateMachine(arguments)
 /// ----------------------------------------------------------------------------
 /// @parameter {Struct} arguments { initial_state_name : String, execute_initial_enter_event : [Bool=true], event_execution_context : [(Id.Instance|Struct)=other] }
 /// ----------------------------------------------------------------------------
-function FiniteStateMachineGeneric(arguments) constructor {
+function FiniteStateMachine(arguments) constructor {
 
     var _initial_state_name          = arguments[$ "initial_state_name"]
     var _execute_initial_enter_event = arguments[$ "execute_initial_enter_event"] ?? true
@@ -43,7 +114,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     private.wildcard_transitions = {}
 	/// ----------------------------------------------------------------------------
     /// @type {Struct}
-    private.on_events = {}
+    private.event_handlers = {}
 	/// ----------------------------------------------------------------------------
     /// @type {String}
     private.initial_state_name = _initial_state_name
@@ -104,8 +175,8 @@ function FiniteStateMachineGeneric(arguments) constructor {
     ]
 	/// ----------------------------------------------------------------------------
     /// @type {}
-    // Add .define_on_event() events
-    private.on_events[$ "state changed"] = undefined
+    // Add .set_event_handler() events
+    private.event_handlers[$ "change_state_event"] = undefined
 
     /*******************************************************************************/
     #endregion –––––––––––––––––––– PRIVATE_PROPERTIES ––––––––––––––––––––
@@ -129,7 +200,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// @parameter {Struct} [arguments.events]
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     private.define_state = function(arguments) {
         var _state_name = arguments[$ "name"]
@@ -197,7 +268,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// <parameter_description>
     ///
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     private.define_transition = function(arguments = {}) {
         var _transition_name        = arguments[$ "transition_name"]
@@ -258,7 +329,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// <return_description>
     /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { event_name : String }
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     private.define_event_method = function(arguments = {}) {
         _event_name = arguments[$ "event_name"]
         var _temp = {
@@ -288,7 +359,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// @parameter {String} arguments.event_name
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     private.is_event_available = function(arguments) {
         var _event_name = arguments[$ "event_name"]
@@ -382,7 +453,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     }
 
     /// ----------------------------------------------------------------------------
-    /// @function broadcast_event(arguments)
+    /// @function private.trigger_event_handlers(arguments)
     /// ----------------------------------------------------------------------------
     /// @description
     /// <function_description>
@@ -396,12 +467,12 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
     /// @return {type}
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
-    private.broadcast_event = function(arguments = {}) {
+    private.trigger_event_handlers = function(arguments = {}) {
         _event_name = arguments[$ "event_name"]
         _arguments = arguments[$ "arguments"] ?? []
-        var _event = private.on_events[$ _event_name]
+        var _event = private.event_handlers[$ _event_name]
         if (_event != undefined) { call_callable_generic({ callable : _event, arguments : _arguments }) }
 
         return self
@@ -427,7 +498,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// @parameter {Array<Any>} arguments.arguments
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     private.change_state = function(arguments = {}) {
         _state_name = arguments[$ "state_name"]
@@ -545,7 +616,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// @parameter {Array<Any>} arguments.arguments
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     private.execute_event = function(arguments = {}) {
         _event_name = arguments[$ "event_name"]
@@ -590,7 +661,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// @parameter {String} arguments.state_name
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     private.add_to_history = function(arguments = {}) {
         var _state_name = arguments[$ "state_name"]
@@ -616,7 +687,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// @description
     /// <function_description>
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     private.fit_history_contents = function() {
         array_resize(private.history, max(2, min(private.history_max_size, array_length(private.history))))
@@ -664,7 +735,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// <parameter_description>
     ///
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     private.define_default_event = function(arguments = {}) {
         _event_name = arguments[$ "event_name"]
@@ -833,7 +904,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
             // Check condition
             if (_transition.condition(_arguments)) {
                 private.change_state({ state_name : _dest, leave_event : _transition.leave, enter_event : _transition.enter, arguments : _arguments })
-                private.broadcast_event({ event_name : "state changed", arguments : [_dest, _source, _trigger_name] })
+                private.trigger_event_handlers({ event_name : "change_state_event", arguments : [_dest, _source, _trigger_name] })
                 return true
             }
         }
@@ -866,7 +937,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// <return_description>
     /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { state_name : String }
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     private.update_events_from_parent = function(arguments = {}) {
         _state_name = arguments[$ "state_name"]
         var _parent, _state, _events, _event, _exists, _parEvent
@@ -927,7 +998,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// <return_description>
     /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { has_parent : Bool }
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     private.update_states = function(arguments = {}) {
         _hasParent = arguments[$ ""]
         var _states, _events, _state, _event, _default_event, i, j
@@ -977,7 +1048,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// A struct containing event methods to be associated with the state.
     ///
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     define_state = function(arguments) {
         //
@@ -1053,7 +1124,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// <parameter_description>
     ///
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     change_state = function(arguments) {
         _state_name  = arguments[$ "state_name"]
@@ -1075,7 +1146,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
 
         var _source_state_name = get_current_state_name()
         private.change_state({ state_name : _state_name, leave_event : _leave_event, enter_event : _enter_event, arguments : _arguments })
-        private.broadcast_event({ event_name : "state changed", _arguments : [_state_name, _source_state_name] })
+        private.trigger_event_handlers({ event_name : "change_state_event", _arguments : [_state_name, _source_state_name] })
 
         return self
     }
@@ -1248,7 +1319,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// <return_description>
     /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { time : number, in_microseconds : Bool }
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     set_time = function(arguments = {}) {
         _time = arguments[$ ""]
         _us = arguments[$ ""] = true
@@ -1263,48 +1334,43 @@ function FiniteStateMachineGeneric(arguments) constructor {
     }
 
     /// ----------------------------------------------------------------------------
-    /// @function function_name(arguments)
+    /// @function set_event_handler(parameters)
     /// ----------------------------------------------------------------------------
     /// @description
-    /// <function_description>
+    /// This method sets event handlers for targeted events.
     /// ----------------------------------------------------------------------------
-    /// @parameter {Struct} arguments
+    /// @parameter {type} event_handler
+    /// The value that will be used to identify the event handler.
     ///
-    /// @parameter {Type} arguments.parameter_name
+    /// @parameter {mixed} event
+    /// The value or array of values identifying the event(s) to target.
+    ///
+    /// @parameter {callable} callable
     /// <parameter_description>
     ///
-    /// @parameter {Type} arguments.parameter_name
-    /// <parameter_description>
-    ///
-    /// @parameter {Type} arguments.parameter_name
-    /// <parameter_description>
-    ///
-    /// @parameter {Type} arguments.parameter_name
+    /// @parameter {type} execution_context
     /// <parameter_description>
     ///
     /// ----------------------------------------------------------------------------
-    /// @return {type}
-    /// <return_description>
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
-    /// @parameter {Struct} arguments { event_name : String, callback : Function, event_execution_context : [Struct=noone] }
-    /// @return {Struct.FiniteStateMachineGeneric} self
-    define_on_event = function() {
-        _event    = arguments[$ "event_name"]
-        _callback = arguments[$ "callback"]
-        _event_execution_context  = arguments[$ "event_execution_context"] ?? noone
+    set_event_handler = function(parameters) {
+        _event    = parameters[$ "event"]
+        _callable = parameters[$ "callable"]
+        _event_execution_context  = parameters[$ "execution_context"] ?? noone
+
         if (!is_string(_event)) {
             show_trace_debug_generic({ show_popup : true, debug_message : "Event name should be a string." })
-            return undefined
+            return self
+        }
+        if (!is_callable(_callable)) {
+            show_trace_debug_generic({ show_popup : true, debug_message : "Callback should be a callable." })
+            return self
         }
 
-        if (!is_callable(_callback)) {
-            show_trace_debug_generic({ show_popup : true, debug_message : "Callback should be a string." })
-            return undefined
-        }
-
-        if (struct_exists(private.on_events, _event)) {
-            if (_event_execution_context != noone) _callback = method(_event_execution_context, _callback)
-            private.on_events[$ _event] = _callback
+        if (struct_exists(private.event_handlers, _event)) {
+            if (_event_execution_context != noone) _callable = method(_event_execution_context, _callable)
+            private.event_handlers[$ _event] = _callable
         } else {
             show_trace_debug_generic({ debug_message : $"Event '{_event}' does not exist." })
         }
@@ -1338,7 +1404,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// @return {type}
     /// <return_description>
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     inherit_event = function() {
         var _state_name = private.history[0]
 
@@ -1401,7 +1467,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// @parameter {Type} arguments.events
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     define_default_event = function(arguments = {}) {
 
@@ -1495,7 +1561,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// <return_description>
     /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { arguments : [Array<Any>] }
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     enter = function(arguments = {}) {
         _arguments = arguments[$ "arguments"]
         private.execute_event({ event_name : "enter", arguments : _arguments })
@@ -1527,7 +1593,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// <return_description>
     /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { arguments : [Array<Any>] }
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     leave = function(arguments = {}) {
         _arguments = arguments[$ "arguments"]
         private.execute_event({ event_name : "leave", arguments : _arguments })
@@ -1548,7 +1614,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// ----------------------------------------------------------------------------
     /// @parameter {Struct} arguments { transition_name : String, source_state_name : [String], destination_state_name : [String], predicate_method : [Function], leave_event : [Function], enter_event : [Function] }
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     define_transition = function(arguments = {}) {
         var _transition_name        = arguments[$ "transition_name"]
@@ -1678,7 +1744,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// @description
     /// Enables keeping of state history.
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     enable_state_history = function() {
         if (!private.history_enabled) {
@@ -1694,7 +1760,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// @description
     /// Disables keeping of state history.
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     disable_state_history = function() {
         if (private.history_enabled) {
@@ -1725,7 +1791,7 @@ function FiniteStateMachineGeneric(arguments) constructor {
     /// @parameter {Real} arguments.maximum_history_size
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.FiniteStateMachineGeneric} self
+    /// @return {struct.FiniteStateMachine} self
     /// ----------------------------------------------------------------------------
     set_maximum_size_state_history = function(arguments = {}) {
         _maximum_history_size = arguments[$ "maximum_history_size"]
@@ -1791,3 +1857,9 @@ function FiniteStateMachineGeneric(arguments) constructor {
     #endregion –––––––––––––––––––– INITIALIZATION ––––––––––––––––––––
     /*******************************************************************************/
 }
+
+/******************************************************************************/
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+#endregion –––––––––––––––––––– CONSTRUCTORS ––––––––––––––––––––
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/******************************************************************************/

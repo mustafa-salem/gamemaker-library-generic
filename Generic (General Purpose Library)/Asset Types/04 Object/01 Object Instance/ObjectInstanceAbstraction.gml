@@ -1,44 +1,14 @@
 /*******************************************************************************/
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#region    –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/*******************************************************************************/
-
-/// ----------------------------------------------------------------------------
-/// @description
-/// <description>
-/// ----------------------------------------------------------------------------
-#macro OBJECT_INSTANCE_ABSTRACTION_GENERIC                                     \
-INITIALIZED_CONSTRUCTOR(ObjectInstanceAbstractionGeneric)
-
-/*******************************************************************************/
-#region    –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––
-/*******************************************************************************/
-
-#macro ObjectInstanceAbstraction   ObjectInstanceAbstractionGeneric
-#macro OBJECT_INSTANCE_ABSTRACTION OBJECT_INSTANCE_ABSTRACTION_GENERIC
-
-/*******************************************************************************/
-#endregion –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––
-/*******************************************************************************/
-
-/*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#endregion –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/*******************************************************************************/
-
-/*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #region    –––––––––––––––––––– CONSTRUCTOR ––––––––––––––––––––
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*******************************************************************************/
 
-// ObjectInstanceWrapper
+#macro OBJECT_INSTANCE_ABSTRACTION INITIALIZED_CONSTRUCTOR(ObjectInstanceAbstraction)
 
-OBJECT_INSTANCE_ABSTRACTION_GENERIC
+OBJECT_INSTANCE_ABSTRACTION
 
-function ObjectInstanceAbstractionGeneric() {
+function ObjectInstanceAbstraction() {
 
     static static_initialization = true
 
@@ -81,7 +51,7 @@ function ObjectInstanceAbstractionGeneric() {
     /// <parameter_description>
     ///
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.ObjectInstanceAbstractionGeneric}
+    /// @return {Struct.ObjectInstanceAbstraction}
     /// <return_description>
     /// ----------------------------------------------------------------------------
     static create = function(arguments = {}) {
@@ -91,7 +61,7 @@ function ObjectInstanceAbstractionGeneric() {
 
         }
         var _object =  ?? private.object
-        var _object_instance = ObjectInstanceGeneric.create({
+        var _object_instance = ObjectInstance.create({
             object : _object,
             variables : {
                 public : self

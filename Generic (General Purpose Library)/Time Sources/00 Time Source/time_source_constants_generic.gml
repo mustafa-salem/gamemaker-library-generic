@@ -36,8 +36,6 @@ TIME_SOURCE_GENERIC
 #macro get_remaining_time_time_source        get_remaining_time_time_source_generic
 #macro get_units_time_source                 get_units_time_source_generic
 
-#macro do_later call_later_generic
-
 /*******************************************************************************/
 #endregion –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––
 /*******************************************************************************/

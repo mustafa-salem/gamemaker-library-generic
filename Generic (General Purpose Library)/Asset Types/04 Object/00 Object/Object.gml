@@ -5,21 +5,6 @@
 /******************************************************************************/
 
 /******************************************************************************/
-#region    –––––––––––––––––––– CONSTRUCTOR ––––––––––––––––––––
-/******************************************************************************/
-
-/// ----------------------------------------------------------------------------
-/// @description
-/// <description>
-/// ----------------------------------------------------------------------------
-#macro OBJECT_GENERIC                                                          \
-INITIALIZED_CONSTRUCTOR(ObjectGeneric)
-
-/******************************************************************************/
-#endregion –––––––––––––––––––– CONSTRUCTOR ––––––––––––––––––––
-/******************************************************************************/
-
-/******************************************************************************/
 #region    –––––––––––––––––––– EVENT_SCRIPT ––––––––––––––––––––
 /******************************************************************************/
 
@@ -28,12 +13,12 @@ INITIALIZED_CONSTRUCTOR(ObjectGeneric)
 ///
 /// PURPOSE
 /// Calls the callable associated with the object event of the event script that
-/// it is placed in from the instance of ObjectGeneric that is associated with
+/// it is placed in from the instance of Object that is associated with
 /// the object of the executing object instance.
 ///
 /// USAGE
 /// Must be included in all event scripts of objects that should derive the
-/// code executed for their objects events from their instance of ObjectGeneric.
+/// code executed for their objects events from their instance of Object.
 ///
 /// ----------------------------------------------------------------------------
 #macro OBJECT_EVENT_SCRIPT_CONTENTS                                    \
@@ -46,7 +31,7 @@ function __OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC() {
 
     // Create Event
     static create_event = method(undefined, function() {
-        ObjectInstanceGeneric.initialize({ object_instance : id })
+        ObjectInstance.initialize({ object_instance : id })
         private.finite_state_machine.create_event()
     })
 
@@ -87,20 +72,6 @@ function __OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC() {
 /******************************************************************************/
 
 /******************************************************************************/
-#region    –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––
-/******************************************************************************/
-
-#macro Object ObjectGeneric
-#macro OBJECT OBJECT_GENERIC
-
-#macro get_depth_object get_depth_object_generic
-#macro set_depth_object set_depth_object_generic
-
-/******************************************************************************/
-#endregion –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––
-/******************************************************************************/
-
-/******************************************************************************/
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #endregion –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -117,19 +88,70 @@ function __OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC() {
 /******************************************************************************/
 
 /// ----------------------------------------------------------------------------
-/// @function generic_object_get(parameters)
+/// @function object_get(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// This function returns the 'Object' struct instance associated with the
+/// targeted object. In case of failure 'undefined' is returned instead.
+/// ----------------------------------------------------------------------------
+/// @parameter {mixed} object
+/// The value identifying the object to target.
+/// ----------------------------------------------------------------------------
+/// @return {struct.Object|undefined}
+/// ----------------------------------------------------------------------------
+function object_get(parameters) {
+    var _object_id = object_get_id(parameters)
+    return is_numeric(_object_id) ? OBJECT.private.objects[_object_id] : undefined
+}
+
+/// ----------------------------------------------------------------------------
+/// @function object_get_name_generic(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// This function is a generification of the built-in function 'object_get_name'.
+/// ----------------------------------------------------------------------------
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function object_get_name_generic(parameters = {}) {
+    return _return
+}
+
+/// ----------------------------------------------------------------------------
+/// @function object_get_handle(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
 /// ----------------------------------------------------------------------------
-/// @parameter {type} object
+/// @parameter {type} parameter_name
 /// <parameter_description>
 ///
 /// ----------------------------------------------------------------------------
-/// @return {struct.Object}
+/// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_object_get(parameters) {
+function object_get_handle(parameters = {}) {
+    return _return
+}
+
+/// ----------------------------------------------------------------------------
+/// @function object_get_id(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function object_get_id(parameters = {}) {
     return _return
 }
 
@@ -146,10 +168,10 @@ function generic_object_get(parameters) {
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a proxy for the static method function:
-/// ObjectGeneric.get_depth
+/// Object.get_depth
 /// ----------------------------------------------------------------------------
 function get_depth_object_generic(arguments) {
-    return OBJECT_GENERIC.get_depth(arguments)
+    return OBJECT.get_depth(arguments)
 }
 
 /// ----------------------------------------------------------------------------
@@ -157,10 +179,10 @@ function get_depth_object_generic(arguments) {
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a proxy for the static method function:
-/// ObjectGeneric.set_depth
+/// Object.set_depth
 /// ----------------------------------------------------------------------------
 function set_depth_object_generic(arguments) {
-    return OBJECT_GENERIC.set_depth(arguments)
+    return OBJECT.set_depth(arguments)
 }
 
 /******************************************************************************/
@@ -177,18 +199,23 @@ function set_depth_object_generic(arguments) {
 /// @description
 /// <function_description>
 /// ----------------------------------------------------------------------------
-/// @parameter {mixed} object
+/// @parameter {type} parameter_name
 /// <parameter_description>
 ///
-/// @parameter {type} event
+/// @parameter {type} parameter_name
 /// <parameter_description>
 ///
-/// @parameter {type} callable
+/// @parameter {type} parameter_name
 /// <parameter_description>
 ///
 /// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
 function generic_object_set_default_event(parameters) {
-
+    for (var i = 0; i < ; i++) {
+        .set_default_event(parameters)
+    }
 }
 
 /// ----------------------------------------------------------------------------
@@ -230,6 +257,46 @@ function generic_object_execute_event(parameters) {
 /******************************************************************************/
 
 /******************************************************************************/
+#region    –––––––––––––––––––– EVENT_HANDLERS ––––––––––––––––––––
+/******************************************************************************/
+
+/// ----------------------------------------------------------------------------
+/// @function object_set_event_handler(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} object
+/// <parameter_description>
+///
+/// @parameter {type} event_handler
+/// <parameter_description>
+///
+/// @parameter {type} event
+/// <parameter_description>
+///
+/// @parameter {type} callable
+/// <parameter_description>
+///
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function object_set_event_handler(parameters = {}) {
+    object.private.events[_event].handlers[_event_handler] = parameters.callable
+}
+
+/******************************************************************************/
+#endregion –––––––––––––––––––– EVENT_HANDLERS ––––––––––––––––––––
+/******************************************************************************/
+
+/******************************************************************************/
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #endregion –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -241,11 +308,84 @@ function generic_object_execute_event(parameters) {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-OBJECT_GENERIC
+#macro OBJECT INITIALIZED_CONSTRUCTOR(Object)
 
-function ObjectGeneric() : AssetGeneric() constructor {
+OBJECT
 
-    static private
+function Object() : AssetGeneric() constructor {
+
+    CONSTRUCTOR_INITIALIZATION_GUARD
+
+    /// @type {struct}
+    ///
+    static private = {
+
+    }
+
+    /******************************************************************************/
+    #region    –––––––––––––––––––– GENERAL ––––––––––––––––––––
+    /******************************************************************************/
+
+    /// ----------------------------------------------------------------------------
+    /// @function get_id(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {type} parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
+    static get_id = function(parameters = {}) {
+        return private.id
+    }
+
+    self.get_id = method(self, get_id)
+
+    /// ----------------------------------------------------------------------------
+    /// @function get_handle(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {type} parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
+    static get_handle = function(parameters = {}) {
+        return private.handle
+    }
+
+    self.get_handle = method(self, get_handle)
+
+    /// ----------------------------------------------------------------------------
+    /// @function get(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {type} parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
+    static get = function(parameters = {}) {
+        return self
+    }
+
+    self.get = method(self, get)
+
+    /******************************************************************************/
+    #endregion –––––––––––––––––––– GENERAL ––––––––––––––––––––
+    /******************************************************************************/
 
     /// ----------------------------------------------------------------------------
     /// @function function_name(arguments)
@@ -288,6 +428,13 @@ function ObjectGeneric() : AssetGeneric() constructor {
         _object.private.depth = _depth
     }
 
+    CONSTRUCTOR_INITIALIZATION_CODE(function() {
+        for (var _object_index = 0; _object_index < ; _object_index++) {
+            if (object_exists(_object_index)) { break }
+            private.objects[_object_index] = new Object({ object : _object_index })
+        }
+    })
+
 }
 
 /******************************************************************************/
@@ -295,58 +442,6 @@ function ObjectGeneric() : AssetGeneric() constructor {
 #endregion –––––––––––––––––––– CONSTRUCTOR ––––––––––––––––––––
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*******************************************************************************/
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -395,11 +490,11 @@ function ObjectConstructorGeneric() constructor {
     /// <return_description>
     /// ----------------------------------------------------------------------------
     static create = function(arguments) {
-        var _object = new ObjectGeneric()
+        var _object = new Object()
         _object.private = {
             object_id : _object_id,
             instance_abstraction : {
-                constructor_function : ObjectInstanceAbstractionGeneric,
+                constructor_function : ObjectInstanceAbstraction,
             },
         }
 
@@ -447,7 +542,7 @@ function ObjectConstructorGeneric() constructor {
             create_event = method(self, BlockTreeObject.create_event)
             draw_event   = method(self, BlockTreeObject.draw_event)
 
-            finite_state_machine = new FiniteStateMachine()
+            finite_state_machine = finite_state_machine_create()
         }
 
         var _finite_state_machine = _instance.private.finite_state_machine
@@ -553,11 +648,11 @@ function ObjectConstructorGeneric() constructor {
     /// <return_description>
     /// ----------------------------------------------------------------------------
     static get_default_callable_event = function(arguments) {
-        if (ObjectGeneric) { arguments.object = self }
+        if (Object) { arguments.object = self }
 
         var _object = arguments["object"]
         var _event  = arguments["event"]
-        _object = Object.get({ object : _object })
+        _object = object_get({ object : _object })
         _event  = Object.get_event({ event : _event })
 
         if (_event.default_callable == undefined and _object.get_parent() != undefined) {
@@ -595,7 +690,7 @@ function ObjectConstructorGeneric() constructor {
         var _object   = arguments["object"]
         var _event    = arguments["events"]
         var _callable = arguments["callable"]
-        _object = Object.get({ object : _object })
+        _object = object_get({ object : _object })
         _object.private.default_events..callable = arguments.callable
         return self
     }
@@ -780,7 +875,7 @@ event_type
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a proxy for the static method function:
-/// ObjectGeneric.get_visible
+/// Object.get_visible
 /// ----------------------------------------------------------------------------
 function get_visible_object_generic(arguments) {
     // object_get_visible
@@ -792,7 +887,7 @@ function get_visible_object_generic(arguments) {
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a proxy for the static method function:
-/// ObjectGeneric.set_visible
+/// Object.set_visible
 /// ----------------------------------------------------------------------------
 function set_visible_object_generic(arguments) {
     // object_set_visible
@@ -804,7 +899,7 @@ function set_visible_object_generic(arguments) {
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a proxy for the static method function:
-/// ObjectGeneric.
+/// Object.
 /// ----------------------------------------------------------------------------
 function _object_generic(arguments) {
     //
@@ -823,11 +918,11 @@ function _object_generic(arguments) {
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*******************************************************************************/
 
-#macro Object ObjectGeneric
+#macro Object Object
 
-ObjectGeneric()
+Object()
 
-function ObjectGeneric() : AssetGeneric() constructor {
+function Object() : AssetGeneric() constructor {
 
     /// ----------------------------------------------------------------------------
     /// @function create_instance(arguments)
@@ -854,7 +949,7 @@ function ObjectGeneric() : AssetGeneric() constructor {
     /// <return_description>
     /// ----------------------------------------------------------------------------
     static create_instance = function(arguments = {}) {
-        return ObjectInstanceGeneric.create({
+        return ObjectInstance.create({
             object : ,
             variables : ,
 
@@ -901,37 +996,47 @@ function ObjectGeneric() : AssetGeneric() constructor {
     /*******************************************************************************/
 
     /// ----------------------------------------------------------------------------
-    /// @function set_default_event(arguments)
+    /// @function set_default_event(parameters)
     /// ----------------------------------------------------------------------------
     /// @description
-    /// <function_description>
+    /// This method modifies properties of default events.
     /// ----------------------------------------------------------------------------
-    /// @parameter {Struct} arguments
+    /// @parameter {mixed} event
+    /// The value identifying the event to target.
     ///
-    /// @parameter {Type} arguments.object
-    /// <parameter_description>
-    ///
-    /// @parameter {Type} arguments.name
-    /// <parameter_description>
-    ///
-    /// @parameter {Type} arguments.callable
+    /// @parameter {callable} callable
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
     /// @return {Struct} self
     /// ----------------------------------------------------------------------------
-    static set_default_event = function(arguments) {
-        var _name     =
-        var _callable =
-        private.default_events[$ _name] = _callable
+    static set_default_event = function(parameters) {
+        private.default_events[$ parameters.event] = method(undefined, parameters.callable)
         return self
     }
+
+    /// ----------------------------------------------------------------------------
+    /// @function execute_default_event(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @parameter {mixed} event
+    /// The value identifying the event to target.
+    /// ----------------------------------------------------------------------------
+    /// @return {Struct} self
+    /// ----------------------------------------------------------------------------
+    static execute_default_event = function(parameters) {
+        private.default_events[$ parameters.event] = method(undefined, parameters.callable)
+        return self
+    }
+
 
     /*******************************************************************************/
     #endregion –––––––––––––––––––– DEFAULT_EVENT ––––––––––––––––––––
     /*******************************************************************************/
 }
 
-ObjectGeneric.get_parent_object_index = function(arguments) {
+Object.get_parent_object_index = function(arguments) {
     var _object_index        = arguments[$ "object_index"] ?? self.object_index
     var _parent_object_index = arguments.parent_object_index
 
@@ -967,7 +1072,7 @@ function is_parent_object_generic(arguments) {
     var _object_index        = arguments[$ "object_index"] ?? self.object_index
     var _parent_object_index = arguments.parent_object_index
 
-    return ObjectGeneric.get_parent_object_index(arguments) == _parent_object_index
+    return Object.get_parent_object_index(arguments) == _parent_object_index
 }
 
 /// ----------------------------------------------------------------------------
@@ -996,7 +1101,7 @@ function is_instance_of_object_generic(arguments) {
 /// ----------------------------------------------------------------------------
 /// @return {Bool}
 /// ----------------------------------------------------------------------------
-ObjectGeneric.is_child_of = function(arguments) {
+Object.is_child_of = function(arguments) {
     var _object        = arguments[$ "object"] ?? object_index
     var _parent_object = arguments.parent_object
 

@@ -13,7 +13,7 @@ OBJECT_EVENT_GENERIC.get({ object_event : "create_event" })
 
 OBJECT_EVENT_GENERIC.create({ name : "create_event" })
 .set_object_event_script_contents({ object_event_script_contents : function() {
-    ObjectInstanceGeneric.initialize({ object_instance : id })
+    ObjectInstance.initialize({ object_instance : id })
     private.finite_state_machine.create_event()
 }})
 
