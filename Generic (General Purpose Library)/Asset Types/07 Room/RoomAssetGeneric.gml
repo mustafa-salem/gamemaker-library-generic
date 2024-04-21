@@ -1,5 +1,31 @@
 // feather disable all
 
+/*******************************************************************************/
+#region    –––––––––––––––––––– INITIALIZED_CONSTRUCTOR ––––––––––––––––––––
+/*******************************************************************************/
+
+#macro ROOM_ASSET_GENERIC INITIALIZED_CONSTRUCTOR(RoomAssetGeneric)
+
+ROOM_ASSET_GENERIC
+
+/*******************************************************************************/
+#endregion –––––––––––––––––––– INITIALIZED_CONSTRUCTOR ––––––––––––––––––––
+/*******************************************************************************/
+
+/*******************************************************************************/
+#region    –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––
+/*******************************************************************************/
+
+#macro RoomAsset  RoomAssetGeneric
+#macro ROOM_ASSET ROOM_ASSET_GENERIC
+
+#macro go_to_room_asset go_to_room_asset_generic
+
+/*******************************************************************************/
+#endregion –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––
+/*******************************************************************************/
+
+
 #macro __IF_INSTANCE_SCOPE_SET_ROOM_ASSET_ARGUMENT_TO_SELF_ROOM_ASSET_GENERIC                    \
 if (is_instanceof(self, RoomAssetGeneric)) { arguments.room_asset = self }
 
