@@ -4,7 +4,7 @@ time_source_controller_generic.gml
 
 @overview
 This file defines the constructor for the TimeSourceControllerGeneric struct.
-This struct caches time sources created by call_later_generic and automatically
+This struct caches time sources created by generic_call_later and automatically
 garbage collects them once they have called their callback method. This struct
 is initialized by SystemControllerGeneric.
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -30,7 +30,7 @@ function TimeSourceControllerGeneric() constructor {
     static time_sources = []
 
     /// @type {Array<Struct.TimeSourceGeneric>}
-    /// caches time sources created by call_later_generic
+    /// caches time sources created by generic_call_later
     static call_later_time_sources = []
 
     /*******************************************************************************/
@@ -40,7 +40,7 @@ function TimeSourceControllerGeneric() constructor {
     #region    –––––––––––––––––––– STEP_EVENT ––––––––––––––––––––
 
     static step_event = function() {
-        // remove time sources used with call_later_generic once they have run their callback method
+        // remove time sources used with generic_call_later once they have run their callback method
         for (var i = 0; i < array_length(call_later_time_sources); i++) {
             var _time_source = call_later_time_sources[i]
             // destroy stopped time sources

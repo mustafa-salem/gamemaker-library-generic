@@ -46,7 +46,7 @@ function resume_sound_generic(arguments) {
 
 }
 
-function stop_sound_generic(arguments) {
+function generic_sound_stop(arguments) {
     if (_instance == all) { audio_stop_all(); return; }
     audio_stop_sound(_instance)
 }
@@ -130,8 +130,8 @@ function exists_sound_generic(arguments) {
     }
 }
 
-/// @function stop_sound_generic(arguments)
-function stop_sound_generic(arguments) {
+/// @function generic_sound_stop(arguments)
+function generic_sound_stop(arguments) {
     // MULTI_TARGET
     if (is_array(arguments.target)) {
         for (var i = 0; i < array_length(arguments.target); i++) {

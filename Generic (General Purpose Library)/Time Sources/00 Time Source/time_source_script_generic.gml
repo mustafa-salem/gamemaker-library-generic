@@ -3,7 +3,7 @@
 /*******************************************************************************/
 
 /// ----------------------------------------------------------------------------
-/// @function call_later_generic(arguments)
+/// @function generic_call_later(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
 /// Creates a time source that calls the specified callback function after the
@@ -15,7 +15,7 @@
 /// @return {Struct.TimeSourceGeneric}
 /// The time source calling the callback function.
 /// ----------------------------------------------------------------------------
-function call_later_generic(arguments = {}) {
+function generic_call_later(arguments = {}) {
 	arguments.creation_scope = other
     var _time_source = new TimeSourceGeneric(arguments).start()
 	TIME_SOURCE_CONTROLLER_GENERIC.add_garbage_collection({ time_source : _time_source })

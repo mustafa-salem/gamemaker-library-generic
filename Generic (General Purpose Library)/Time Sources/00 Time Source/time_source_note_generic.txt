@@ -34,7 +34,7 @@ time_source_state_paused
 time_source_state_stopped
 
 /*
-function call_later_generic(_function, _frames) {
+function generic_call_later(_function, _frames) {
     return call_later(_frames, time_source_units_frames, _function)
 }
 

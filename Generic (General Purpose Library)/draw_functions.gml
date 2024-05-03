@@ -50,7 +50,7 @@ or
 */
 
 /// ----------------------------------------------------------------------------
-/// @function generic_draw_sprite(parameters)
+/// @function generic_sprite_draw(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -94,7 +94,7 @@ or
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_draw_sprite(parameters) {
+function generic_sprite_draw(parameters) {
 
     var _sprite = parameters.sprite
 
@@ -129,7 +129,7 @@ function generic_draw_sprite(parameters) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function generic_draw_text(parameters)
+/// @function generic_text_draw(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -162,7 +162,7 @@ function generic_draw_sprite(parameters) {
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_draw_text(parameters) {
+function generic_text_draw(parameters) {
 
     var _string     = parameters[$ ""] ??
 
@@ -175,7 +175,7 @@ function generic_draw_text(parameters) {
     var x_alignment = parameters[$ ""] ??
     var y_alignment = parameters[$ ""] ??
 
-    scribble(_string, "generic_draw_text")
+    scribble(_string, "generic_text_draw")
     .starting_format(_font, _colour)
     .align(x_alignment, y_alignment)
     .draw(_x_position, _y_position)

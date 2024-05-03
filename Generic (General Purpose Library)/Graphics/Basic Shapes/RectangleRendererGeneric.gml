@@ -6,45 +6,39 @@
 /// @function generic_rectangle_draw(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
-/// <function_description>
+/// This function draws a rectangle.
+///
+/// This function is a generification of the built-in functions 'draw_rectangle',
+/// 'draw_rectangle_colour', 'draw_roundrect', 'draw_roundrect_colour',
+/// 'draw_roundrect_ext' and 'draw_roundrect_colour_ext'.
 /// ----------------------------------------------------------------------------
 /// @parameter {number} x_position
-/// <parameter_description>
+/// The x position of the rectangle's origin point on the render target.
 ///
 /// @parameter {number} y_position
-/// <parameter_description>
+/// The y position of the rectangle's origin point on the render target.
 ///
-/// @parameter {type} x_alignment
-/// <parameter_description>
+/// @parameter {number} x_alignment
+/// The relative x alignment of the rectangle's origin point. [0 - 1]
 ///
-/// @parameter {type} y_alignment
-/// <parameter_description>
+/// @parameter {number} y_alignment
+/// The relative y alignment of the rectangle's origin point. [0 - 1]
 ///
-/// @parameter {type} x_dimension
-/// <parameter_description>
+/// @parameter {number} x_dimension
+/// The width of the rectangle.
 ///
-/// @parameter {type} y_dimension
-/// <parameter_description>
+/// @parameter {number} y_dimension
+/// The height of the rectangle.
 ///
 /// @parameter {type} blend_colour
-/// <parameter_description>
+/// The colour to blend the rectange with.
 ///
 /// @parameter {type} blend_alpha
-/// <parameter_description>
+/// The alpha to blend the rectange with.
 ///
 /// @parameter {type} parameter_name
 /// <parameter_description>
 ///
-/// @parameter {type} parameter_name
-/// <parameter_description>
-///
-/// {Real} x1 : The x coordinate of the top left corner of the rectangle.
-/// {Real} x2 : The x coordinate of the bottom right corner of the rectangle.
-/// {Real} y1 : The y coordinate of the top left corner of the rectangle.
-/// {Real} y2 : The y coordinate of the bottom right corner of the rectangle.
-/// {Real} colour : Draw Colour
-/// {Real} alpha : Draw Alpha
-/// {Real} outline_width : Draw the rectangle as an outline with the given width.
 /// ----------------------------------------------------------------------------
 /// @return {type}
 /// <return_description>

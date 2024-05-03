@@ -140,7 +140,7 @@ function message_sequence_to_default_battletext(_messages) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function generic_draw_text(parameters)
+/// @function generic_text_draw(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -161,7 +161,7 @@ function message_sequence_to_default_battletext(_messages) {
 /// @parameter {type} maximum_line_width
 /// @parameter {type} distance_between_lines
 /// ----------------------------------------------------------------------------
-function generic_draw_text(arguments) {
+function generic_text_draw(arguments) {
 
     scribble(parameters.string)
 

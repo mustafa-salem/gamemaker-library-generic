@@ -4,23 +4,13 @@
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-/// ----------------------------------------------------------------------------
-/// @function in_game_event_instance_create(parameters)
-/// ----------------------------------------------------------------------------
-/// @description
-/// <function_description>
-/// ----------------------------------------------------------------------------
-/// @parameter {type} parameter_name
-/// <parameter_description>
-///
-/// ----------------------------------------------------------------------------
-/// @return {type}
-/// <return_description>
-/// ----------------------------------------------------------------------------
-function in_game_event_instance_create(parameters = {}) {
-    return _return
+function generic_layer_exists(parameters = {}) {
+    return layer_exists(parameters.layer)
 }
 
+function generic_layer_get_elements(parameters = {}) {
+    return layer_get_all_elements(parameters.layer)
+}
 
 /******************************************************************************/
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -34,7 +24,11 @@ function in_game_event_instance_create(parameters = {}) {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-function InGameEventInstance() {
+function Layer() constructor {
+
+}
+
+function LayerElement() constructor {
 
 }
 

@@ -1,3 +1,229 @@
+/*
+
+{
+    x_position             : ,
+    y_position             : ,
+    z_position             : ,
+
+    x_velocity             : ,
+    y_velocity             : ,
+
+    velocity_magnitude     : ,
+    velocity_direction     : ,
+
+    friction_magnitude     : ,
+
+    x_acceleration         : ,
+    y_acceleration         : ,
+    acceleration_magnitude : ,
+    acceleration_direction : ,
+}
+
+# GENERAL
+
+## id
+
+## object_index
+* get_object
+* get_object_name
+* get_object_handle
+* get_object_id
+
+## visible
+* get_visible
+* set_visible
+
+## solid
+
+## persistent
+* get_persistent
+* set_persistent
+
+## alarm
+
+
+
+# POSITION
+
+## x
+* get_x_position
+* set_x_position
+
+## y
+* get_y_position
+* set_y_position
+
+# depth
+* get_z_position
+* set_z_position
+
+## layer
+get_layer
+set_layer
+
+# xstart
+
+# ystart
+
+# xprevious
+
+# yprevious
+
+# bbox_bottom
+
+
+# bbox_left
+
+# bbox_right
+
+# bbox_top
+
+* get_bounding_box_x_position
+* get_bounding_box_y_position
+
+* get_bounding_box_x_dimension
+* get_bounding_box_y_dimension
+
+* get_bounding_box_x_alignment
+* get_bounding_box_y_alignment
+
+* get_bounding_box_x_offset
+* get_bounding_box_y_offset
+
+# DIMENSIONS
+
+## sprite_width
+get_x_dimension
+
+## sprite_height
+
+## sprite_xoffset
+
+## sprite_yoffset
+
+## image_xscale
+
+## image_yscale
+
+
+
+# ROTATION
+
+## image_angle
+get_x_rotation
+set_x_rotation
+get_y_rotation
+set_y_rotation
+get_z_rotation
+set_z_rotation
+
+
+
+# MOVEMENT
+
+## speed
+* get_velocity_magnitude
+* set_velocity_magnitude
+
+## direction
+* get_velocity_direction
+* set_velocity_direction
+
+## hspeed
+* get_x_velocity
+* set_x_velocity
+
+## vspeed
+* get_y_velocity
+* set_y_velocity
+
+## friction
+* get_friction_magnitude
+* set_friction_magnitude
+
+* get_friction_direction == - get_velocity_direction
+
+## gravity
+* get_acceleration_magnitude
+* set_acceleration_magnitude
+
+## gravity_direction
+* get_acceleration_direction
+* set_acceleration_direction
+
+* get_x_acceleration
+* set_x_acceleration
+* get_y_acceleration
+* set_y_acceleration
+
+
+
+# TEXTURE
+
+## sprite_index
+
+## mask_index
+
+## image_index
+
+## image_number
+
+## image_speed
+
+
+
+# BLENDING
+
+## image_blend
+* get_blend_colour
+* set_blend_colour
+
+## image_alpha
+* get_blend_alpha
+* set_blend_alpha
+
+
+
+# PATHS
+
+## path_index
+
+## path_position
+
+## path_positionprevious
+
+## path_speed
+
+## path_scale
+
+## path_orientation
+
+## path_endaction
+
+
+
+# TIMELINES
+
+## timeline_index
+
+## timeline_running
+
+## timeline_speed
+
+## timeline_position
+
+## timeline_loop
+
+
+
+# SEQUENCES
+
+## in_sequence
+
+## sequence_instance
+
+*/
+
 /*******************************************************************************/
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #region    –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––

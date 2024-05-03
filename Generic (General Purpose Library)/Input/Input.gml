@@ -82,7 +82,7 @@ function generic_input_get_exclusive_active_name(parameters) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function generic_input_get_exclusive_pressed_name(parameters)
+/// @function generic_input_get_exclusive_pressed(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -99,7 +99,7 @@ function generic_input_get_exclusive_active_name(parameters) {
 /// @return {string|undefined}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_input_get_exclusive_pressed_name(parameters) {
+function generic_input_get_exclusive_pressed(parameters) {
     return
 }
 
@@ -141,8 +141,28 @@ function generic_input_check_opposing(parameters) {
 	input_check_opposing_repeat(verbNegative, verbPositive, [playerIndex], [mostRecent], [delay], [predelay])
 }
 
-function generic_input_consume_verb(parameters) {
-	input_verb_consume(parameters.verb, [playerIndex])
+/// ----------------------------------------------------------------------------
+/// @function generic_input_consume(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+///
+/// * input_verb_consume(verb, [playerIndex])
+/// ----------------------------------------------------------------------------
+/// @parameter {mixed} input
+/// <parameter_description>
+///
+/// @parameter {mixed} player
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function generic_input_consume(parameters) {
+    var _input_name   = parameters[$ "input"]
+    var _player_index = parameters[$ "player"]
+	input_verb_consume(_input_name, _player_index)
 }
 
 #region    –––––––––––––––––––– SYSTEM_DATA ––––––––––––––––––––

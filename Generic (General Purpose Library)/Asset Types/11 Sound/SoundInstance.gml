@@ -48,11 +48,11 @@ function SoundGeneric(_voice) constructor {
     }
 
     /// @function stop(arguments)
-    /// @description self-targeting stop_sound_generic
+    /// @description self-targeting generic_sound_stop
     /// @parameter {Struct} arguments
     stop = function(arguments = {}) {
         arguments.target = self
-        stop_sound_generic(arguments)
+        generic_sound_stop(arguments)
     }
 
     /// @function stop_callback(arguments)

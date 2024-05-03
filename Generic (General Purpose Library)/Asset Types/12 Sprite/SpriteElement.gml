@@ -142,7 +142,7 @@ function SpriteRendererGeneric(arguments) constructor {
     /// @return {Struct.SpriteRendererGeneric} self
     /// ----------------------------------------------------------------------------
     draw = function(arguments = {}) {
-        generic_draw_sprite({
+        generic_sprite_draw({
 
         })
         return self
