@@ -260,15 +260,18 @@ function instance_create(argument0, argument1, argument2)
 }
 
 /// ----------------------------------------------------------------------------
-/// @function object_instance_sort_depth(parameters)
+/// @function generic_object_instance_depth_sort(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
 /// ----------------------------------------------------------------------------
-/// @parameter {type} object_instance
-/// <parameter_description>
+/// @parameter {mixed} object_instance
+/// The object instance to target.
+///
+/// @parameter {number} y_position
+/// The y position to use as a basis for the depth sorting algorithm.
 /// ----------------------------------------------------------------------------
-function object_instance_sort_depth(parameters) {
+function generic_object_instance_depth_sort(parameters) {
     var _object_instance = parameters.object_instance
 	_object_instance.depth = 8000 - room_height / 2 + _object_instance.y + _object_instance.sprite_height - _object_instance.sprite_yoffset
 }

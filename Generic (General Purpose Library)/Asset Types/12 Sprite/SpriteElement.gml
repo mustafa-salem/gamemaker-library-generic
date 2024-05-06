@@ -1,26 +1,23 @@
-#macro create_sprite_renderer create_sprite_renderer_generic
-
-
 /// ----------------------------------------------------------------------------
-/// @function create_sprite_renderer_generic(arguments)
+/// @function sprite_element_create(arguments)
 /// ----------------------------------------------------------------------------
 /// @parameter {Struct} arguments PASS_THROUGH
 /// ----------------------------------------------------------------------------
-/// @return {SpriteRendererGeneric}
+/// @return {SpriteElement}
 /// ----------------------------------------------------------------------------
-function create_sprite_renderer_generic(arguments) {
-    return new SpriteRendererGeneric(arguments)
+function sprite_element_create(arguments) {
+    return new SpriteElement(arguments)
 }
 
 /// ----------------------------------------------------------------------------
-/// @function SpriteRendererGeneric({ sprite : Sprite })
-/// @function SpriteRendererGeneric({ sprite_pattern_name : String })
+/// @function SpriteElement({ sprite : Sprite })
+/// @function SpriteElement({ sprite_pattern_name : String })
 /// ----------------------------------------------------------------------------
 /// @description <function_description>
 /// ----------------------------------------------------------------------------
 /// @parameter {Struct} arguments <parameter_description>
 /// ----------------------------------------------------------------------------
-function SpriteRendererGeneric(arguments) constructor {
+function SpriteElement(arguments) constructor {
 
     /*******************************************************************************/
     #region    –––––––––––––––––––– PRIVATE_PROPERTIES ––––––––––––––––––––
@@ -79,7 +76,7 @@ function SpriteRendererGeneric(arguments) constructor {
     /// ----------------------------------------------------------------------------
     /// @function function_name({ x : [Real], y : [Real] })
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.SpriteRendererGeneric} self
+    /// @return {Struct.SpriteElement} self
     /// ----------------------------------------------------------------------------
     set_scale = function(arguments = {}) {
         if (arguments[$ "xscale"] != undefined) {
@@ -113,7 +110,7 @@ function SpriteRendererGeneric(arguments) constructor {
     /// @function set_rotation({ degrees : Real })
     /// @function set_rotation({ radians : Real })
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.SpriteRendererGeneric} self
+    /// @return {Struct.SpriteElement} self
     /// ----------------------------------------------------------------------------
     set_rotation = function(arguments = {}) {
         if (arguments[$ "degrees"] != undefined) {
@@ -130,7 +127,7 @@ function SpriteRendererGeneric(arguments) constructor {
     /// ----------------------------------------------------------------------------
     /// @function function_name({})
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.SpriteRendererGeneric} self
+    /// @return {Struct.SpriteElement} self
     /// ----------------------------------------------------------------------------
     function_name = function(arguments = {}) {
         return self
@@ -139,7 +136,7 @@ function SpriteRendererGeneric(arguments) constructor {
     /// ----------------------------------------------------------------------------
     /// @function draw({ x : Real, y : Real })
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.SpriteRendererGeneric} self
+    /// @return {Struct.SpriteElement} self
     /// ----------------------------------------------------------------------------
     draw = function(arguments = {}) {
         generic_sprite_draw({
