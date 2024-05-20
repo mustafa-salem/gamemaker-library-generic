@@ -5,11 +5,14 @@
 /******************************************************************************/
 
 /// ----------------------------------------------------------------------------
-/// @function function_name(parameters)
+/// @function in_game_event_type_create(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
 /// ----------------------------------------------------------------------------
+/// @parameter {string} name
+/// <parameter_description>
+///
 /// @parameter {type} parameter_name
 /// <parameter_description>
 ///
@@ -17,25 +20,15 @@
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function in_game_event_class_create(parameters = {}) {
-    return _return
-}
+function in_game_event_type_create(parameters = {}) {
 
-/// ----------------------------------------------------------------------------
-/// @function in_game_event_get_instances(parameters)
-/// ----------------------------------------------------------------------------
-/// @description
-/// <function_description>
-/// ----------------------------------------------------------------------------
-/// @parameter {type} parameter_name
-/// <parameter_description>
-///
-/// ----------------------------------------------------------------------------
-/// @return {type}
-/// <return_description>
-/// ----------------------------------------------------------------------------
-function in_game_event_get_instances(parameters = {}) {
-    return _return
+    var _name
+
+    var _in_game_event_type = new InGameEventType()
+
+    InGameEventType.private.in_game_event_types[$ _name] = _in_game_event_type
+
+    return _in_game_event_type
 }
 
 /******************************************************************************/
@@ -50,7 +43,13 @@ function in_game_event_get_instances(parameters = {}) {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-function InGameEventClass() {
+function InGameEventType() {
+
+    static private = {
+        in_game_event_types : {},
+    }
+
+    self.private = {}
 
     /// ----------------------------------------------------------------------------
     /// @function set_event(parameters)
@@ -71,23 +70,6 @@ function InGameEventClass() {
     /// <return_description>
     /// ----------------------------------------------------------------------------
     set_event = function(parameters = {}) {
-        return _return
-    }
-
-    /// ----------------------------------------------------------------------------
-    /// @function get_instances(parameters)
-    /// ----------------------------------------------------------------------------
-    /// @description
-    /// <function_description>
-    /// ----------------------------------------------------------------------------
-    /// @parameter {type} parameter_name
-    /// <parameter_description>
-    ///
-    /// ----------------------------------------------------------------------------
-    /// @return {type}
-    /// <return_description>
-    /// ----------------------------------------------------------------------------
-    static get_instances = function(parameters = {}) {
         return _return
     }
 

@@ -5,7 +5,7 @@
 /******************************************************************************/
 
 /// ----------------------------------------------------------------------------
-/// @function in_game_event_create(parameters)
+/// @function in_game_object_create(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -17,23 +17,7 @@
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function in_game_event_create(parameters = {}) {
-    return _return
-}
-
-/// ----------------------------------------------------------------------------
-/// @function in_game_event_find(parameters)
-/// ----------------------------------------------------------------------------
-/// @description
-/// This function returns an array of in game events that fit the provided
-/// conditions.
-/// ----------------------------------------------------------------------------
-/// @parameter {string} type
-/// The name of the in_game_event_type to target.
-/// ----------------------------------------------------------------------------
-/// @return {array<struct>}
-/// ----------------------------------------------------------------------------
-function in_game_event_find(parameters = {}) {
+function in_game_object_create(parameters = {}) {
     return _return
 }
 
@@ -49,8 +33,8 @@ function in_game_event_find(parameters = {}) {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-function InGameEvent() {
-
+function InGameObject() : ObjectInstanceAbstraction() constructor {
+    return _return
 }
 
 /******************************************************************************/
