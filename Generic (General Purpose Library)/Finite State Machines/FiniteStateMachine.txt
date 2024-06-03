@@ -23,3 +23,62 @@ object_events = [
 /*******************************************************************************/
 #endregion –––––––––––––––––––– OBJECT_EVENTS ––––––––––––––––––––
 /*******************************************************************************/
+
+# Basics
+.add(state_name, [state_struct])
+->
+.change(state_name, [leave_func], [enter_func], [data])
+-> change_state
+.state_is(state_name, [state_to_check])
+-> is_state
+.state_exists(state_name)
+-> exists_state
+.get_states()
+-> get_state_names
+.get_current_state()
+->
+.get_previous_state()
+->
+.get_time([in_microseconds])
+-> get_state_runtime_frames
+->
+.set_time(time, [in_microseconds])
+-> set_state_runtime
+.on(event, callback, [context])
+# Inheritance
+.add_child(parent_state_name, state_name, [state_struct])
+->
+.inherit()
+# Events
+.event_set_default_function(event, function)
+->
+.event_get_current_function()
+->
+.event_exists(event)
+-> exists_event / has_event
+.enter()
+->
+.leave()
+->
+# Triggered Transitions
+.add_transition(transition_name, source_state, dest_state, [condition], [leave_func], [enter_func])
+.add_wildcard_transition(transition_name, dest_state, [condition], [leave_func], [enter_func])
+.add_reflexive_transition(transition_name, source_state, [condition], [leave_func], [enter_func])
+-> set_transition
+.transition_exists(transition_name, source_state)
+-> exists_transition
+.trigger(transition_name, [data])
+-> trigger_transition
+# History
+.history_enable()
+-> enable_history
+.history_disable()
+-> disable_history
+.history_is_enabled()
+-> is_enabled_history
+.history_set_max_size(size)
+-> set_history_capacity
+.history_get_max_size()
+-> get_history_capacity
+.history_get()
+-> get_history

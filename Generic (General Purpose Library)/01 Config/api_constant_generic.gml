@@ -32,7 +32,7 @@
 
 #region    –––––––––––––––––––– OBJECT ––––––––––––––––––––
 
-#macro create_object_instance create_object_instance_generic
+#macro create_object_instance generic_object_instance_create
 #macro destroy_object_instance destroy_object_instance_generic
 
 #endregion –––––––––––––––––––– OBJECT ––––––––––––––––––––

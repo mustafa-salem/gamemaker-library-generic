@@ -242,13 +242,13 @@ function exists_object_instance_generic(arguments) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function create_object_instance_generic(arguments)
+/// @function generic_object_instance_create(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a proxy for the static method function:
 /// ObjectInstance.create
 /// ----------------------------------------------------------------------------
-function create_object_instance_generic(arguments) {
+function generic_object_instance_create(arguments) {
     // TODO: ADJUST PROJECT FOR RETURN TYPE CHANGE
     return OBJECT_INSTANCE.create(arguments)
 }
