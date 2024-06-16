@@ -69,16 +69,24 @@ object_events = [
 -> exists_transition
 .trigger(transition_name, [data])
 -> trigger_transition
-# History
-.history_enable()
--> enable_history
-.history_disable()
--> disable_history
-.history_is_enabled()
--> is_enabled_history
-.history_set_max_size(size)
--> set_history_capacity
-.history_get_max_size()
--> get_history_capacity
-.history_get()
--> get_history
+
+define_default_event -> set_default_event -> add_event
+set_event -> add_event
+event_exists -> has_event
+define_state -> set_state -> add_state
+inherit_event -> execute_parent_event
+define_transition -> set_transition -> add_transition
+set_default_event
+
+state_name
+parent_name
+event_name
+event_method
+events
+source_state_name
+transition_name
+
+
+change_state_event
+
+// TODO: remove direct references to FiniteStateMachine

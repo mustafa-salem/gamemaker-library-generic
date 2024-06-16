@@ -26,8 +26,40 @@ function generic_sound_play(arguments) {
     return SoundGeneric(_voice)
 }
 
-function fade_out_sound_generic(arguments) {
+/// ----------------------------------------------------------------------------
+/// @function generic_sound_fadeout(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {undefined}
+/// ----------------------------------------------------------------------------
+function generic_sound_fadeout(parameters = {}) {
+    VinylFadeOut(target, [rate=VINYL_DEFAULT_GAIN_RATE])
+}
 
+/// ----------------------------------------------------------------------------
+/// @function generic_sound_is_shutdown(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {boolean}
+/// whether a voice is in “shutdown mode”
+/// ----------------------------------------------------------------------------
+function generic_sound_is_shutdown(parameters = {}) {
+    return _return
 }
 
 function fade_in_sound_generic(arguments) {
