@@ -5,7 +5,7 @@
 /******************************************************************************/
 
 /// ----------------------------------------------------------------------------
-/// @function in_game_object_create(parameters)
+/// @function in_game_entity_type_create(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -17,7 +17,7 @@
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function in_game_object_create(parameters = {}) {
+function in_game_entity_type_create(parameters = {}) {
     return _return
 }
 
@@ -33,7 +33,7 @@ function in_game_object_create(parameters = {}) {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-function InGameObject() : ObjectInstanceAbstraction() constructor {
+function InGameEntityType() : ObjectAbstraction() constructor {
     return _return
 }
 

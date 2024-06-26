@@ -19,21 +19,25 @@ function set_default_caption_window_generic(arguments = {}) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function window_set_caption_generic(arguments)
+/// @function generic_window_set_caption(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
-/// <function_description>
+/// This function is used to change the caption of the game window.
+///
+/// NOTE: This function is a generification of the built-in function 'window_set_caption'.
+///
+/// NOTE: The window caption is independent of the current room even though the
+/// GameMaker manual claims otherwise.
 /// ----------------------------------------------------------------------------
-function window_set_caption_generic(arguments = {}) {
-    return WINDOW.set_caption(arguments)
+/// @parameter {string} string
+/// The caption to display.
+/// ----------------------------------------------------------------------------
+/// @return {undefined}
+/// ----------------------------------------------------------------------------
+function generic_window_set_caption(parameters = {}) {
+    var _string = parameters[$ "string"]
+    window_set_caption(_string)
 }
-
-/*
-function scr_windowcaption(argument0) {
-    if (global.tempflag[10] != 1 && deltarune_get_chapter_index() == 1) window_set_caption(argument0)
-    else window_set_caption(("DELTARUNE Chapter " + string(global.chapter)))
-}
-*/
 
 /// ----------------------------------------------------------------------------
 /// @function reset_caption_window_generic(arguments)
@@ -104,6 +108,21 @@ function get_aspect_ratio_window_generic(arguments = {}) {
     return WINDOW.get_aspect_ratio(arguments)
 }
 
+/// ----------------------------------------------------------------------------
+/// @function generic_window_center(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {undefined}
+/// ----------------------------------------------------------------------------
+function generic_window_center(parameters = {}) {
+    generic_call_later({ delay_frames : 1, callback : window_center })
+}
 
 /*******************************************************************************/
 #endregion –––––––––––––––––––– DIMENSIONS ––––––––––––––––––––
@@ -134,13 +153,19 @@ function set_y_minimum_dimensions_window_generic(arguments = {}) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function set_minimum_dimensions_window_generic(arguments)
+/// @function generic_window_set_minimum_dimensions(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
 /// ----------------------------------------------------------------------------
-function set_minimum_dimensions_window_generic(arguments = {}) {
-    return WINDOW.set_minimum_dimensions(arguments)
+function generic_window_set_minimum_dimensions(arguments = {}) {
+    if (struct_exists(arguments, "x")) {
+        window_set_min_width(arguments.x)
+    }
+    if (struct_exists(arguments, "y")) {
+        window_set_min_height(arguments.y)
+    }
+    return self
 }
 
 /*******************************************************************************/
@@ -231,10 +256,7 @@ function Window() constructor {
         return self
     }
 
-    static set_caption = function(arguments = {}) {
-        window_set_caption(arguments.caption)
-        return self
-    }
+    static set_caption = generic_window_set_caption
 
     static reset_caption = function(arguments = {}) {
         if (private.default_caption != undefined) {
@@ -361,13 +383,7 @@ function Window() constructor {
     }
 
     static set_minimum_dimensions = function(arguments = {}) {
-        if (struct_exists(arguments, "x")) {
-            window_set_min_width(arguments.x)
-        }
-        if (struct_exists(arguments, "y")) {
-            window_set_min_height(arguments.y)
-        }
-        return self
+
     }
 
     /*******************************************************************************/

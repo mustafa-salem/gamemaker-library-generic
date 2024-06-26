@@ -5,19 +5,31 @@
 /******************************************************************************/
 
 /// ----------------------------------------------------------------------------
-/// @function in_game_object_type_create(parameters)
+/// @function in_game_entity_create(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
 /// ----------------------------------------------------------------------------
-/// @parameter {type} parameter_name
+/// @parameter {type} type
+/// <parameter_description>
+///
+/// @parameter {type} x_position
+/// <parameter_description>
+///
+/// @parameter {type} y_position
+/// <parameter_description>
+///
+/// @parameter {type} z_position
+/// <parameter_description>
+///
+/// @parameter {type} layer
 /// <parameter_description>
 ///
 /// ----------------------------------------------------------------------------
-/// @return {type}
-/// <return_description>
+/// @return {struct}
 /// ----------------------------------------------------------------------------
-function in_game_object_type_create(parameters = {}) {
+function in_game_entity_create(parameters = {}) {
+    new InGameEntity()
     return _return
 }
 
@@ -33,7 +45,7 @@ function in_game_object_type_create(parameters = {}) {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
-function InGameObjectType() : ObjectAbstraction() constructor {
+function InGameEntity() : ObjectInstanceAbstraction() constructor {
     return _return
 }
 

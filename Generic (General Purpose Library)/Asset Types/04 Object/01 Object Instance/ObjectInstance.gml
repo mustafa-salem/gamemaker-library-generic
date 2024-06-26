@@ -403,6 +403,12 @@ function vertical_movement_object_instance(_object_instance = self) {
 /// @parameter {type} flash_alpha
 /// <parameter_description>
 ///
+/// @parameter {shader} [shader]
+/// The shader to use while drawing.
+///
+/// @parameter {struct} [shader_variables]
+/// The variables to pass to the shader.
+///
 /// ----------------------------------------------------------------------------
 /// @return {type}
 /// <return_description>

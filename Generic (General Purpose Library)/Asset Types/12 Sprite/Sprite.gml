@@ -408,7 +408,7 @@ function generic_sprite_draw(arguments) {
         var _surface_height = arguments.sprite_draw_height
 
         /* –––––––––––––––––––– CREATE SURFACE –––––––––––––––––––– */
-        if (arguments.shader == shader_outline) {
+        if (arguments.shader == outline_shader) {
             arguments.outline.width = arguments.outline[$ "width"] ?? 1
 
             _surface_width += 2 * arguments.outline.width
@@ -434,15 +434,15 @@ function generic_sprite_draw(arguments) {
         /* –––––––––––––––––––– APPLY SHADER –––––––––––––––––––– */
         shader_set(arguments.shader)
 
-        if (arguments.shader == shader_outline) {
+        if (arguments.shader == outline_shader) {
             // var _texture = sprite_get_texture(arguments.sprite, arguments.frame)
             var _pixel_width = 1 / _surface_width // texture_get_texel_width(_texture)
             var _pixel_height = 1 / _surface_height // texture_get_texel_height(_texture)
 
-            var _pixel_size = shader_get_uniform(shader_outline, "pixel_size")
+            var _pixel_size = shader_get_uniform(outline_shader, "pixel_size")
             shader_set_uniform_f(_pixel_size, _pixel_width, _pixel_height)
 
-            var _outline_width = shader_get_uniform(shader_outline, "outline_width")
+            var _outline_width = shader_get_uniform(outline_shader, "outline_width")
             shader_set_uniform_i(_outline_width, arguments.outline.width)
 
             var _red = colour_get_red(arguments.outline.colour) / 255
@@ -450,11 +450,11 @@ function generic_sprite_draw(arguments) {
             var _blue = colour_get_blue(arguments.outline.colour) / 255
             var _alpha = arguments.outline[$ "alpha"] ?? 1
 
-            var _outline_colour = shader_get_uniform(shader_outline, "outline_colour")
+            var _outline_colour = shader_get_uniform(outline_shader, "outline_colour")
             shader_set_uniform_f(_outline_colour, _red, _green, _blue, _alpha)
 
             if (!is_undefined(arguments[$ "filling"])) {
-                var _filling_mode = shader_get_uniform(shader_outline, "filling_mode")
+                var _filling_mode = shader_get_uniform(outline_shader, "filling_mode")
                 shader_set_uniform_i(_filling_mode, 2)
 
                 var _red = colour_get_red(arguments.filling.colour) / 255
@@ -462,7 +462,7 @@ function generic_sprite_draw(arguments) {
                 var _blue = colour_get_blue(arguments.filling.colour) / 255
                 var _alpha = arguments.filling[$ "alpha"] ?? 1
 
-                var _filling_colour = shader_get_uniform(shader_outline, "filling_colour")
+                var _filling_colour = shader_get_uniform(outline_shader, "filling_colour")
                 shader_set_uniform_f(_filling_colour, _red, _green, _blue, _alpha)
             }
 

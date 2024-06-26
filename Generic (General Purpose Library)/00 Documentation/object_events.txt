@@ -1,7 +1,7 @@
 [
     "create_event",
     "destroy_event",
-    "clean_up_event",
+    "cleanup_event",
 
     "begin_step_event",
     "step_event",

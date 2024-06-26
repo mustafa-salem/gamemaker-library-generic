@@ -31,7 +31,7 @@ OBJECT_EVENT_GENERIC.create({ name : "destroy_event" })
 /// <description>
 /// ----------------------------------------------------------------------------
 #macro CLEAN_UP_EVENT_OBJECT_EVENT_GENERIC                                     \
-OBJECT_EVENT_GENERIC.get({ object_event : "clean_up_event" })
+OBJECT_EVENT_GENERIC.get({ object_event : "cleanup_event" })
 
 /******************************************************************************/
 #region    –––––––––––––––––––– STEP_EVENTS ––––––––––––––––––––
@@ -214,7 +214,7 @@ array[ev_create] = DESTROY_EVENT_OBJECT_EVENT_GENERIC
 
 event_type ==     -> "create_event"
 event_type == ev_destroy   -> "destroy_event"
-event_type == ev_cleanup   -> "clean_up_event"
+event_type == ev_cleanup   -> "cleanup_event"
 event_type == ev_collision -> "collision_event"
 
 

@@ -293,3 +293,23 @@ function set_dimensions_view_generic(arguments = {}) {
 #endregion –––––––––––––––––––– SCRIPT_FUNCTIONS ––––––––––––––––––––
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*******************************************************************************/
+
+function View(arguments = { }) constructor {
+    private = {
+        camera_index : arguments[$ "camera_index"] ?? 0,
+    }
+    camera = function(arguments = {}) { return view_camera[private.camera_index] }
+    x1 = function(arguments = {}) { return camera_get_view_x(camera()) }
+    x2 = function(arguments = {}) { return x1() + width() }
+    y1 = function(arguments = {}) { return camera_get_view_y(camera()) }
+    y2 = function(arguments = {}) { return y1() + height() }
+    width = function(arguments = {}) { return camera_get_view_width(camera()) }
+    height = function(arguments = {}) { return camera_get_view_height(camera()) }
+    xcenter = function(arguments = {}) { return x1() + (width() / 2) }
+    ycenter = function(arguments = {}) { return y1() + (height() / 2) }
+	viewport_width = function(arguments = {}) { return view_wport[private.camera_index] }
+    viewport_height = function(arguments = {}) { return view_hport[private.camera_index] }
+    xscale = function(arguments = {}) { return viewport_width() / width() }
+    yscale = function(arguments = {}) { return viewport_height() / height() }
+
+}

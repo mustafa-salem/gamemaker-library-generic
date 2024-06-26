@@ -1,8 +1,8 @@
-function typewriter_create() {
-    return new Typewriter()
+function typist_create() {
+    return new Typist()
 }
 
-function Typewriter() {
+function Typist() {
 
     private = {
         typist_instance : scribble_typist([perLine]),
@@ -20,7 +20,7 @@ function Typewriter() {
     /// @parameter {type} parameters.parameter_name
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     fade_in = function(parameters = {}) {
         private.typist_instance.in(speed, smoothness)
@@ -41,7 +41,7 @@ function Typewriter() {
     /// @parameter {type} parameters.parameter_name
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     fade_out = function(parameters = {}) {
         private.typist_instance.out(speed, smoothness, [backwards])
@@ -50,7 +50,7 @@ function Typewriter() {
     /// ----------------------------------------------------------------------------
     /// @function function_name(parameters)
     /// ----------------------------------------------------------------------------
-    /// @description
+    /// @descriptio
     /// <function_description>
     /// ----------------------------------------------------------------------------
     /// @parameter {struct} parameters
@@ -81,7 +81,7 @@ function Typewriter() {
     /// @description
     /// <function_description>
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     reset_animation = function() {
         private.typist_instance.reset()
@@ -109,7 +109,7 @@ function Typewriter() {
     /// <parameter_description>
     ///
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     ease = function(parameters = {}) {
         private.typist_instance.ease(easeMethod, dx, dy, xscale, yscale, rotation, alphaDuration)
@@ -165,7 +165,7 @@ function Typewriter() {
     /// <parameter_description>
     ///
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     set_paused = function(parameters = {}) {
         private.typist_instance.pause()
@@ -201,7 +201,7 @@ function Typewriter() {
     /// @parameter {type} ignore_pause
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     set_skip_animation = function(parameters = {}) {
         if (parameters.ignore_pause) {
@@ -237,7 +237,7 @@ function Typewriter() {
     /// @parameter {type} parameters.parameter_name
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     sync_to_sound = function(parameters = {}) {
         private.typist_instance.sync_to_sound(soundInstance)
@@ -265,7 +265,7 @@ function Typewriter() {
     /// <parameter_description>
     ///
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     sound = function(parameters = {}) {
         private.typist_instance.sound(soundArray, overlap, pitchMin, pitchMax. [gain=1])
@@ -293,7 +293,7 @@ function Typewriter() {
     /// <parameter_description>
     ///
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     sound_per_char = function(parameters = {}) {
         private.typist_instance.sound_per_char(soundArray, pitchMin, pitchMax, [exceptionString], [gain=1])
@@ -320,7 +320,7 @@ function Typewriter() {
     /// @parameter {boolean} ignore_delay
     /// Whether the typewriter should ignore character and tag delays.
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     set_ignore_delay = function(parameters = {}) {
         private.typist_instance.ignore_delay(parameters.ignore_delay)
@@ -342,7 +342,7 @@ function Typewriter() {
     /// @parameter {number} delay_milliseconds
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     set_character_delay = function(parameters = {}) {
         for (var i = 0; i < ; i++) {
@@ -370,7 +370,7 @@ function Typewriter() {
     /// @parameter {callable|undefined} callable
     /// The function that will be executed once per character as that character is revealed
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     set_per_character_callable = function(parameters = {}) {
         private.typist_instance.function_per_char(parameters.callable)
@@ -386,7 +386,7 @@ function Typewriter() {
     /// @parameter {callable|undefined} callable
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     set_on_complete_callable = function(parameters = {}) {
         private.typist_instance.function_on_complete(parameters.callable)
@@ -416,7 +416,7 @@ function Typewriter() {
     /// @parameter {mixed} execution_scope
     /// <parameter_description>
     /// ----------------------------------------------------------------------------
-    /// @return {struct.Typewriter} self
+    /// @return {struct.Typist} self
     /// ----------------------------------------------------------------------------
     set_execution_scope = function(parameters = {}) {
         private.typist_instance.execution_scope(parameters.execution_scope)

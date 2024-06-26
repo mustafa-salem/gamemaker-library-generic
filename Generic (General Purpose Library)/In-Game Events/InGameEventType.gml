@@ -56,7 +56,7 @@ function InGameEventType() {
     /// ----------------------------------------------------------------------------
     /// @description
     /// * create_event
-    /// * clean_up_event
+    /// * cleanup_event
     /// * step_event
     /// ----------------------------------------------------------------------------
     /// @parameter {type} event
