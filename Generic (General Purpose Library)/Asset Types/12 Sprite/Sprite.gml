@@ -334,7 +334,7 @@ function sprite_get_fps(_sprite) {
     }
 }
 
-function generic_sprite_draw(arguments) {
+function gpl_sprite_draw(arguments) {
 
     /*******************************************************************************
     –––––––––––––––––––– INTERNAL: DRAW METHODS ––––––––––––––––––––
@@ -421,14 +421,14 @@ function generic_sprite_draw(arguments) {
             arguments.screen_y -= arguments.outline.width
         }
 
-        var surface = generic_surface_create({ x_dimension : _surface_width, y_dimension : _surface_height })
+        var surface = gpl_surface_create({ x_dimension : _surface_width, y_dimension : _surface_height })
         render_target_set_surface({ surface })
         draw_clear_alpha(c_white, 0)
 
         /* –––––––––––––––––––– DRAW TO SURFACE –––––––––––––––––––– */
-        if (arguments.nine_slice) { generic_sprite_draw.draw_method_nine_slice(arguments) }
-        else if (arguments.tiled) { generic_sprite_draw.draw_method_tiled(arguments) }
-        else { generic_sprite_draw.draw_method_default(arguments) }
+        if (arguments.nine_slice) { gpl_sprite_draw.draw_method_nine_slice(arguments) }
+        else if (arguments.tiled) { gpl_sprite_draw.draw_method_tiled(arguments) }
+        else { gpl_sprite_draw.draw_method_default(arguments) }
         render_target_reset_surface()
 
         /* –––––––––––––––––––– APPLY SHADER –––––––––––––––––––– */

@@ -126,7 +126,7 @@ function SystemControllerGeneric() constructor {
     /// ----------------------------------------------------------------------------
     static cleanup_event = function() {
         if (instance_number > 1) { return }
-        generic_call_later({ delay_frames : 1, callable : function() {
+        gpl_call_later({ delay_frames : 1, callable : function() {
             if (!instance_exists(system_controller_object_generic)) {
                 instance_create_depth(0, 0, 0, system_controller_object_generic)
             }

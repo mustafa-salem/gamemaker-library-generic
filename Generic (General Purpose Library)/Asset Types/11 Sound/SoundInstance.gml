@@ -1,37 +1,28 @@
-function SoundInstanceGeneric() constructor {
-
-    static stop = function() {
-
-    }
-
-    // gain
-    static set_volume = function(arguments) {
-
-    }
-
-    // pitch
-    static set_speed = function(arguments) {
-
-    }
-
-}
-
-
 /******************************************************************************/
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#region    –––––––––––––––––––– REGION_NAME ––––––––––––––––––––
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+#region    –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
 /******************************************************************************/
 
-function SoundAssetGeneric() constructor {
+SOUND_INSTANCE
 
-}
+/******************************************************************************/
+#endregion –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
+/******************************************************************************/
 
-function SoundGeneric(_voice) constructor {
+/******************************************************************************/
+#region    –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
+/******************************************************************************/
 
-    private = {
-        voice : _voice,
-    }
+/******************************************************************************/
+#endregion –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
+/******************************************************************************/
+
+/******************************************************************************/
+#region    –––––––––––––––––––– CONSTRUCTORS ––––––––––––––––––––
+/******************************************************************************/
+
+SOUND_INSTANCE
+
+function SoundInstance() constructor {
 
     voice = function(arguments = {}) {
         if (arguments.value) { private.voice = arguments.value }
@@ -39,56 +30,56 @@ function SoundGeneric(_voice) constructor {
     }
 
     /// @function stop(arguments)
-    /// @description self-targeting exists_sound_generic
+    /// @description self-targeting sound_exists
     /// @parameter {Struct} arguments
     /// @return {Bool}
     exists = function(arguments = {}) {
         arguments.target = self
-        return exists_sound_generic(arguments)
+        return sound_exists(arguments)
     }
 
     /// @function stop(arguments)
-    /// @description self-targeting generic_sound_stop
+    /// @description self-targeting sound_stop
     /// @parameter {Struct} arguments
     stop = function(arguments = {}) {
         arguments.target = self
-        generic_sound_stop(arguments)
+        sound_stop(arguments)
     }
 
     /// @function stop_callback(arguments)
-    /// @description self-targeting stop_callback_sound_generic
+    /// @description self-targeting sound_set_stop_callback
     /// @parameter {Struct} arguments
     /// @return {Struct}
     stop_callback = function(arguments = {}) {
         arguments.target = self
-        return stop_callback_sound_generic(arguments)
+        return sound_set_stop_callback(arguments)
     }
 
     /// @function paused(arguments)
-    /// @description self-targeting paused_sound_generic
+    /// @description self-targeting sound_is_paused
     /// @parameter {Struct} arguments
     /// @return {Bool}
     paused = function(arguments = {}) {
         arguments.target = self
-        return paused_sound_generic(arguments)
+        return sound_is_paused(arguments)
     }
 
     /// @function stop(arguments)
-    /// @description self-targeting looping_sound_generic
+    /// @description self-targeting sound_is_looping
     /// @parameter {Struct} arguments
     /// @return {Bool}
     looping = function(arguments = {}) {
         arguments.target = self
-        return looping_sound_generic(arguments)
+        return sound_is_looping(arguments)
     }
 
     /// @function stop(arguments)
-    /// @description self-targeting persistent_sound_generic
+    /// @description self-targeting sound_is_persistent
     /// @parameter {Struct} arguments
     /// @return {Bool}
     persistent = function(arguments = {}) {
         arguments.target = self
-        return persistent_sound_generic(arguments)
+        return sound_is_persistent(arguments)
     }
 
     /// @function gain(arguments)
@@ -101,36 +92,34 @@ function SoundGeneric(_voice) constructor {
     }
 
     /// @function pitch(arguments)
-    /// @description self-targeting get_pitch_sound_generic
+    /// @description self-targeting sound_get_pitch
     /// @parameter {Struct} arguments
     /// @return {Real}
     pitch = function(arguments = {}) {
         arguments.target = self
-        return get_pitch_sound_generic(arguments)
+        return sound_get_pitch(arguments)
     }
 
     /// @function length(arguments)
-    /// @description self-targeting length_sound_generic
+    /// @description self-targeting sound_get_length
     /// @parameter {Struct} arguments
     /// @return {Real}
     length = function(arguments = {}) {
         arguments.target = self
-        return length_sound_generic(arguments)
+        return sound_get_length(arguments)
     }
 
     /// @function playback_position(arguments)
-    /// @description self-targeting playback_position_sound_generic
+    /// @description self-targeting sound_get_track_position
     /// @parameter {Struct} arguments
     /// @return {Real}
     playback_position = function(arguments = {}) {
         arguments.target = self
-        return playback_position_sound_generic(arguments)
+        return sound_get_track_position(arguments)
     }
 
 }
 
 /******************************************************************************/
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#endregion –––––––––––––––––––– REGION_NAME ––––––––––––––––––––
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+#endregion –––––––––––––––––––– CONSTRUCTORS ––––––––––––––––––––
 /******************************************************************************/

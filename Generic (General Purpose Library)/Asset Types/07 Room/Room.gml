@@ -1,17 +1,15 @@
-// feather disable all
+/******************************************************************************/
+#region    –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
+/******************************************************************************/
 
+// feather disable all
 // global.entrance
 
-/******************************************************************************/
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#region    –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/******************************************************************************/
-
+/// ----------------------------------------------------------------------------
 /*
 
 # IDENTIFIERS
-* generic_room_get
+* gpl_room_get
 * generic_room_get_id
 * generic_room_get_handle
 * generic_room_get_name
@@ -32,21 +30,35 @@
 *
 
 * generic_room_get_persistent
-* generic_room_set_persistent
+* gpl_room_set_persistent
 
 # OTHER
 * generic_room_set_event
-* generic_room_go_to
-* generic_room_restart
+* gpl_room_goto
+* gpl_room_restart
 
 */
-
-/******************************************************************************/
-#region    –––––––––––––––––––– IDENTIFIERS ––––––––––––––––––––
-/******************************************************************************/
+/// ----------------------------------------------------------------------------
 
 /// ----------------------------------------------------------------------------
-/// @function generic_room_get(parameters)
+/// @function gpl_room_add(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {string} [name]
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function gpl_room_add(parameters = {}) {
+    return room_add()
+}
+
+/// ----------------------------------------------------------------------------
+/// @function gpl_room_get(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -58,7 +70,7 @@
 /// @return {struct|undefined}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_room_get(parameters = {}) {
+function gpl_room_get(parameters = {}) {
     return _return
 }
 
@@ -113,12 +125,73 @@ function generic_room_get_name(parameters = {}) {
     return _return
 }
 
-/******************************************************************************/
-#endregion –––––––––––––––––––– IDENTIFIERS ––––––––––––––––––––
-/******************************************************************************/
+/// ----------------------------------------------------------------------------
+/// @function gpl_room_set_dimensions(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} room
+/// <parameter_description>
+///
+/// @parameter {integer} x
+/// <parameter_description>
+///
+/// @parameter {integer} y
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {undefined}
+/// ----------------------------------------------------------------------------
+function gpl_room_set_dimensions(parameters = {}) {
+    var _room        = parameters[$ "room"]
+    var _x_dimension = parameters[$ "x"]
+    var _y_dimension = parameters[$ "y"]
+    if (_x_dimension != undefined) {
+        if () {
+            room_width = _x_dimension
+        } else {
+            room_set_width(index, _x_dimension)
+        }
+    }
+    if (_y_dimension != undefined) {
+        if () {
+            room_height = _y_dimension
+        } else {
+            room_set_height(index, _y_dimension)
+        }
+    }
+    return undefined
+}
 
 /// ----------------------------------------------------------------------------
-/// @function generic_room_go_to(parameters)
+/// @function gpl_room_set_persistent(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} room
+/// <parameter_description>
+///
+/// @parameter {boolean} persistent
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {undefined}
+/// ----------------------------------------------------------------------------
+function gpl_room_set_persistent(parameters = {}) {
+    var _room       = parameters[$ "room"]
+    var _persistent = parameters[$ "persistent"]
+    if (_room == room) {
+        room_persistent = _persistent
+    } else {
+        room_set_persistent(_room, _persistent)
+    }
+    return undefined
+}
+
+/// ----------------------------------------------------------------------------
+/// @function gpl_room_goto(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -135,7 +208,7 @@ function generic_room_get_name(parameters = {}) {
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_room_go_to(parameters) {
+function gpl_room_goto(parameters) {
     var _room = parameters[$ "room"]
 
     var _room_handle = generic_room_get_handle({ room : _room })
@@ -144,7 +217,7 @@ function generic_room_go_to(parameters) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function generic_room_get_entrance(parameters)
+/// @function gpl_room_get_entryway(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -156,12 +229,12 @@ function generic_room_go_to(parameters) {
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_room_get_entrance(parameters = {}) {
+function gpl_room_get_entryway(parameters = {}) {
     Room.private.entrance = parameters.entrance
 }
 
 /// ----------------------------------------------------------------------------
-/// @function generic_room_restart(parameters)
+/// @function gpl_room_restart(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -173,37 +246,16 @@ function generic_room_get_entrance(parameters = {}) {
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_room_restart(parameters = {}) {
+function gpl_room_restart(parameters = {}) {
     room_restart()
 }
 
-/// ----------------------------------------------------------------------------
-/// @function generic_room_set_persistent(parameters)
-/// ----------------------------------------------------------------------------
-/// @description
-/// <function_description>
-/// ----------------------------------------------------------------------------
-/// @parameter {boolean} persistent
-/// <parameter_description>
-///
-/// ----------------------------------------------------------------------------
-/// @return {type}
-/// <return_description>
-/// ----------------------------------------------------------------------------
-function generic_room_set_persistent(parameters = {}) {
-    room_persistent = parameter.persistent
-}
-
 /******************************************************************************/
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #endregion –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
 /******************************************************************************/
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #region    –––––––––––––––––––– CONSTRUCTORS ––––––––––––––––––––
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
 #macro ROOM INITIALIZED_CONSTRUCTOR(Room)
@@ -214,9 +266,7 @@ function Room() constructor {
 
     CONSTRUCTOR_INITIALIZATION_GUARD
 
-    /******************************************************************************/
     #region    –––––––––––––––––––– PRIVATE ––––––––––––––––––––
-    /******************************************************************************/
 
     static private = {
         /// @type {array<struct.Room>}
@@ -232,26 +282,18 @@ function Room() constructor {
         room_end_event   : undefined,
     }
 
-    /******************************************************************************/
     #endregion –––––––––––––––––––– PRIVATE ––––––––––––––––––––
-    /******************************************************************************/
 
-    /******************************************************************************/
     #region    –––––––––––––––––––– CREATE ––––––––––––––––––––
-    /******************************************************************************/
 
     /// @function create(parameters)
     static create = function(parameters) {
         return generic_room_create(parameters)
     }
 
-    /******************************************************************************/
     #endregion –––––––––––––––––––– CREATE ––––––––––––––––––––
-    /******************************************************************************/
 
-    /******************************************************************************/
     #region    –––––––––––––––––––– IDENTIFIERS ––––––––––––––––––––
-    /******************************************************************************/
 
     /// @function get(parameters)
     static get = function(parameters) {
@@ -285,9 +327,7 @@ function Room() constructor {
     /// @function get_name(parameters)
     self.get_name = method(self, get_name)
 
-    /******************************************************************************/
     #endregion –––––––––––––––––––– IDENTIFIERS ––––––––––––––––––––
-    /******************************************************************************/
 
     /// @function create(parameters)
     self.create = function(parameters) {
@@ -320,7 +360,7 @@ function Room() constructor {
 
     /// @function go_to(parameters)
     static go_to = method(static_get(Room), function(parameters) {
-        return generic_room_go_to(parameters)
+        return gpl_room_goto(parameters)
     })
 
     /// @function go_to(parameters)
@@ -329,9 +369,7 @@ function Room() constructor {
         return Room.go_to(parameters)
     }
 
-    /******************************************************************************/
     #region    –––––––––––––––––––– INITIALIZATION_CODE ––––––––––––––––––––
-    /******************************************************************************/
 
     CONSTRUCTOR_INITIALIZATION_CODE(function() {
         for (var _room_index = room_first; _room_index <= room_last; _room_index++) {
@@ -339,14 +377,10 @@ function Room() constructor {
         }
     })
 
-    /******************************************************************************/
     #endregion –––––––––––––––––––– INITIALIZATION_CODE ––––––––––––––––––––
-    /******************************************************************************/
 
 }
 
 /******************************************************************************/
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #endregion –––––––––––––––––––– CONSTRUCTORS ––––––––––––––––––––
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/

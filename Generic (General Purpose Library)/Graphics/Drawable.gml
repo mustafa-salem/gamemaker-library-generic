@@ -3,102 +3,55 @@
 /******************************************************************************/
 
 function Drawable() constructor {
-    /*******************************************************************************/
+
     #region    –––––––––––––––––––– POSITION ––––––––––––––––––––
-    /*******************************************************************************/
-
-    #region    –––––––––––––––––––– X_POSITION ––––––––––––––––––––
 
     /// ----------------------------------------------------------------------------
-    /// @function get_x_position()
+    /// @function get_x_position(parameters)
     /// ----------------------------------------------------------------------------
-    /// @return {Real}
-    /// x_position
+    /// @description
+    /// <function_description>
     /// ----------------------------------------------------------------------------
-    static get_x_position = function() {
+    /// @parameter {number} alignment
+    /// 0 to 1
+    /// ----------------------------------------------------------------------------
+    /// @return {number}
+    /// ----------------------------------------------------------------------------
+    static get_x_position = function(parameters = {}) {
         return private.position.x
     }
 
     /// ----------------------------------------------------------------------------
-    /// @function set_x_position(_x_position)
+    /// @function get_y_position(parameters)
     /// ----------------------------------------------------------------------------
-    /// @parameter {Real} _x_position
-    /// x_position
+    /// @description
+    /// <function_description>
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.RectangleElement} self
+    /// @parameter {number} alignment
+    /// 0 to 1
     /// ----------------------------------------------------------------------------
-    static set_x_position = function(_x_position) {
-        if (!is_real(_x_position)) {
-            // new InvalidTypeErrorGeneric()
-            return self
-        }
-        private.position.x = _x_position
-        return self
-    }
-
-    #endregion –––––––––––––––––––– X_POSITION ––––––––––––––––––––
-
-    #region    –––––––––––––––––––– Y_POSITION ––––––––––––––––––––
-
+    /// @return {number}
     /// ----------------------------------------------------------------------------
-    /// @function get_y_position()
-    /// ----------------------------------------------------------------------------
-    /// @return {Real}
-    /// y_position
-    /// ----------------------------------------------------------------------------
-    static get_y_position = function() {
+    static get_y_position = function(parameters = {}) {
         return private.position.y
     }
 
     /// ----------------------------------------------------------------------------
-    /// @function set_y_position(_y_position)
+    /// @function set_position(parameters)
     /// ----------------------------------------------------------------------------
-    /// @parameter {Real} _y_position
-    /// y_position
+    /// @description
+    /// <function_description>
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.RectangleElement} self
-    /// ----------------------------------------------------------------------------
-    static set_y_position = function(_y_position) {
-        if (!is_real(_y_position)) {
-            // new InvalidTypeErrorGeneric()
-            return self
-        }
-        private.position.y = _y_position
-        return self
-    }
-
-    #endregion –––––––––––––––––––– Y_POSITION ––––––––––––––––––––
-
-    #region    –––––––––––––––––––– POSITION ––––––––––––––––––––
-
-    /// ----------------------------------------------------------------------------
-    /// @function get_position()
-    /// ----------------------------------------------------------------------------
-    /// @return {Struct}
-    /// position { x : Real, y : Real }
-    /// ----------------------------------------------------------------------------
-    static get_position = function() {
-        return variable_clone(private.position)
-    }
-
-    /// ----------------------------------------------------------------------------
-    /// @function set_position(arguments)
-    /// ----------------------------------------------------------------------------
-    /// @parameter {Struct} [arguments]
+    /// @parameter {type} x
+    /// <parameter_description>
     ///
-    /// @parameter {Real} [arguments.x]
-    /// x_position
+    /// @parameter {type} y
+    /// <parameter_description>
     ///
-    /// @parameter {Real} [arguments.y]
-    /// y_position
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.RectangleElement} self
+    /// @return {struct} self
     /// ----------------------------------------------------------------------------
-    static set_position = function(arguments = {}) {
-        if (!is_struct(arguments)) {
-            // new InvalidTypeErrorGeneric()
-            return self
-        }
+    static set_position = function(parameters = {}) {
         if (arguments[$ "x"] != undefined) { set_x_position(arguments.x) }
         if (arguments[$ "y"] != undefined) { set_y_position(arguments.y) }
         return self
@@ -106,15 +59,7 @@ function Drawable() constructor {
 
     #endregion –––––––––––––––––––– POSITION ––––––––––––––––––––
 
-    /*******************************************************************************/
-    #endregion –––––––––––––––––––– POSITION ––––––––––––––––––––
-    /*******************************************************************************/
-
-    /*******************************************************************************/
     #region    –––––––––––––––––––– DIMENSIONS ––––––––––––––––––––
-    /*******************************************************************************/
-
-    #region    –––––––––––––––––––– X_DIMENSIONS ––––––––––––––––––––
 
     /// ----------------------------------------------------------------------------
     /// @function get_x_dimensions()
@@ -143,10 +88,6 @@ function Drawable() constructor {
         return self
     }
 
-    #endregion –––––––––––––––––––– X_DIMENSIONS ––––––––––––––––––––
-
-    #region    –––––––––––––––––––– Y_DIMENSIONS ––––––––––––––––––––
-
     /// ----------------------------------------------------------------------------
     /// @function get_y_dimensions()
     /// ----------------------------------------------------------------------------
@@ -173,10 +114,6 @@ function Drawable() constructor {
         private.dimensions.y = _y_dimensions
         return self
     }
-
-    #endregion –––––––––––––––––––– Y_DIMENSIONS ––––––––––––––––––––
-
-    #region    –––––––––––––––––––– DIMENSIONS ––––––––––––––––––––
 
     /// ----------------------------------------------------------------------------
     /// @function get_dimensions()
@@ -213,15 +150,7 @@ function Drawable() constructor {
 
     #endregion –––––––––––––––––––– DIMENSIONS ––––––––––––––––––––
 
-    /*******************************************************************************/
-    #endregion –––––––––––––––––––– DIMENSIONS ––––––––––––––––––––
-    /*******************************************************************************/
-
-    /*******************************************************************************/
     #region    –––––––––––––––––––– ALIGNMENT ––––––––––––––––––––
-    /*******************************************************************************/
-
-    #region    –––––––––––––––––––– X_ALIGNMENT ––––––––––––––––––––
 
     /// ----------------------------------------------------------------------------
     /// @function get_x_alignment()
@@ -250,10 +179,6 @@ function Drawable() constructor {
         return self
     }
 
-    #endregion –––––––––––––––––––– X_ALIGNMENT ––––––––––––––––––––
-
-    #region    –––––––––––––––––––– Y_ALIGNMENT ––––––––––––––––––––
-
     /// ----------------------------------------------------------------------------
     /// @function get_y_alignment()
     /// ----------------------------------------------------------------------------
@@ -280,10 +205,6 @@ function Drawable() constructor {
         private.alignment.y = clamp(_y_alignment, 0, 1)
         return self
     }
-
-    #endregion –––––––––––––––––––– Y_ALIGNMENT ––––––––––––––––––––
-
-    #region    –––––––––––––––––––– ALIGNMENT ––––––––––––––––––––
 
     /// ----------------------------------------------------------------------------
     /// @function get_alignment()
@@ -320,117 +241,242 @@ function Drawable() constructor {
 
     #endregion –––––––––––––––––––– ALIGNMENT ––––––––––––––––––––
 
-    /*******************************************************************************/
-    #endregion –––––––––––––––––––– ALIGNMENT ––––––––––––––––––––
-    /*******************************************************************************/
-
-    /*******************************************************************************/
     #region    –––––––––––––––––––– SCALE ––––––––––––––––––––
-    /*******************************************************************************/
-
-    #region    –––––––––––––––––––– X_SCALE ––––––––––––––––––––
 
     /// ----------------------------------------------------------------------------
-    /// @function get_x_scale()
+    /// @function get_x_scale(parameters)
     /// ----------------------------------------------------------------------------
-    /// @return {Real}
-    /// x_scale
+    /// @description
+    /// This function is used to get the x component of the scale of the element.
+    /// ----------------------------------------------------------------------------
+    /// @return {number}
     /// ----------------------------------------------------------------------------
     static get_x_scale = function() {
-        return private.scale.x
+        return private.x_scale
     }
 
     /// ----------------------------------------------------------------------------
-    /// @function set_x_scale(_x_scale)
+    /// @function get_y_scale(parameters)
     /// ----------------------------------------------------------------------------
-    /// @parameter {Real} _x_scale
-    /// x_scale
+    /// @description
+    /// This function is used to get the y component of the scale of the element.
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.RectangleElement} self
-    /// ----------------------------------------------------------------------------
-    static set_x_scale = function(_x_scale) {
-        if (!is_real(_x_scale)) {
-            // new InvalidTypeErrorGeneric()
-            return self
-        }
-        private.scale.x = _x_scale
-        return self
-    }
-
-    #endregion –––––––––––––––––––– X_SCALE ––––––––––––––––––––
-
-    #region    –––––––––––––––––––– Y_SCALE ––––––––––––––––––––
-
-    /// ----------------------------------------------------------------------------
-    /// @function get_y_scale()
-    /// ----------------------------------------------------------------------------
-    /// @return {Real}
-    /// y_scale
+    /// @return {number}
     /// ----------------------------------------------------------------------------
     static get_y_scale = function() {
-        return private.scale.y
+        return private.y_scale
     }
 
     /// ----------------------------------------------------------------------------
-    /// @function set_y_scale(_y_scale)
+    /// @function set_scale(parameters)
     /// ----------------------------------------------------------------------------
-    /// @parameter {Real} _y_scale
-    /// y_scale
+    /// @description
+    /// This function is used to set the scale properties of the element.
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.RectangleElement} self
-    /// ----------------------------------------------------------------------------
-    static set_y_scale = function(_y_scale) {
-        if (!is_real(_y_scale)) {
-            // new InvalidTypeErrorGeneric()
-            return self
-        }
-        private.scale.y = _y_scale
-        return self
-    }
-
-    #endregion –––––––––––––––––––– Y_SCALE ––––––––––––––––––––
-
-    #region    –––––––––––––––––––– SCALE ––––––––––––––––––––
-
-    /// ----------------------------------------------------------------------------
-    /// @function get_scale()
-    /// ----------------------------------------------------------------------------
-    /// @return {Struct}
-    /// scale { x : Real, y : Real }
-    /// ----------------------------------------------------------------------------
-    static get_scale = function() {
-        return variable_clone(private.scale)
-    }
-
-    /// ----------------------------------------------------------------------------
-    /// @function set_scale(arguments)
-    /// ----------------------------------------------------------------------------
-    /// @parameter {Struct} [arguments]
+    /// @parameter {number} x
+    /// The scaling on the x axis.
     ///
-    /// @parameter {Real} [arguments.x]
-    /// x_scale
+    /// @parameter {number} y
+    /// The scaling on the y axis.
     ///
-    /// @parameter {Real} [arguments.y]
-    /// y_scale
     /// ----------------------------------------------------------------------------
-    /// @return {Struct.RectangleElement} self
+    /// @return {struct} self
     /// ----------------------------------------------------------------------------
-    static set_scale = function(arguments = {}) {
-        if (!is_struct(arguments)) {
-            // new InvalidTypeErrorGeneric()
-            return self
-        }
-        if (arguments[$ "x"] != undefined) { set_x_scale(arguments.x) }
-        if (arguments[$ "y"] != undefined) { set_y_scale(arguments.y) }
+    static set_scale = function(parameters = {}) {
+        if (parameters[$ "x"] != undefined) { private.x_scale = parameters.x }
+        if (parameters[$ "y"] != undefined) { private.y_scale = parameters.y }
         return self
     }
 
     #endregion –––––––––––––––––––– SCALE ––––––––––––––––––––
 
-    /*******************************************************************************/
-    #endregion –––––––––––––––––––– SCALE ––––––––––––––––––––
-    /*******************************************************************************/
+	#region    –––––––––––––––––––– ROTATION ––––––––––––––––––––
 
+	/// ----------------------------------------------------------------------------
+	/// @function get_x_rotation()
+	/// ----------------------------------------------------------------------------
+	/// @return {Real}
+	/// x_rotation
+	/// ----------------------------------------------------------------------------
+	static get_x_rotation = function() {
+		return private.rotation.x
+	}
+
+	/// ----------------------------------------------------------------------------
+	/// @function get_y_rotation()
+	/// ----------------------------------------------------------------------------
+	/// @return {Real}
+	/// y_rotation
+	/// ----------------------------------------------------------------------------
+	static get_y_rotation = function() {
+		return private.rotation.y
+	}
+
+	/// ----------------------------------------------------------------------------
+	/// @function get_z_rotation()
+	/// ----------------------------------------------------------------------------
+	/// @return {Real}
+	/// z_rotation
+	/// ----------------------------------------------------------------------------
+	static get_z_rotation = function() {
+		return private.rotation.z
+	}
+
+	/// ----------------------------------------------------------------------------
+	/// @function function_name(arguments)
+	/// ----------------------------------------------------------------------------
+	/// @parameter {Struct} [arguments]
+	///
+	/// @parameter {Real} [arguments.x]
+	/// x_dimensions
+	///
+	/// @parameter {Real} [arguments.y]
+	/// y_dimensions
+	///
+	/// @parameter {Real} [arguments.z]
+	/// z_dimensions
+	/// ----------------------------------------------------------------------------
+	/// @return {Struct.RectangleElement} self
+	/// ----------------------------------------------------------------------------
+	static set_rotation = function(arguments) {
+		if (!is_struct(arguments)) {
+			// new InvalidTypeErrorGeneric()
+			return self
+		}
+		if (arguments[$ "x"] != undefined) { set_x_rotation(arguments.x) }
+		if (arguments[$ "y"] != undefined) { set_y_rotation(arguments.y) }
+		if (arguments[$ "z"] != undefined) { set_z_rotation(arguments.z) }
+		return self
+	}
+
+	#endregion –––––––––––––––––––– ROTATION ––––––––––––––––––––
+
+    #region    –––––––––––––––––––– BLEND ––––––––––––––––––––
+
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {type} parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
+    get_blend_colour = function(parameters = {}) {
+        return _return
+    }
+
+    /// ----------------------------------------------------------------------------
+    /// @function get_blend_alpha(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {type} parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
+    get_blend_alpha = function(parameters = {}) {
+        return _return
+    }
+
+    /// ----------------------------------------------------------------------------
+    /// @function get_blend_mode(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {type} parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
+    get_blend_mode = function(parameters = {}) {
+        return _return
+    }
+
+    /// ----------------------------------------------------------------------------
+    /// @function set_blend(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {type} parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
+    set_blend = function(parameters = {}) {
+        return _return
+    }
+
+    #endregion –––––––––––––––––––– BLEND ––––––––––––––––––––
+
+    #region    –––––––––––––––––––– SHADER ––––––––––––––––––––
+
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {type} parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
+    get_shader = function(parameters = {}) {
+        return _return
+    }
+
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {type} parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
+    get_shader_variables = function(parameters = {}) {
+        return _return
+    }
+
+    /// ----------------------------------------------------------------------------
+    /// @function function_name(parameters)
+    /// ----------------------------------------------------------------------------
+    /// @description
+    /// <function_description>
+    /// ----------------------------------------------------------------------------
+    /// @parameter {type} parameter_name
+    /// <parameter_description>
+    ///
+    /// ----------------------------------------------------------------------------
+    /// @return {type}
+    /// <return_description>
+    /// ----------------------------------------------------------------------------
+    set_shader = function(parameters = {}) {
+        return _return
+    }
+
+    #endregion –––––––––––––––––––– SHADER ––––––––––––––––––––
 
 }
 

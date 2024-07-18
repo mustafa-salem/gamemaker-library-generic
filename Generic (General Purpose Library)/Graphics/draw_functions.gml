@@ -50,7 +50,7 @@ or
 */
 
 /// ----------------------------------------------------------------------------
-/// @function generic_sprite_draw(parameters)
+/// @function gpl_sprite_draw(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -94,7 +94,7 @@ or
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_sprite_draw(parameters) {
+function gpl_sprite_draw(parameters) {
 
     var _sprite = parameters.sprite
 

@@ -242,13 +242,13 @@ function exists_object_instance_generic(arguments) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function generic_object_instance_create(arguments)
+/// @function object_instance_create(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a proxy for the static method function:
 /// ObjectInstance.create
 /// ----------------------------------------------------------------------------
-function generic_object_instance_create(arguments) {
+function object_instance_create(arguments) {
     // TODO: ADJUST PROJECT FOR RETURN TYPE CHANGE
     return OBJECT_INSTANCE.create(arguments)
 }
@@ -424,7 +424,7 @@ function generic_object_instance_draw(parameters = {}) {
     parameters[$ "rotation"]   ??= _object_instance_handle.image_angle
     parameters[$ "alpha"]      ??= _object_instance_handle.image_alpha
     parameters[$ "colour"]     ??= _object_instance_handle.image_blend
-    generic_sprite_draw(parameters)
+    gpl_sprite_draw(parameters)
 }
 
 /******************************************************************************/

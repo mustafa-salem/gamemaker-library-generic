@@ -1,6 +1,15 @@
-/*******************************************************************************/
-#region    –––––––––––––––––––– DRAW RECTANGLE ––––––––––––––––––––
-/*******************************************************************************/
+/******************************************************************************/
+#region    –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
+/******************************************************************************/
+
+/// ----------------------------------------------------------------------------
+/// @function rectangle_element_create()
+/// ----------------------------------------------------------------------------
+/// @return {Struct.RectangleElement}
+/// ----------------------------------------------------------------------------
+function rectangle_element_create() {
+	return new RectangleElement()
+}
 
 /// ----------------------------------------------------------------------------
 /// @function generic_rectangle_draw(parameters)
@@ -201,18 +210,13 @@ function generic_rectangle_draw(parameters) {
 
 }
 
-/*******************************************************************************/
-#endregion –––––––––––––––––––– DRAW RECTANGLE ––––––––––––––––––––
-/*******************************************************************************/
+/******************************************************************************/
+#endregion –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
+/******************************************************************************/
 
-/// ----------------------------------------------------------------------------
-/// @function rectangle_element_create()
-/// ----------------------------------------------------------------------------
-/// @return {Struct.RectangleElement}
-/// ----------------------------------------------------------------------------
-function rectangle_element_create() {
-	return new RectangleElement()
-}
+/******************************************************************************/
+#region    –––––––––––––––––––– CONSTRUCTORS ––––––––––––––––––––
+/******************************************************************************/
 
 /// ----------------------------------------------------------------------------
 /// @function RectangleElement(arguments)
@@ -251,10 +255,6 @@ function rectangle_element_create() {
 ///
 /// ----------------------------------------------------------------------------
 function RectangleElement() constructor {
-
-	/*******************************************************************************/
-	#region    –––––––––––––––––––– PRIVATE_PROPERTIES ––––––––––––––––––––
-	/*******************************************************************************/
 
 	private = {
 		position : {
@@ -305,199 +305,53 @@ function RectangleElement() constructor {
 		alpha : 1,
 	}
 
-	/*******************************************************************************/
-	#endregion –––––––––––––––––––– PRIVATE_PROPERTIES ––––––––––––––––––––
-	/*******************************************************************************/
+	/// ----------------------------------------------------------------------------
+    /// # position
+    /// ----------------------------------------------------------------------------
+    self.get_x_position = method(self, Drawable.get_x_position)
+    self.get_y_position = method(self, Drawable.get_y_position)
+    self.set_position   = method(self, Drawable.set_position)
 
-	#region    –––––––––––––––––––– POSITION ––––––––––––––––––––
-
-	self.get_x_position = method(self, Drawable.get_x_position)
-	self.set_x_position = method(self, Drawable.get_x_position)
-	self.get_y_position = method(self, Drawable.get_y_position)
-	self.set_y_position = method(self, Drawable.get_x_position)
-	self.get_position   = method(self, Drawable.get_position)
-	self.set_position   = method(self, Drawable.set_position)
-
-	#endregion –––––––––––––––––––– POSITION ––––––––––––––––––––
-
-	#region    –––––––––––––––––––– DIMENSIONS ––––––––––––––––––––
-
-	self.get_x_dimensions = method(self, Drawable.get_x_dimensions)
-	self.set_x_dimensions = method(self, Drawable.set_x_dimensions)
-	self.get_y_dimensions = method(self, Drawable.get_y_dimensions)
-	self.set_y_dimensions = method(self, Drawable.set_y_dimensions)
-	self.get_dimensions   = method(self, Drawable.get_dimensions)
-	self.set_dimensions   = method(self, Drawable.set_dimensions)
-
-	#endregion –––––––––––––––––––– DIMENSIONS ––––––––––––––––––––
-
-	#region    –––––––––––––––––––– ALIGNMENT ––––––––––––––––––––
-
+	/// ----------------------------------------------------------------------------
+	/// # alignment
+	/// ----------------------------------------------------------------------------
 	self.get_x_alignment = method(self, Drawable.get_x_alignment)
-	self.set_x_alignment = method(self, Drawable.set_x_alignment)
 	self.get_y_alignment = method(self, Drawable.get_y_alignment)
-	self.set_y_alignment = method(self, Drawable.set_y_alignment)
-	self.get_alignment   = method(self, Drawable.get_alignment)
 	self.set_alignment   = method(self, Drawable.set_alignment)
 
-	#endregion –––––––––––––––––––– ALIGNMENT ––––––––––––––––––––
+	/// ----------------------------------------------------------------------------
+	/// # dimensions
+	/// ----------------------------------------------------------------------------
+	self.get_x_dimensions = method(self, Drawable.get_x_dimensions)
+	self.get_y_dimensions = method(self, Drawable.get_y_dimensions)
+	self.set_dimensions   = method(self, Drawable.set_dimensions)
 
-	#region    –––––––––––––––––––– SCALE ––––––––––––––––––––
-
-	self.get_x_scale = method(self, Drawable.get_x_scale)
-	self.set_x_scale = method(self, Drawable.set_x_scale)
-	self.get_y_scale = method(self, Drawable.get_y_scale)
-	self.set_y_scale = method(self, Drawable.set_y_scale)
-	self.get_scale   = method(self, Drawable.get_scale)
-	self.set_scale   = method(self, Drawable.set_scale)
-
-	#endregion –––––––––––––––––––– SCALE ––––––––––––––––––––
-
-	/*******************************************************************************/
-	#region    –––––––––––––––––––– ROTATION ––––––––––––––––––––
-	/*******************************************************************************/
-
-	#region    –––––––––––––––––––– X_ROTATION ––––––––––––––––––––
+    /// ----------------------------------------------------------------------------
+    /// # scale
+    /// ----------------------------------------------------------------------------
+    self.get_x_scale = method(self, Drawable.get_x_scale)
+    self.get_y_scale = method(self, Drawable.get_y_scale)
+    self.set_scale   = method(self, Drawable.set_scale)
 
 	/// ----------------------------------------------------------------------------
-	/// @function get_x_rotation()
+	/// # rotation
 	/// ----------------------------------------------------------------------------
-	/// @return {Real}
-	/// x_rotation
-	/// ----------------------------------------------------------------------------
-	static get_x_rotation = function() {
-		return private.rotation.x
-	}
+	self.get_x_rotation = method(self, Drawable.get_x_rotation)
+	self.get_y_rotation = method(self, Drawable.get_y_rotation)
+	self.get_z_rotation = method(self, Drawable.get_z_rotation)
+	self.set_rotation   = method(self, Drawable.set_rotation)
 
 	/// ----------------------------------------------------------------------------
-	/// @function set_x_rotation(_x_rotation)
+	/// # blending
 	/// ----------------------------------------------------------------------------
-	/// @parameter {Real} _x_rotation
-	/// x_rotation
-	/// ----------------------------------------------------------------------------
-	/// @return {Struct.RectangleElement} self
-	/// ----------------------------------------------------------------------------
-	static set_x_rotation = function(_x_rotation) {
-		if (!is_real(_x_rotation)) {
-			// new InvalidTypeErrorGeneric()
-			return self
-		}
-		private.rotation.x = _x_rotation
-		return self
-	}
+	private.blend_colour = 0
+	private.blend_alpha  = 0
+	private.blend_mode   = 0
 
-	#endregion –––––––––––––––––––– X_ROTATION ––––––––––––––––––––
-
-	#region    –––––––––––––––––––– Y_ROTATION ––––––––––––––––––––
-
-	/// ----------------------------------------------------------------------------
-	/// @function get_y_rotation()
-	/// ----------------------------------------------------------------------------
-	/// @return {Real}
-	/// y_rotation
-	/// ----------------------------------------------------------------------------
-	static get_y_rotation = function() {
-		return private.rotation.y
-	}
-
-	/// ----------------------------------------------------------------------------
-	/// @function set_y_rotation(_y_rotation)
-	/// ----------------------------------------------------------------------------
-	/// @parameter {Real} _y_rotation
-	/// y_rotation
-	/// ----------------------------------------------------------------------------
-	/// @return {Struct.RectangleElement} self
-	/// ----------------------------------------------------------------------------
-	static set_y_rotation = function(_y_rotation) {
-		if (!is_real(_y_rotation)) {
-			// new InvalidTypeErrorGeneric()
-			return self
-		}
-		private.rotation.y = _y_rotation
-		return self
-	}
-
-	#endregion –––––––––––––––––––– Y_ROTATION ––––––––––––––––––––
-
-	#region    –––––––––––––––––––– Z_ROTATION ––––––––––––––––––––
-
-	/// ----------------------------------------------------------------------------
-	/// @function get_z_rotation()
-	/// ----------------------------------------------------------------------------
-	/// @return {Real}
-	/// z_rotation
-	/// ----------------------------------------------------------------------------
-	static get_z_rotation = function() {
-		return private.rotation.z
-	}
-
-	/// ----------------------------------------------------------------------------
-	/// @function set_z_rotation(_z_rotation)
-	/// ----------------------------------------------------------------------------
-	/// @parameter {Real} _z_rotation
-	/// z_rotation
-	/// ----------------------------------------------------------------------------
-	/// @return {Struct.RectangleElement} self
-	/// ----------------------------------------------------------------------------
-	static set_z_rotation = function(_z_rotation) {
-		if (!is_real(_z_rotation)) {
-			// new InvalidTypeErrorGeneric()
-			return self
-		}
-		private.rotation.z = _z_rotation
-		return self
-	}
-
-	#endregion –––––––––––––––––––– Z_ROTATION ––––––––––––––––––––
-
-	#region    –––––––––––––––––––– ROTATION ––––––––––––––––––––
-
-	/// ----------------------------------------------------------------------------
-	/// @function get_rotation(arguments)
-	/// ----------------------------------------------------------------------------
-	/// @return {Struct}
-	/// dimensions { x : Real, y : Real, z : Real }
-	/// ----------------------------------------------------------------------------
-	static get_rotation = function() {
-		return private.rotation
-	}
-
-	/// ----------------------------------------------------------------------------
-	/// @function function_name(arguments)
-	/// ----------------------------------------------------------------------------
-	/// @parameter {Struct} [arguments]
-	///
-	/// @parameter {Real} [arguments.x]
-	/// x_dimensions
-	///
-	/// @parameter {Real} [arguments.y]
-	/// y_dimensions
-	///
-	/// @parameter {Real} [arguments.z]
-	/// z_dimensions
-	/// ----------------------------------------------------------------------------
-	/// @return {Struct.RectangleElement} self
-	/// ----------------------------------------------------------------------------
-	static set_rotation = function(arguments) {
-		if (!is_struct(arguments)) {
-			// new InvalidTypeErrorGeneric()
-			return self
-		}
-		if (arguments[$ "x"] != undefined) { set_x_rotation(arguments.x) }
-		if (arguments[$ "y"] != undefined) { set_y_rotation(arguments.y) }
-		if (arguments[$ "z"] != undefined) { set_z_rotation(arguments.z) }
-		return self
-	}
-
-	#endregion –––––––––––––––––––– ROTATION ––––––––––––––––––––
-
-	/*******************************************************************************/
-	#endregion –––––––––––––––––––– ROTATION ––––––––––––––––––––
-	/*******************************************************************************/
-
-	/*******************************************************************************/
-	#region    –––––––––––––––––––– SOLID_FILL ––––––––––––––––––––
-	/*******************************************************************************/
+	self.get_blend_colour = method(self, Drawable.get_blend_colour)
+	self.get_blend_alpha  = method(self, Drawable.get_blend_alpha)
+	self.get_blend_mode   = method(self, Drawable.get_blend_mode)
+	self.set_blend        = method(self, Drawable.set_blend)
 
 	#region    –––––––––––––––––––– COLOUR_SOLID_FILL ––––––––––––––––––––
 
@@ -585,14 +439,6 @@ function RectangleElement() constructor {
 
 	#endregion –––––––––––––––––––– SOLID_FILL ––––––––––––––––––––
 
-	/*******************************************************************************/
-	#endregion –––––––––––––––––––– SOLID_FILL ––––––––––––––––––––
-	/*******************************************************************************/
-
-	/*******************************************************************************/
-	#region    –––––––––––––––––––– GRADIENT_FILL ––––––––––––––––––––
-	/*******************************************************************************/
-
 	#region    –––––––––––––––––––– COLOUR_GRADIENT_FILL ––––––––––––––––––––
 
 	static get_colour_gradient_fill = function() {
@@ -661,14 +507,6 @@ function RectangleElement() constructor {
 	}
 
 	#endregion –––––––––––––––––––– GRADIENT_FILL ––––––––––––––––––––
-
-	/*******************************************************************************/
-	#endregion –––––––––––––––––––– GRADIENT_FILL ––––––––––––––––––––
-	/*******************************************************************************/
-
-	/*******************************************************************************/
-	#region    –––––––––––––––––––– SOLID_OUTLINE ––––––––––––––––––––
-	/*******************************************************************************/
 
 	#region    –––––––––––––––––––– THICKNESS_SOLID_OUTLINE ––––––––––––––––––––
 
@@ -782,30 +620,6 @@ function RectangleElement() constructor {
 
 	#endregion –––––––––––––––––––– SOLID_OUTLINE ––––––––––––––––––––
 
-	/*******************************************************************************/
-	#endregion –––––––––––––––––––– SOLID_OUTLINE ––––––––––––––––––––
-	/*******************************************************************************/
-
-	/*******************************************************************************/
-	#region    –––––––––––––––––––– ALPHA ––––––––––––––––––––
-	/*******************************************************************************/
-
-	get_alpha = function() {
-
-	}
-
-	set_alpha = function() {
-
-	}
-
-	/*******************************************************************************/
-	#endregion –––––––––––––––––––– ALPHA ––––––––––––––––––––
-	/*******************************************************************************/
-
-	/*******************************************************************************/
-	#region    –––––––––––––––––––– DRAW ––––––––––––––––––––
-	/*******************************************************************************/
-
 	/// ----------------------------------------------------------------------------
 	/// @function draw(arguments)
 	/// ----------------------------------------------------------------------------
@@ -894,8 +708,8 @@ function RectangleElement() constructor {
 		return self
 	}
 
-	/*******************************************************************************/
-	#endregion –––––––––––––––––––– DRAW ––––––––––––––––––––
-	/*******************************************************************************/
-
 }
+
+/******************************************************************************/
+#endregion –––––––––––––––––––– CONSTRUCTORS ––––––––––––––––––––
+/******************************************************************************/

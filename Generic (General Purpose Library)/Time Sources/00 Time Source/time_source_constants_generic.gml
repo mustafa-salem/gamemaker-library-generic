@@ -14,6 +14,8 @@ TIME_SOURCE_GENERIC
 #region    –––––––––––––––––––– ABBREVIATIONS ––––––––––––––––––––
 /*******************************************************************************/
 
+/// #macro time_source_controller time_source_controller_generic
+
 #macro TimeSource  TimeSourceGeneric
 #macro TIME_SOURCE TIME_SOURCE_GENERIC
 

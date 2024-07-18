@@ -109,7 +109,7 @@ function get_aspect_ratio_window_generic(arguments = {}) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function generic_window_center(parameters)
+/// @function gpl_window_center(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -120,8 +120,8 @@ function get_aspect_ratio_window_generic(arguments = {}) {
 /// ----------------------------------------------------------------------------
 /// @return {undefined}
 /// ----------------------------------------------------------------------------
-function generic_window_center(parameters = {}) {
-    generic_call_later({ delay_frames : 1, callback : window_center })
+function gpl_window_center(parameters = {}) {
+    gpl_call_later({ delay_frames : 1, callback : window_center })
 }
 
 /*******************************************************************************/
@@ -153,12 +153,12 @@ function set_y_minimum_dimensions_window_generic(arguments = {}) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function generic_window_set_minimum_dimensions(arguments)
+/// @function gpl_window_set_minimum_dimensions(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
 /// ----------------------------------------------------------------------------
-function generic_window_set_minimum_dimensions(arguments = {}) {
+function gpl_window_set_minimum_dimensions(arguments = {}) {
     if (struct_exists(arguments, "x")) {
         window_set_min_width(arguments.x)
     }

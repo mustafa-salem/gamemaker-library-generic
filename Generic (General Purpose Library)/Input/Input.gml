@@ -1,9 +1,9 @@
-function generic_input_check(parameters) {
+function gpl_input_check(parameters) {
     return input_check(parameters.input, parameters.player, parameters.buffer_duration)
 }
 
 /// ----------------------------------------------------------------------------
-/// @function generic_input_check_pressed(parameters)
+/// @function gpl_input_check_pressed(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -20,7 +20,7 @@ function generic_input_check(parameters) {
 /// @return {boolean}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_input_check_pressed(parameters) {
+function gpl_input_check_pressed(parameters) {
     return input_check_pressed(parameters.input, parameters.player, parameters.buffer_duration)
 }
 

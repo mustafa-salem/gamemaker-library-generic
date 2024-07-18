@@ -172,7 +172,26 @@ function generic_surface_get(arguments = {}) {
 #macro SURFACE_DEFAULT_EXISTANCE_ENSURANCE true
 
 /// ----------------------------------------------------------------------------
-/// @function generic_surface_create(parameters)
+/// @function gpl_surface_precreate(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// This function is used to prepare a surface for its creation in an create event.
+/// Like gpl_surface_create but the actual surface won't be created yet.
+/// Call .create to create the surface.
+/// ----------------------------------------------------------------------------
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function gpl_surface_precreate(parameters = {}) {
+    return _return
+}
+
+/// ----------------------------------------------------------------------------
+/// @function gpl_surface_create(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -197,7 +216,7 @@ function generic_surface_get(arguments = {}) {
 /// ----------------------------------------------------------------------------
 /// @return {struct.Surface}
 /// ----------------------------------------------------------------------------
-function generic_surface_create(parameters) {
+function gpl_surface_create(parameters) {
     var _x_dimension          = parameters[$ "x_dimension"]
     var _y_dimension          = parameters[$ "y_dimension"]
     var _format               = parameters[$ "format"]               ?? SURFACE_DEFAULT_FORMAT
@@ -673,7 +692,7 @@ function Surface(parameters) constructor {
     private = {}
 
     // index of native GameMaker surface
-    private.surface_id = is_numeric(arguments) ? arguments : generic_surface_create(arguments)
+    private.surface_id = is_numeric(arguments) ? arguments : gpl_surface_create(arguments)
 
     private.cached = {
         width  : get_width(),
@@ -687,7 +706,7 @@ function Surface(parameters) constructor {
     private.ensure_surface_exists = function() {
         if (exists() or !surface_existance_ensurance_enabled) { return }
 
-        private.surface_id = generic_surface_create({
+        private.surface_id = gpl_surface_create({
             width  : private.cached.width,
             height : private.cached.height,
             format : private.cached.format,

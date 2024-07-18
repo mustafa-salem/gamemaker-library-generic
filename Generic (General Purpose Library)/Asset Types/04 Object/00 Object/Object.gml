@@ -1,7 +1,5 @@
 /******************************************************************************/
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #region    –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
 /******************************************************************************/
@@ -21,36 +19,73 @@
 /// code executed for their objects events from their instance of Object.
 ///
 /// ----------------------------------------------------------------------------
-#macro OBJECT_EVENT_SCRIPT_CONTENTS                                    \
-__OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC()
+#macro OBJECT_EVENT_SCRIPT_CONTENTS                                            \
 
-function __OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC() {
+methods_0 = {}
 
-    // Static Struct
-    static _static = static_get(__OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC)
+methods_0[$ event_type]()
 
-    // Create Event
-    static create_event = method(undefined, function() {
-        ObjectInstance.initialize({ object_instance : id })
-        private.finite_state_machine.create_event()
-    })
-
-    // Collision Event
-    static collision_event = method(undefined, function() {
-        private.finite_state_machine.collision_event({ collidee : event_number })
-    })
-
-    // try getting deviating event method
-    var _event_name   =  CURRENT_OBJECT_EVENT.get_name()
-    var _event_method = _static[_event_name]
-
-    // deviating behaviour
-    if (_event_method != undefined) {
-        _event_method()
-    // default behaviour
-    } else {
-        private.finite_state_machine[$ _event_name]()
+methods_0[$ ev_step] = function() {
+    methods_1 = {}
+    if (event_number == ev_step_normal) {
+        .execute_event({ event : "step_event" })
     }
+    if (event_number == ev_step_begin) {
+
+    }
+    if (event_number == ev_step_end) {
+
+    }
+    return
+}
+
+if (event_type == ev_draw) {
+    if (event_number == ev_draw_normal) {
+        .execute_event({ event : "draw_event" })
+    }
+    if (event_number == ev_draw_begin) {
+
+    }
+    if (event_number == ev_draw_end) {
+
+    }
+    if (event_number == ev_draw_pre) {
+
+    }
+    if (event_number == ev_draw_post) {
+
+    }
+    if (event_number == ev_gui) {
+
+    }
+    if (event_number == ev_gui_begin) {
+
+    }
+    if (event_number == ev_gui_end) {
+
+    }
+    return
+}
+
+if (event_type == ev_create) {
+    return
+}
+
+if (event_type == ev_destroy) {
+    return
+}
+
+if (event_type == ev_cleanup) {
+    return
+}
+
+if (event_type == ev_collision) {
+    .execute_event({ event : "collision_event" })
+    return
+}
+
+if (event_type == ev_other) {
+    return
 }
 
 /******************************************************************************/
@@ -72,15 +107,11 @@ function __OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC() {
 /******************************************************************************/
 
 /******************************************************************************/
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #endregion –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
 /******************************************************************************/
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #region    –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
-/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /******************************************************************************/
 
 /******************************************************************************/
@@ -88,7 +119,7 @@ function __OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC() {
 /******************************************************************************/
 
 /// ----------------------------------------------------------------------------
-/// @function object_get(parameters)
+/// @function gpl_object_get(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// This function returns the 'Object' struct instance associated with the
@@ -99,7 +130,7 @@ function __OBJECT_EVENT_SCRIPT_CONTENTS_GENERIC() {
 /// ----------------------------------------------------------------------------
 /// @return {struct.Object|undefined}
 /// ----------------------------------------------------------------------------
-function object_get(parameters) {
+function gpl_object_get(parameters) {
     var _object_id = object_get_id(parameters)
     return is_numeric(_object_id) ? OBJECT.private.objects[_object_id] : undefined
 }
@@ -194,7 +225,7 @@ function object_get_instance_count(parameters = {}) {
 /// <return_description>
 /// ----------------------------------------------------------------------------
 function generic_object_get_instances(parameters = {}) {
-    var _object_handle = object_get({ object : parameters.object })
+    var _object_handle = gpl_object_get({ object : parameters.object })
     var _instances = []
     for (var i = 0; i < instance_number(_object_handle); i++) {
         var _instance = instance_find(_object_handle, i)
@@ -744,7 +775,7 @@ function ObjectConstructorGeneric() constructor {
 
         var _object = arguments["object"]
         var _event  = arguments["event"]
-        _object = object_get({ object : _object })
+        _object = gpl_object_get({ object : _object })
         _event  = Object.get_event({ event : _event })
 
         if (_event.default_callable == undefined and _object.get_parent() != undefined) {
@@ -782,7 +813,7 @@ function ObjectConstructorGeneric() constructor {
         var _object   = arguments["object"]
         var _event    = arguments["events"]
         var _callable = arguments["callable"]
-        _object = object_get({ object : _object })
+        _object = gpl_object_get({ object : _object })
         _object.private.default_events..callable = arguments.callable
         return self
     }
@@ -915,27 +946,11 @@ function ObjectConstructorGeneric() constructor {
 
 
 /*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #endregion –––––––––––––––––––– REGION_NAME ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*******************************************************************************/
 
 /*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#region    –––––––––––––––––––– MACROS ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/*******************************************************************************/
-
-/*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-#endregion –––––––––––––––––––– MACROS ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/*******************************************************************************/
-
-/*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #region    –––––––––––––––––––– SCRIPT_FUNCTIONS ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*******************************************************************************/
 
 object_index
@@ -999,15 +1014,11 @@ function _object_generic(arguments) {
 }
 
 /*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #endregion –––––––––––––––––––– SCRIPT_FUNCTIONS ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*******************************************************************************/
 
 /*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #region    –––––––––––––––––––– CONSTRUCTOR ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*******************************************************************************/
 
 #macro Object Object
@@ -1223,7 +1234,5 @@ function inherits_from_object_generic(arguments) {
 }
 
 /*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 #endregion –––––––––––––––––––– CONSTRUCTOR ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*******************************************************************************/

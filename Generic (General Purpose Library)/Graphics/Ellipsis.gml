@@ -138,7 +138,7 @@ function scr_draw_circle_width(argument0, argument1, argument2, argument3) {
     }
     ring_surf = -1
     if (!generic_surface_exists({ surface : ring_surf })) {
-        ring_surf = generic_surface_create({ x_dimension : argument2 * 2, y_dimension : argument2 * 2 })
+        ring_surf = gpl_surface_create({ x_dimension : argument2 * 2, y_dimension : argument2 * 2 })
         render_target_set_surface(ring_surf)
         draw_clear_alpha(c_black, 0)
         draw_circle(argument2, argument2, argument2, 0)
