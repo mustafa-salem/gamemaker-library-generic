@@ -224,60 +224,83 @@ set_z_rotation
 
 */
 
-/*******************************************************************************/
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/******************************************************************************/
+#region    –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
+/******************************************************************************/
+
+/******************************************************************************/
+#endregion –––––––––––––––––––– CONSTANTS ––––––––––––––––––––
+/******************************************************************************/
+
+/******************************************************************************/
 #region    –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
-/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
-/*******************************************************************************/
+/******************************************************************************/
 
 /// ----------------------------------------------------------------------------
-/// @function exists_object_instance_generic(arguments)
+/// @function object_instance_exists(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a proxy for the static method function:
 /// ObjectInstance.exists
 /// ----------------------------------------------------------------------------
-function exists_object_instance_generic(arguments) {
+function object_instance_exists(arguments) {
     return instance_exists(_object_instance_id or _object_id)
 }
 
 /// ----------------------------------------------------------------------------
-/// @function object_instance_create(arguments)
+/// @function object_instance_create(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a proxy for the static method function:
 /// ObjectInstance.create
 /// ----------------------------------------------------------------------------
-function object_instance_create(arguments) {
-    // TODO: ADJUST PROJECT FOR RETURN TYPE CHANGE
-    return OBJECT_INSTANCE.create(arguments)
-}
-
-function instance_create(argument0, argument1, argument2)
-{
-    var myDepth = object_get_depth(argument2)
-    return instance_create_depth(argument0, argument1, myDepth, argument2);
-}
-
-/// ----------------------------------------------------------------------------
-/// @function generic_object_instance_depth_sort(parameters)
-/// ----------------------------------------------------------------------------
-/// @description
-/// <function_description>
-/// ----------------------------------------------------------------------------
-/// @parameter {mixed} object_instance
-/// The object instance to target.
+/// @parameter {type} object
+/// <parameter_description>
 ///
-/// @parameter {number} y_position
-/// The y position to use as a basis for the depth sorting algorithm.
+/// @parameter {type} x_position
+/// <parameter_description>
+///
+/// @parameter {type} y_position
+/// <parameter_description>
+///
+/// @parameter {type} z_position
+/// <parameter_description>
+///
+/// @parameter {type} layer
+/// <parameter_description>
+///
+/// @parameter {type} variables
+/// <parameter_description>
+///
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
 /// ----------------------------------------------------------------------------
-function generic_object_instance_depth_sort(parameters) {
-    var _object_instance = parameters.object_instance
-	_object_instance.depth = 8000 - room_height / 2 + _object_instance.y + _object_instance.sprite_height - _object_instance.sprite_yoffset
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function object_instance_create(parameters = {}) {
+    var _x_position    =
+    var _y_position    =
+    var _layer_handle  =
+    var _depth         =
+    var _object_handle =
+    var _variables = {}
+
+    if () {
+        _variables.persistent
+    }
+
+    if (_layer_handle != undefined) {
+        instance_create_layer(_x_position, _y_position, _layer_handle, _object_handle, _variables)
+    } else {
+        instance_create_depth(_x_position, _y_position, _depth, _object_handle, _variables)
+    }
+    return _return
 }
 
 /// ----------------------------------------------------------------------------
-/// @function destroy_object_instance_generic(arguments)
+/// @function object_instance_destroy(arguments)
 /// ----------------------------------------------------------------------------
 /// @description
 /// This script function serves as a wrapper for the built-in function:
@@ -297,7 +320,7 @@ function generic_object_instance_depth_sort(parameters) {
 /// ----------------------------------------------------------------------------
 /// @return {Any} self
 /// ----------------------------------------------------------------------------
-function destroy_object_instance_generic(arguments) {
+function object_instance_destroy(arguments) {
     if (!is_struct(arguments)) { /* ERROR */ }
 
     var _object_instance       = arguments[$ "object_instance"]
@@ -317,10 +340,90 @@ function destroy_object_instance_generic(arguments) {
     }
 }
 
+/// ----------------------------------------------------------------------------
+/// @function object_instance_is_in_sequence(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} object_instance
+/// <parameter_description>
+/// ----------------------------------------------------------------------------
+/// @return {boolean}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function object_instance_is_in_sequence(parameters = {}) {
+    var _handle
+    return _handle.in_sequence
+}
+
+/// ----------------------------------------------------------------------------
+/// @function object_instance_get_sequence_instance(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} object_instance
+/// <parameter_description>
+/// ----------------------------------------------------------------------------
+/// @return {struct|undefined}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function object_instance_get_sequence_instance(parameters = {}) {
+    var _handle
+    return _handle.sequence_instance
+}
+
+/******************************************************************************/
+#endregion –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
+/******************************************************************************/
+
+/******************************************************************************/
+#region    –––––––––––––––––––– CONSTRUCTORS ––––––––––––––––––––
+/******************************************************************************/
+
+function ObjectInstance() constructor {
+
+}
+
+/******************************************************************************/
+#endregion –––––––––––––––––––– CONSTRUCTORS ––––––––––––––––––––
+/******************************************************************************/
+
+
+/*******************************************************************************/
+/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+#region    –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
+/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/*******************************************************************************/
+
+
+
+
+
+/// ----------------------------------------------------------------------------
+/// @function gpl_object_instance_depthsort(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {mixed} object_instance
+/// The object instance to target.
+///
+/// @parameter {number} y_position
+/// The y position to use as a basis for the depth sorting algorithm.
+/// ----------------------------------------------------------------------------
+function gpl_object_instance_depthsort(parameters) {
+    var _object_instance = parameters.object_instance
+	_object_instance.depth = 8000 - room_height / 2 + _object_instance.y + _object_instance.sprite_height - _object_instance.sprite_yoffset
+}
+
+
+
 // if array is given this function is applied to each element
 if (_object_instance != undefined and is_array(_object_instance)) {
     for (var i = 0; i < array_length(_object_instance); i++) {
-        destroy_object_instance_generic(_object_instance[i])
+        object_instance_destroy(_object_instance[i])
     }
 // regular method of execution
 } else {
@@ -352,11 +455,11 @@ function position_object_instance_generic(arguments) {
 
 #endregion –––––––––––––––––––– POSITION_OBJECT_INSTANCE ––––––––––––––––––––
 
-function destroy_object_instance_generic(_object_instance = self) {
+function object_instance_destroy(_object_instance = self) {
     // if array is given this function is applied to each element
     if (_object_instance != undefined and is_array(_object_instance)) {
         for (var i = 0; i < array_length(_object_instance); i++) {
-            destroy_object_instance_generic(_object_instance[i])
+            object_instance_destroy(_object_instance[i])
         }
     // regular method of execution
     } else {
@@ -431,12 +534,17 @@ function generic_object_instance_draw(parameters = {}) {
 #region    –––––––––––––––––––– POSITION ––––––––––––––––––––
 /******************************************************************************/
 
-function generic_object_instance_x_position(parameters = {}) {
+function object_instance_get_x_position(parameters = {}) {
     return self.x
 }
 
-function generic_object_instance_y_position(parameters = {}) {
+function object_instance_get_y_position(parameters = {}) {
     return self.y
+}
+
+function object_instance_set_position(parameters = {}) {
+    self.x = parameters.x
+    self.y = parameters.y
 }
 
 /******************************************************************************/
@@ -687,7 +795,7 @@ function ObjectInstance() : AssetInstanceGeneric() constructor {
     /// @return {type}
     /// <return_description>
     /// ----------------------------------------------------------------------------
-    static exists = exists_object_instance_generic
+    static exists = object_instance_exists
 
     /// ----------------------------------------------------------------------------
     /// @function create(arguments)
@@ -771,7 +879,7 @@ function ObjectInstance() : AssetInstanceGeneric() constructor {
         return _object_instance
     }
 
-    static destroy = destroy_object_instance_generic
+    static destroy = object_instance_destroy
 
     /*******************************************************************************/
     #region    –––––––––––––––––––– VISIBLE ––––––––––––––––––––
@@ -1004,22 +1112,22 @@ function() {
         /// @function exists(arguments)
         /// ----------------------------------------------------------------------------
         /// @description
-        /// exists_object_instance_generic
+        /// object_instance_exists
         /// ----------------------------------------------------------------------------
         exists = function(arguments) {
             arguments.object_instance = self
-            return exists_object_instance_generic(arguments)
+            return object_instance_exists(arguments)
         }
 
         /// ----------------------------------------------------------------------------
         /// @function destroy(arguments)
         /// ----------------------------------------------------------------------------
         /// @description
-        /// destroy_object_instance_generic
+        /// object_instance_destroy
         /// ----------------------------------------------------------------------------
         destroy = function() {
             arguments.object_instance = self
-            destroy_object_instance_generic(arguments)
+            object_instance_destroy(arguments)
             return self
         }
     }
@@ -1038,18 +1146,18 @@ function() {
 ///
 /// ----------------------------------------------------------------------------
 static destroy = function(arguments) {
-    destroy_object_instance_generic(arguments)
+    object_instance_destroy(arguments)
     return self
 }
 
 static destroy = function(arguments) {
-    destroy_object_instance_generic(arguments)
+    object_instance_destroy(arguments)
     return self
 }
 
 destroy = function(arguments) {
     arguments.object_instance = self
-    destroy_object_instance_generic(arguments)
+    object_instance_destroy(arguments)
     return self
 }
 
@@ -1057,11 +1165,11 @@ STATIC_CALL
 INSTANCE_SCOPE
 
 
-function destroy_object_instance_generic(_object_instance = self) {
+function object_instance_destroy(_object_instance = self) {
     // if array is given this function is applied to each element
     if (_object_instance != undefined and is_array(_object_instance)) {
         for (var i = 0; i < array_length(_object_instance); i++) {
-            destroy_object_instance_generic(_object_instance[i])
+            object_instance_destroy(_object_instance[i])
         }
     // regular method of execution
     } else {

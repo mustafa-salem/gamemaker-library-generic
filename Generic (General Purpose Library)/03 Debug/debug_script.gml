@@ -204,7 +204,7 @@ function scr_debug_print(argument0)
         return;
     if (!instance_exists(obj_debug_gui))
     {
-        instance_create((camerax() + 10), (cameray() + 10), obj_debug_gui)
+        object_instance_create((camerax() + 10), (cameray() + 10), obj_debug_gui)
         obj_debug_gui.depth = -9999
     }
     obj_debug_gui.newtext = argument0

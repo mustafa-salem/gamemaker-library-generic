@@ -5,7 +5,7 @@
 /******************************************************************************/
 
 // The string used as the name of the default state
-#macro FINITE_STATE_MACHINE_DEFAULT_STATE_NAME "default_state"
+#macro FINITE_STATE_MACHINE_DEFAULT_STATE "default_state"
 
 // Whether to throw an error when circular inheritance is found (true) or not (false)
 #macro CIRCULAR_INHERITANCE_THROW_ERROR_FINITE_STATE_MACHINE_GENERIC \
@@ -168,8 +168,8 @@ function FiniteStateMachine() constructor {
 	/// Start time of the current state (in microseconds)
 	private.state_start_time = get_timer()
 
-	private.states[$ FINITE_STATE_MACHINE_DEFAULT_STATE_NAME] = {
-		name        : FINITE_STATE_MACHINE_DEFAULT_STATE_NAME,
+	private.states[$ FINITE_STATE_MACHINE_DEFAULT_STATE] = {
+		name        : FINITE_STATE_MACHINE_DEFAULT_STATE,
 		parent_name : undefined,
 	}
 
@@ -261,13 +261,13 @@ function FiniteStateMachine() constructor {
 			__debug_message("argument0.name should be a valid state name.")
 			return self
 		}
-		if (_state_name == FINITE_STATE_MACHINE_DEFAULT_STATE_NAME) {
+		if (_state_name == FINITE_STATE_MACHINE_DEFAULT_STATE) {
 			__debug_message("argument0.name cannot be the name of the default state.")
 			return self
 		}
 
 		// the name string of the parent state of the state
-		var _parent_name = parameters[$ "parent"] ?? FINITE_STATE_MACHINE_DEFAULT_STATE_NAME
+		var _parent_name = parameters[$ "parent"] ?? FINITE_STATE_MACHINE_DEFAULT_STATE
 		if (!__is_valid_state_name(_parent_name)) {
 			__debug_message("argument0.parent should be a valid state name.")
 			return self
@@ -314,7 +314,7 @@ function FiniteStateMachine() constructor {
 			if (!__is_valid_state_name(_state_name)) {
 				continue
 			}
-			if (_state_name == FINITE_STATE_MACHINE_DEFAULT_STATE_NAME) {
+			if (_state_name == FINITE_STATE_MACHINE_DEFAULT_STATE) {
 				__debug_message("Cannot remove the default state.")
 				continue
 			}
@@ -631,7 +631,7 @@ function FiniteStateMachine() constructor {
 		/* –––––––––––––––––––– ARGUMENT_VALIDATION –––––––––––––––––––– */
 
 		var _event_name = parameters[$ "name"]
-		var _state_name = parameters[$ "state"] ?? FINITE_STATE_MACHINE_DEFAULT_STATE_NAME
+		var _state_name = parameters[$ "state"] ?? FINITE_STATE_MACHINE_DEFAULT_STATE
 
 		var _method = arguments[$ "callable"]
 		if (!__is_valid_event_name(_event_name)) {
@@ -1181,7 +1181,7 @@ function FiniteStateMachine() constructor {
     /*******************************************************************************/
 
 	// built-in state
-	add_state({ name : FINITE_STATE_MACHINE_DEFAULT_STATE_NAME })
+	add_state({ name : FINITE_STATE_MACHINE_DEFAULT_STATE })
 
 	// built-in events
 	add_event({ event : "enter_state_event"  })

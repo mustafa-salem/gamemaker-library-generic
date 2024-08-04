@@ -50,7 +50,7 @@ function afterimage_create(_instance = self) {
     // _instance.image_yscale = _target.image_yscale
     // _instance.image_angle  = _target.image_angle
 
-	_instance = instance_create(_target.x, _target.y, afterimage_object)
+	_instance = object_instance_create(_target.x, _target.y, afterimage_object)
 	return _instance
 }
 
