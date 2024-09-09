@@ -3,7 +3,7 @@
 /******************************************************************************/
 
 /// ----------------------------------------------------------------------------
-/// @function ingame_event_create(parameters)
+/// @function ingame_event_instance_create(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -15,7 +15,7 @@
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function ingame_event_create(parameters = {}) {
+function ingame_event_instance_create(parameters = {}) {
     return _return
 }
 

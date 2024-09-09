@@ -51,7 +51,24 @@ function ingame_entity_instance_create(parameters = {}) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function ingame_entity_get(parameters)
+/// @function ingame_entity_instance_destroy(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} parameter_name
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function ingame_entity_instance_destroy(parameters = {}) {
+    return _return
+}
+
+/// ----------------------------------------------------------------------------
+/// @function ingame_entity_instance_get(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -62,12 +79,12 @@ function ingame_entity_instance_create(parameters = {}) {
 /// ----------------------------------------------------------------------------
 /// @return {struct|undefined}
 /// ----------------------------------------------------------------------------
-function ingame_entity_get(parameters = {}) {
+function ingame_entity_instance_get(parameters = {}) {
     return _return
 }
 
 /// ----------------------------------------------------------------------------
-/// @function ingame_entity_reconfigure(parameters)
+/// @function ingame_entity_instance_reconfigure(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -78,7 +95,7 @@ function ingame_entity_get(parameters = {}) {
 /// ----------------------------------------------------------------------------
 /// @return {struct|undefined}
 /// ----------------------------------------------------------------------------
-function ingame_entity_reconfigure(parameters = {}) {
+function ingame_entity_instance_reconfigure(parameters = {}) {
     var _instances = <expression>
     for (var i = 0; i < array_length(_instances); i++) {
         var _instance = _instances[i]
@@ -100,6 +117,26 @@ function ingame_entity_reconfigure(parameters = {}) {
 /// <return_description>
 /// ----------------------------------------------------------------------------
 function ingame_entity_instance_execute_event(parameters = {}) {
+    return _return
+}
+
+/// ----------------------------------------------------------------------------
+/// @function ingame_entity_instance_set_creation_code(parameters)
+/// ----------------------------------------------------------------------------
+/// @description
+/// <function_description>
+/// ----------------------------------------------------------------------------
+/// @parameter {type} ingame_entity_instance
+/// <parameter_description>
+///
+/// @parameter {type} callable
+/// <parameter_description>
+///
+/// ----------------------------------------------------------------------------
+/// @return {type}
+/// <return_description>
+/// ----------------------------------------------------------------------------
+function ingame_entity_instance_set_creation_code(parameters = {}) {
     return _return
 }
 

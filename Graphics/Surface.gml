@@ -231,7 +231,7 @@ function gpl_surface_create(parameters) {
 /// @function generic_surface_exists(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This function is a generification of the built-in function <surface_exists>.
+/// This is a generification of <surface_exists>.
 ///
 /// This function checks if a surface exists.
 /// ----------------------------------------------------------------------------

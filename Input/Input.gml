@@ -82,7 +82,7 @@ function generic_input_get_exclusive_active_name(parameters) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function generic_input_get_exclusive_pressed(parameters)
+/// @function gpl_input_get_exclusive_pressed(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -99,7 +99,7 @@ function generic_input_get_exclusive_active_name(parameters) {
 /// @return {string|undefined}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_input_get_exclusive_pressed(parameters) {
+function gpl_input_get_exclusive_pressed(parameters) {
     return
 }
 
@@ -142,7 +142,7 @@ function generic_input_check_opposing(parameters) {
 }
 
 /// ----------------------------------------------------------------------------
-/// @function generic_input_consume(parameters)
+/// @function gpl_input_consume(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
 /// <function_description>
@@ -159,7 +159,7 @@ function generic_input_check_opposing(parameters) {
 /// @return {type}
 /// <return_description>
 /// ----------------------------------------------------------------------------
-function generic_input_consume(parameters) {
+function gpl_input_consume(parameters) {
     var _input_name   = parameters[$ "input"]
     var _player_index = parameters[$ "player"]
 	input_verb_consume(_input_name, _player_index)

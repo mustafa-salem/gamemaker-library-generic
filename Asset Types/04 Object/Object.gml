@@ -139,7 +139,7 @@ function gpl_object_get(parameters) {
 /// @function object_get_name_generic(parameters)
 /// ----------------------------------------------------------------------------
 /// @description
-/// This function is a generification of the built-in function 'object_get_name'.
+/// This is a generification of 'object_get_name'.
 /// ----------------------------------------------------------------------------
 /// @parameter {type} parameter_name
 /// <parameter_description>

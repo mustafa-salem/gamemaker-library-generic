@@ -24,7 +24,7 @@ function set_default_caption_window_generic(arguments = {}) {
 /// @description
 /// This function is used to change the caption of the game window.
 ///
-/// NOTE: This function is a generification of the built-in function 'window_set_caption'.
+/// NOTE: This is a generification of 'window_set_caption'.
 ///
 /// NOTE: The window caption is independent of the current room even though the
 /// GameMaker manual claims otherwise.
