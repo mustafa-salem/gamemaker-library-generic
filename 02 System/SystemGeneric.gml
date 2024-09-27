@@ -64,8 +64,8 @@ function SystemControllerGeneric() constructor {
     #region    –––––––––––––––––––– LIBRARY_INITIALIZATION ––––––––––––––––––––
     /*******************************************************************************/
 
-    // adds an instance of system_controller_object_generic to the first room (permanently)
-    room_instance_add(room_first, 0, 0, system_controller_object_generic)
+    // adds an instance of generic_controller_object to the first room (permanently)
+    room_instance_add(room_first, 0, 0, generic_controller_object)
 
     /*******************************************************************************/
     #endregion –––––––––––––––––––– LIBRARY_INITIALIZATION ––––––––––––––––––––
@@ -127,8 +127,8 @@ function SystemControllerGeneric() constructor {
     static cleanup_event = function() {
         if (instance_number > 1) { return }
         gpl_call_later({ delay_frames : 1, callable : function() {
-            if (!instance_exists(system_controller_object_generic)) {
-                instance_create_depth(0, 0, 0, system_controller_object_generic)
+            if (!instance_exists(generic_controller_object)) {
+                instance_create_depth(0, 0, 0, generic_controller_object)
             }
         }})
     }
