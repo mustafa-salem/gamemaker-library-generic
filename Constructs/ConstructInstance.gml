@@ -59,6 +59,20 @@ function construct_instance_execute_parent_event(parameters = {}) {
     return _return
 }
 
+/// ----------------------------------------------------------------------------
+/// @function construct_instance_get_object_instance(parameters)
+/// ----------------------------------------------------------------------------
+function construct_instance_get_object_instance(parameters = {}) {
+    return _return
+}
+
+/// ----------------------------------------------------------------------------
+/// @function construct_instance_get_object_instance_handle(parameters)
+/// ----------------------------------------------------------------------------
+function construct_instance_get_object_instance_handle(parameters = {}) {
+    return _return
+}
+
 /******************************************************************************/
 #endregion –––––––––––––––––––– FUNCTIONS ––––––––––––––––––––
 /******************************************************************************/
@@ -78,6 +92,10 @@ function ConstructInstance() constructor {
     self.execute_parent_event = function() {
 
     }
+
+    self.get_object_instance = construct_instance_get_object_instance
+
+    self.get_object_instance_handle = construct_instance_get_object_instance_handle
 
 }
 

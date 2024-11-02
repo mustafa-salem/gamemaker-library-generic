@@ -52,9 +52,5 @@ function InGameEvent() {
 /******************************************************************************/
 
 gpl_object_get({ object : ingame_event_object })
-.set_event({ event : "create_event", callable : function(parameters = {}) {
 
-}})
-.set_event({ event : "step_event", callable : function(parameters = {}) {
-
-}})
+construct_create({ name : "ingame_event" })
